@@ -1,0 +1,941 @@
+{
+  "users": [
+    {
+      "id": "admin-1",
+      "role": "ADMIN",
+      "name": "Admin",
+      "email": "admin@medicore.demo",
+      "password": "$2a$10$qZcoIUnbuWJfd7tDQdtanO060M3KLvYmcuqU/J6d24eRt8ZQf81hS",
+      "phone": "+91 9876543210",
+      "hospitalId": "hospital-1",
+      "createdAt": "2026-10-07T06:39:09.807Z"
+    },
+    {
+      "id": "DOC-1001",
+      "role": "DOCTOR",
+      "name": "Dr. Rajesh Sharma",
+      "email": "doctor@medicore.demo",
+      "password": "$2a$10$qZcoIUnbuWJfd7tDQdtanO060M3KLvYmcuqU/J6d24eRt8ZQf81hS",
+      "department": "General Medicine",
+      "licenseNumber": "MCI-2026-981",
+      "phone": "+91 9876543211",
+      "hospitalId": "hospital-1",
+      "createdAt": "2026-10-07T06:39:09.807Z"
+    },
+    {
+      "id": "REC-1001",
+      "role": "RECEPTIONIST",
+      "name": "Priya Sharma",
+      "email": "reception@medicore.demo",
+      "password": "$2a$10$qZcoIUnbuWJfd7tDQdtanO060M3KLvYmcuqU/J6d24eRt8ZQf81hS",
+      "phone": "+91 9876543212",
+      "hospitalId": "hospital-1",
+      "createdAt": "2026-10-07T06:39:09.807Z"
+    },
+    {
+      "id": "NUR-1001",
+      "role": "NURSE",
+      "name": "Sister Mary Joseph",
+      "email": "nurse@medicore.demo",
+      "password": "$2a$10$qZcoIUnbuWJfd7tDQdtanO060M3KLvYmcuqU/J6d24eRt8ZQf81hS",
+      "phone": "+91 9876543213",
+      "hospitalId": "hospital-1",
+      "createdAt": "2026-10-07T06:39:09.807Z"
+    },
+    {
+      "id": "PHA-1001",
+      "role": "PHARMACIST",
+      "name": "Vikram Verma",
+      "email": "pharmacy@medicore.demo",
+      "password": "$2a$10$qZcoIUnbuWJfd7tDQdtanO060M3KLvYmcuqU/J6d24eRt8ZQf81hS",
+      "phone": "+91 9876543214",
+      "hospitalId": "hospital-1",
+      "createdAt": "2026-10-07T06:39:09.807Z"
+    },
+    {
+      "id": "LAB-1001",
+      "role": "LAB_STAFF",
+      "name": "Dr. Sunita Rao",
+      "email": "lab@medicore.demo",
+      "password": "$2a$10$qZcoIUnbuWJfd7tDQdtanO060M3KLvYmcuqU/J6d24eRt8ZQf81hS",
+      "phone": "+91 9876543215",
+      "hospitalId": "hospital-1",
+      "createdAt": "2026-10-07T06:39:09.807Z"
+    },
+    {
+      "id": "SCA-1001",
+      "role": "SCAN_TECH",
+      "name": "Alex Turner",
+      "email": "scan@medicore.demo",
+      "password": "$2a$10$qZcoIUnbuWJfd7tDQdtanO060M3KLvYmcuqU/J6d24eRt8ZQf81hS",
+      "phone": "+91 9876543216",
+      "hospitalId": "hospital-1",
+      "createdAt": "2026-10-07T06:39:09.807Z"
+    },
+    {
+      "id": "P-1001",
+      "role": "PATIENT",
+      "name": "Anil Kumar",
+      "email": "patient@medicore.demo",
+      "password": "$2a$10$qZcoIUnbuWJfd7tDQdtanO060M3KLvYmcuqU/J6d24eRt8ZQf81hS",
+      "phone": "+91 9876543217",
+      "mrn": "MC-MRN-012861",
+      "age": 42,
+      "gender": "Male",
+      "bloodGroup": "A+",
+      "createdAt": "2026-10-07T06:39:09.807Z"
+    },
+    {
+      "id": "admin-1",
+      "role": "ADMIN",
+      "name": "System Governance Admin",
+      "email": "admin@medicore.demo",
+      "password": "$2a$10$SNNp/jG1bpEFs1N16bxin.ubiNS0HUh7CgjXPLHN4Q6FRKHvyPJES",
+      "hospitalId": "hospital-1",
+      "createdAt": "2026-10-07T06:39:09.886Z"
+    },
+    {
+      "id": "DOC-101",
+      "role": "DOCTOR",
+      "name": "Dr. Ananya Sharma",
+      "email": "doctor@medicore.demo",
+      "password": "$2a$10$SNNp/jG1bpEFs1N16bxin.ubiNS0HUh7CgjXPLHN4Q6FRKHvyPJES",
+      "department": "General Medicine",
+      "hospitalId": "hospital-1",
+      "licenseNumber": "MCI-2026-88190",
+      "opdFee": 500,
+      "roomNumber": "Cabin 101",
+      "schedule": "Mon-Fri (09:00 AM - 04:00 PM)",
+      "status": "ACTIVE",
+      "createdAt": "2026-10-07T06:39:09.886Z"
+    },
+    {
+      "id": "P-1001",
+      "role": "PATIENT",
+      "name": "Ramesh Verma",
+      "email": "patient@medicore.demo",
+      "password": "$2a$10$SNNp/jG1bpEFs1N16bxin.ubiNS0HUh7CgjXPLHN4Q6FRKHvyPJES",
+      "dob": "1988-06-15",
+      "age": 38,
+      "gender": "Male",
+      "phone": "+91 9876543210",
+      "bloodGroup": "O+",
+      "emergencyContact": "Sunita Verma (+91 9876543211)",
+      "address": "Flat 402, Jubilee Hills, Hyderabad",
+      "mrn": "MC-MRN-882910",
+      "createdAt": "2026-10-07T06:39:09.886Z"
+    },
+    {
+      "id": "DOC-103",
+      "role": "DOCTOR",
+      "name": "Dr. Hardhik",
+      "email": "altafmohammad2025@gmail.com",
+      "password": "$2a$10$BqhyAJ67h3laszhdevEVK.2FziDXbRP8og7hPulY1bq3fJeugsz/i",
+      "gender": "Male",
+      "dob": "1982-01-01",
+      "address": "",
+      "qualification": "MBBS, MD",
+      "specialization": "General Medicine",
+      "experience": "8 Years",
+      "department": "General Medicine",
+      "hospitalId": "hospital-1",
+      "licenseNumber": "MCI-2026-18258",
+      "phone": "+91 9876543210",
+      "opdFee": 500,
+      "roomNumber": "Cabin 102",
+      "schedule": "Mon-Fri (09:00 AM - 04:00 PM)",
+      "appointmentDuration": 15,
+      "status": "ACTIVE",
+      "createdAt": "2026-10-07T06:58:02.162Z"
+    }
+  ],
+  "hospitals": [
+    {
+      "id": "hospital-1",
+      "name": "MEDI CORE Multi-Specialty Hospital",
+      "city": "Hyderabad",
+      "departments": [
+        "General Medicine",
+        "Cardiology",
+        "Orthopedics",
+        "Pediatrics",
+        "Emergency",
+        "Radiology",
+        "Pathology",
+        "Neurology",
+        "Surgery",
+        "Dermatology",
+        "ENT",
+        "Gynecology"
+      ]
+    }
+  ],
+  "queue": [
+    {
+      "id": "Q-1791358509359-3066b7",
+      "token": "A-101",
+      "appointmentId": null,
+      "patientId": "P-1001",
+      "patientName": "Anil Kumar",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "status": "CHECKED_IN",
+      "checkInTime": "01:05 pm",
+      "consultationTime": null,
+      "category": "OPD",
+      "waitTimeMinutes": 0,
+      "createdAt": "2026-10-07T07:35:09.418Z"
+    },
+    {
+      "id": "Q-1791360161124-b88a1b",
+      "token": "A-102",
+      "appointmentId": null,
+      "patientId": "P-1001",
+      "patientName": "Anil Kumar",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "status": "CHECKED_IN",
+      "checkInTime": "01:32 pm",
+      "consultationTime": null,
+      "category": "OPD",
+      "waitTimeMinutes": 15,
+      "createdAt": "2026-10-07T08:02:41.125Z"
+    }
+  ],
+  "consultations": [],
+  "caseSheets": [],
+  "allergies": [],
+  "medications": [],
+  "prescriptions": [],
+  "pharmacyInventory": [
+    {
+      "id": "INV-MED-01",
+      "name": "Paracetamol 500mg",
+      "genericName": "Acetaminophen",
+      "dosage": "500mg",
+      "batchNo": "BATCH-2026A",
+      "stockQuantity": 250,
+      "thresholdLow": 50,
+      "unitPrice": 15,
+      "expiryDate": "2027-12-31",
+      "supplier": "Apex Pharma Ltd",
+      "status": "HEALTHY",
+      "barcode": "8901234567890"
+    },
+    {
+      "id": "INV-MED-02",
+      "name": "Amoxicillin 500mg",
+      "genericName": "Amoxicillin",
+      "dosage": "500mg",
+      "batchNo": "BATCH-2026B",
+      "stockQuantity": 180,
+      "thresholdLow": 30,
+      "unitPrice": 45,
+      "expiryDate": "2027-08-15",
+      "supplier": "BioCare India",
+      "status": "HEALTHY",
+      "barcode": "8901234567891"
+    },
+    {
+      "id": "INV-MED-03",
+      "name": "Azithromycin 250mg",
+      "genericName": "Azithromycin",
+      "dosage": "250mg",
+      "batchNo": "BATCH-2025Z",
+      "stockQuantity": 120,
+      "thresholdLow": 20,
+      "unitPrice": 120,
+      "expiryDate": "2026-11-01",
+      "supplier": "HealthMed Corp",
+      "status": "HEALTHY",
+      "barcode": "8901234567892"
+    },
+    {
+      "id": "INV-MED-04",
+      "name": "Pantoprazole 40mg",
+      "genericName": "Pantoprazole",
+      "dosage": "40mg",
+      "batchNo": "BATCH-2026P",
+      "stockQuantity": 140,
+      "thresholdLow": 40,
+      "unitPrice": 30,
+      "expiryDate": "2028-01-20",
+      "supplier": "Sun Healthcare",
+      "status": "HEALTHY",
+      "barcode": "8901234567893"
+    },
+    {
+      "id": "INV-MED-05",
+      "name": "Metformin 500mg",
+      "genericName": "Metformin Hydrochloride",
+      "dosage": "500mg",
+      "batchNo": "BATCH-2026M",
+      "stockQuantity": 310,
+      "thresholdLow": 50,
+      "unitPrice": 25,
+      "expiryDate": "2027-10-10",
+      "supplier": "Apex Pharma Ltd",
+      "status": "HEALTHY",
+      "barcode": "8901234567894"
+    },
+    {
+      "id": "INV-MED-1791358435014-1b43c5",
+      "name": "dolo",
+      "genericName": "dolo",
+      "dosage": "500mg",
+      "batchNo": "BATCH-2026-329",
+      "stockQuantity": 100,
+      "thresholdLow": 20,
+      "unitPrice": 65,
+      "expiryDate": "2027-12-31",
+      "supplier": "Apex Pharma Ltd",
+      "status": "HEALTHY",
+      "barcode": "8901234581982",
+      "createdAt": "2026-10-07T07:33:55.014Z"
+    }
+  ],
+  "labOrders": [],
+  "scanOrders": [],
+  "beds": [
+    {
+      "bedId": "ICU-01",
+      "ward": "ICU",
+      "roomNumber": "ICU-101",
+      "bedNumber": "01",
+      "dailyRate": 5000,
+      "status": "AVAILABLE",
+      "currentPatientId": null,
+      "currentPatientName": null,
+      "equipment": [
+        "Ventilator",
+        "Cardiac Monitor"
+      ]
+    },
+    {
+      "bedId": "ICU-02",
+      "ward": "ICU",
+      "roomNumber": "ICU-101",
+      "bedNumber": "02",
+      "dailyRate": 5000,
+      "status": "AVAILABLE",
+      "currentPatientId": null,
+      "currentPatientName": null,
+      "equipment": [
+        "Ventilator",
+        "Cardiac Monitor"
+      ]
+    },
+    {
+      "bedId": "ICU-03",
+      "ward": "ICU",
+      "roomNumber": "ICU-102",
+      "bedNumber": "03",
+      "dailyRate": 5000,
+      "status": "AVAILABLE",
+      "currentPatientId": null,
+      "currentPatientName": null,
+      "equipment": [
+        "Cardiac Monitor"
+      ]
+    },
+    {
+      "bedId": "ICU-04",
+      "ward": "ICU",
+      "roomNumber": "ICU-102",
+      "bedNumber": "04",
+      "dailyRate": 5000,
+      "status": "AVAILABLE",
+      "currentPatientId": null,
+      "currentPatientName": null,
+      "equipment": [
+        "Cardiac Monitor"
+      ]
+    },
+    {
+      "bedId": "ICU-05",
+      "ward": "ICU",
+      "roomNumber": "ICU-103",
+      "bedNumber": "05",
+      "dailyRate": 5000,
+      "status": "AVAILABLE",
+      "currentPatientId": null,
+      "currentPatientName": null,
+      "equipment": [
+        "Ventilator",
+        "Cardiac Monitor"
+      ]
+    },
+    {
+      "bedId": "GEN-01",
+      "ward": "General Ward",
+      "roomNumber": "GEN-201",
+      "bedNumber": "01",
+      "dailyRate": 1500,
+      "status": "AVAILABLE",
+      "currentPatientId": null,
+      "currentPatientName": null,
+      "equipment": [
+        "Standard Oxygen"
+      ]
+    },
+    {
+      "bedId": "GEN-02",
+      "ward": "General Ward",
+      "roomNumber": "GEN-201",
+      "bedNumber": "02",
+      "dailyRate": 1500,
+      "status": "AVAILABLE",
+      "currentPatientId": null,
+      "currentPatientName": null,
+      "equipment": [
+        "Standard Oxygen"
+      ]
+    },
+    {
+      "bedId": "GEN-03",
+      "ward": "General Ward",
+      "roomNumber": "GEN-202",
+      "bedNumber": "03",
+      "dailyRate": 1500,
+      "status": "AVAILABLE",
+      "currentPatientId": null,
+      "currentPatientName": null,
+      "equipment": []
+    },
+    {
+      "bedId": "GEN-04",
+      "ward": "General Ward",
+      "roomNumber": "GEN-202",
+      "bedNumber": "04",
+      "dailyRate": 1500,
+      "status": "AVAILABLE",
+      "currentPatientId": null,
+      "currentPatientName": null,
+      "equipment": []
+    },
+    {
+      "bedId": "GEN-05",
+      "ward": "General Ward",
+      "roomNumber": "GEN-203",
+      "bedNumber": "05",
+      "dailyRate": 1500,
+      "status": "AVAILABLE",
+      "currentPatientId": null,
+      "currentPatientName": null,
+      "equipment": [
+        "Standard Oxygen"
+      ]
+    },
+    {
+      "bedId": "EMG-01",
+      "ward": "Emergency",
+      "roomNumber": "ER-01",
+      "bedNumber": "01",
+      "dailyRate": 2500,
+      "status": "AVAILABLE",
+      "currentPatientId": null,
+      "currentPatientName": null,
+      "equipment": [
+        "Defibrillator",
+        "Oxygen"
+      ]
+    },
+    {
+      "bedId": "EMG-02",
+      "ward": "Emergency",
+      "roomNumber": "ER-01",
+      "bedNumber": "02",
+      "dailyRate": 2500,
+      "status": "AVAILABLE",
+      "currentPatientId": null,
+      "currentPatientName": null,
+      "equipment": [
+        "Defibrillator",
+        "Oxygen"
+      ]
+    },
+    {
+      "bedId": "EMG-03",
+      "ward": "Emergency",
+      "roomNumber": "ER-02",
+      "bedNumber": "03",
+      "dailyRate": 2500,
+      "status": "AVAILABLE",
+      "currentPatientId": null,
+      "currentPatientName": null,
+      "equipment": [
+        "Oxygen"
+      ]
+    }
+  ],
+  "admissions": [],
+  "emergencyCases": [],
+  "invoices": [],
+  "notifications": [
+    {
+      "id": "NOTIF-1791358509420-c604f8",
+      "targetUserId": "P-1001",
+      "title": "Check-In Confirmed",
+      "message": "Token A-101 issued for Dr. Dr. Rajesh Sharma. Estimated wait time: 0 mins.",
+      "type": "SUCCESS",
+      "isRead": false,
+      "timestamp": "2026-10-07T07:35:09.420Z"
+    },
+    {
+      "id": "NOTIF-1791360161127-ae0e43",
+      "targetUserId": "P-1001",
+      "title": "Check-In Confirmed",
+      "message": "Token A-102 issued for Dr. Dr. Rajesh Sharma. Estimated wait time: 15 mins.",
+      "type": "SUCCESS",
+      "isRead": false,
+      "timestamp": "2026-10-07T08:02:41.127Z"
+    }
+  ],
+  "carePlans": [],
+  "appointments": [],
+  "consents": [],
+  "breakGlassLogs": [],
+  "caregivers": [],
+  "vitals": [],
+  "referrals": [],
+  "auditLogs": [
+    {
+      "id": "AUDIT-1791355149886-7f021a",
+      "action": "LOAD_DEMO_DATASET",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": null,
+      "timestamp": "2026-10-07T06:39:09.886Z",
+      "metadata": {}
+    },
+    {
+      "id": "AUDIT-1791355185731-f46937",
+      "action": "USER_LOGIN",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "PHARMACIST",
+      "patientId": "admin-1",
+      "timestamp": "2026-10-07T06:39:45.731Z",
+      "metadata": {
+        "role": "PHARMACIST"
+      }
+    },
+    {
+      "id": "AUDIT-1791355208746-b600ed",
+      "action": "USER_LOGIN",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": "admin-1",
+      "timestamp": "2026-10-07T06:40:08.746Z",
+      "metadata": {
+        "role": "ADMIN"
+      }
+    },
+    {
+      "id": "AUDIT-1791355259566-fa3557",
+      "action": "USER_LOGIN",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T06:40:59.566Z",
+      "metadata": {
+        "role": "PATIENT"
+      }
+    },
+    {
+      "id": "AUDIT-1791355259573-2bf571",
+      "action": "VIEW_PATIENT_360",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T06:40:59.573Z",
+      "metadata": {}
+    },
+    {
+      "id": "AUDIT-1791355259595-8520ef",
+      "action": "VIEW_PATIENT_360",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T06:40:59.595Z",
+      "metadata": {}
+    },
+    {
+      "id": "AUDIT-1791355270784-5a7100",
+      "action": "USER_LOGIN",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": "admin-1",
+      "timestamp": "2026-10-07T06:41:10.784Z",
+      "metadata": {
+        "role": "ADMIN"
+      }
+    },
+    {
+      "id": "AUDIT-1791355296827-825146",
+      "action": "USER_LOGIN",
+      "actorId": "REC-1001",
+      "actorName": "Priya Sharma",
+      "actorRole": "RECEPTIONIST",
+      "patientId": "REC-1001",
+      "timestamp": "2026-10-07T06:41:36.827Z",
+      "metadata": {
+        "role": "RECEPTIONIST"
+      }
+    },
+    {
+      "id": "AUDIT-1791355330872-3d159b",
+      "action": "USER_LOGIN",
+      "actorId": "REC-1001",
+      "actorName": "Priya Sharma",
+      "actorRole": "RECEPTIONIST",
+      "patientId": "REC-1001",
+      "timestamp": "2026-10-07T06:42:10.872Z",
+      "metadata": {
+        "role": "RECEPTIONIST"
+      }
+    },
+    {
+      "id": "AUDIT-1791355340918-ce3559",
+      "action": "USER_LOGIN",
+      "actorId": "DOC-1001",
+      "actorName": "Dr. Rajesh Sharma",
+      "actorRole": "DOCTOR",
+      "patientId": "DOC-1001",
+      "timestamp": "2026-10-07T06:42:20.918Z",
+      "metadata": {
+        "role": "DOCTOR"
+      }
+    },
+    {
+      "id": "AUDIT-1791355346244-a90fa4",
+      "action": "USER_LOGIN",
+      "actorId": "DOC-1001",
+      "actorName": "Dr. Rajesh Sharma",
+      "actorRole": "DOCTOR",
+      "patientId": "DOC-1001",
+      "timestamp": "2026-10-07T06:42:26.244Z",
+      "metadata": {
+        "role": "DOCTOR"
+      }
+    },
+    {
+      "id": "AUDIT-1791355349519-e3e119",
+      "action": "USER_LOGIN",
+      "actorId": "DOC-1001",
+      "actorName": "Dr. Rajesh Sharma",
+      "actorRole": "DOCTOR",
+      "patientId": "DOC-1001",
+      "timestamp": "2026-10-07T06:42:29.519Z",
+      "metadata": {
+        "role": "DOCTOR"
+      }
+    },
+    {
+      "id": "AUDIT-1791355352152-96d16c",
+      "action": "USER_LOGIN",
+      "actorId": "DOC-1001",
+      "actorName": "Dr. Rajesh Sharma",
+      "actorRole": "DOCTOR",
+      "patientId": "DOC-1001",
+      "timestamp": "2026-10-07T06:42:32.152Z",
+      "metadata": {
+        "role": "DOCTOR"
+      }
+    },
+    {
+      "id": "AUDIT-1791355357465-67a2e2",
+      "action": "USER_LOGIN",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T06:42:37.465Z",
+      "metadata": {
+        "role": "PATIENT"
+      }
+    },
+    {
+      "id": "AUDIT-1791355357469-eb064a",
+      "action": "VIEW_PATIENT_360",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T06:42:37.470Z",
+      "metadata": {}
+    },
+    {
+      "id": "AUDIT-1791355357473-99c33c",
+      "action": "VIEW_PATIENT_360",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T06:42:37.473Z",
+      "metadata": {}
+    },
+    {
+      "id": "AUDIT-1791355362154-958d52",
+      "action": "USER_LOGIN",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T06:42:42.154Z",
+      "metadata": {
+        "role": "PATIENT"
+      }
+    },
+    {
+      "id": "AUDIT-1791355362160-fa7bf1",
+      "action": "VIEW_PATIENT_360",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T06:42:42.160Z",
+      "metadata": {}
+    },
+    {
+      "id": "AUDIT-1791355362163-3a14d8",
+      "action": "VIEW_PATIENT_360",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T06:42:42.163Z",
+      "metadata": {}
+    },
+    {
+      "id": "AUDIT-1791355451950-c4fa07",
+      "action": "VIEW_PATIENT_360",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T06:44:11.950Z",
+      "metadata": {}
+    },
+    {
+      "id": "AUDIT-1791355693400-bdb06a",
+      "action": "VIEW_PATIENT_360",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T06:48:13.400Z",
+      "metadata": {}
+    },
+    {
+      "id": "AUDIT-1791355698776-214796",
+      "action": "VIEW_PATIENT_360",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T06:48:18.776Z",
+      "metadata": {}
+    },
+    {
+      "id": "AUDIT-1791355710118-ac3ec0",
+      "action": "VIEW_PATIENT_360",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T06:48:30.118Z",
+      "metadata": {}
+    },
+    {
+      "id": "AUDIT-1791355710121-fe113a",
+      "action": "VIEW_PATIENT_360",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T06:48:30.121Z",
+      "metadata": {}
+    },
+    {
+      "id": "AUDIT-1791356119612-789725",
+      "action": "VIEW_PATIENT_360",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T06:55:19.612Z",
+      "metadata": {}
+    },
+    {
+      "id": "AUDIT-1791356119615-377a8d",
+      "action": "VIEW_PATIENT_360",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T06:55:19.615Z",
+      "metadata": {}
+    },
+    {
+      "id": "AUDIT-1791356130001-7b1d7d",
+      "action": "VIEW_PATIENT_360",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T06:55:30.001Z",
+      "metadata": {}
+    },
+    {
+      "id": "AUDIT-1791356130005-b2c563",
+      "action": "VIEW_PATIENT_360",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T06:55:30.005Z",
+      "metadata": {}
+    },
+    {
+      "id": "AUDIT-1791356163952-ad9d51",
+      "action": "VIEW_PATIENT_360",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T06:56:03.952Z",
+      "metadata": {}
+    },
+    {
+      "id": "AUDIT-1791356163954-3a09e3",
+      "action": "VIEW_PATIENT_360",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T06:56:03.954Z",
+      "metadata": {}
+    },
+    {
+      "id": "AUDIT-1791356171284-e82dda",
+      "action": "VIEW_PATIENT_360",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T06:56:11.284Z",
+      "metadata": {}
+    },
+    {
+      "id": "AUDIT-1791356177582-b30a97",
+      "action": "VIEW_PATIENT_360",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T06:56:17.582Z",
+      "metadata": {}
+    },
+    {
+      "id": "AUDIT-1791356203739-e50609",
+      "action": "VIEW_PATIENT_360",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T06:56:43.739Z",
+      "metadata": {}
+    },
+    {
+      "id": "AUDIT-1791356214433-694837",
+      "action": "USER_LOGIN",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": "admin-1",
+      "timestamp": "2026-10-07T06:56:54.433Z",
+      "metadata": {
+        "role": "ADMIN"
+      }
+    },
+    {
+      "id": "AUDIT-1791356282162-77af2b",
+      "action": "CREATE_DOCTOR",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": null,
+      "timestamp": "2026-10-07T06:58:02.163Z",
+      "metadata": {
+        "docId": "DOC-103",
+        "name": "Dr. Hardhik",
+        "department": "General Medicine"
+      }
+    },
+    {
+      "id": "AUDIT-1791358435016-1b34ea",
+      "action": "ADD_INVENTORY_ITEM",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": null,
+      "timestamp": "2026-10-07T07:33:55.017Z",
+      "metadata": {
+        "medId": "INV-MED-1791358435014-1b43c5",
+        "name": "dolo",
+        "qty": 100
+      }
+    },
+    {
+      "id": "AUDIT-1791358493354-049d86",
+      "action": "VIEW_PATIENT_360",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T07:34:53.354Z",
+      "metadata": {}
+    },
+    {
+      "id": "AUDIT-1791358509422-5e4f62",
+      "action": "CHECK_IN_PATIENT",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T07:35:09.422Z",
+      "metadata": {
+        "token": "A-101"
+      }
+    },
+    {
+      "id": "AUDIT-1791358516259-8cec8b",
+      "action": "VIEW_PATIENT_360",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T07:35:16.259Z",
+      "metadata": {}
+    },
+    {
+      "id": "AUDIT-1791360161128-529279",
+      "action": "CHECK_IN_PATIENT",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-07T08:02:41.128Z",
+      "metadata": {
+        "token": "A-102"
+      }
+    }
+  ]
+}
