@@ -147,6 +147,118 @@
       "appointmentDuration": 15,
       "status": "ACTIVE",
       "createdAt": "2026-10-07T06:58:02.162Z"
+    },
+    {
+      "id": "P-1003",
+      "role": "PATIENT",
+      "name": "Suresh Patel",
+      "email": "suresh.patel.1791742005621@test.medicore",
+      "password": "$2a$10$6v94xY/Pxyu21hbVmSfRLO..y7ttW5oC0auVUppDQ2limyAI3Hhtq",
+      "dob": "1990-01-01",
+      "age": 46,
+      "gender": "Male",
+      "phone": "+91 9123456789",
+      "bloodGroup": "B+",
+      "preferredLanguage": "en",
+      "emergencyContact": "Sunita Patel (+91 9123456780)",
+      "address": "Road No 12, Banjara Hills, Hyderabad",
+      "city": "",
+      "state": "",
+      "allergies": "",
+      "existingConditions": "",
+      "previousSurgeries": "",
+      "previousHospitalizations": "",
+      "medicalAlerts": "",
+      "insuranceProvider": "",
+      "insurancePolicyNumber": "",
+      "identityNumber": "",
+      "createPortalAccount": true,
+      "mrn": "MC-MRN-005622",
+      "createdAt": "2026-10-11T18:06:45.679Z"
+    },
+    {
+      "id": "P-1004",
+      "role": "PATIENT",
+      "name": "Suresh Patel",
+      "email": "suresh.patel.1791742175221@test.medicore",
+      "password": "$2a$10$I79hB8XkbmfRUV8d4AAPTe2lza35zEtcPCYzJ4S6pXZF4n1/ee8Z6",
+      "dob": "1990-01-01",
+      "age": 46,
+      "gender": "Male",
+      "phone": "+91 9123456789",
+      "bloodGroup": "B+",
+      "preferredLanguage": "en",
+      "emergencyContact": "Sunita Patel (+91 9123456780)",
+      "address": "Road No 12, Banjara Hills, Hyderabad",
+      "city": "",
+      "state": "",
+      "allergies": "",
+      "existingConditions": "",
+      "previousSurgeries": "",
+      "previousHospitalizations": "",
+      "medicalAlerts": "",
+      "insuranceProvider": "",
+      "insurancePolicyNumber": "",
+      "identityNumber": "",
+      "createPortalAccount": true,
+      "mrn": "MC-MRN-175223",
+      "createdAt": "2026-10-11T18:09:35.278Z"
+    },
+    {
+      "id": "P-1005",
+      "role": "PATIENT",
+      "name": "Suresh Patel",
+      "email": "suresh.patel.1791742316928@test.medicore",
+      "password": "$2a$10$Lcoz2mkNu59.7u77y0wKuuV6BBX0tNh9b/hMr317DTR48BtcLPlrO",
+      "dob": "1990-01-01",
+      "age": 46,
+      "gender": "Male",
+      "phone": "+91 9123456789",
+      "bloodGroup": "B+",
+      "preferredLanguage": "en",
+      "emergencyContact": "Sunita Patel (+91 9123456780)",
+      "address": "Road No 12, Banjara Hills, Hyderabad",
+      "city": "",
+      "state": "",
+      "allergies": "",
+      "existingConditions": "",
+      "previousSurgeries": "",
+      "previousHospitalizations": "",
+      "medicalAlerts": "",
+      "insuranceProvider": "",
+      "insurancePolicyNumber": "",
+      "identityNumber": "",
+      "createPortalAccount": true,
+      "mrn": "MC-MRN-316929",
+      "createdAt": "2026-10-11T18:11:56.985Z"
+    },
+    {
+      "id": "P-1006",
+      "role": "PATIENT",
+      "name": "Suresh Patel",
+      "email": "suresh.patel.1791742398521@test.medicore",
+      "password": "$2a$10$RwStNMOrOrp6ZZ2fBedyWOpKgKRHx5iPYTgtobqyQRqye7sgYf4AW",
+      "dob": "1990-01-01",
+      "age": 46,
+      "gender": "Male",
+      "phone": "+91 9123456789",
+      "bloodGroup": "B+",
+      "preferredLanguage": "en",
+      "emergencyContact": "Sunita Patel (+91 9123456780)",
+      "address": "Road No 12, Banjara Hills, Hyderabad",
+      "city": "",
+      "state": "",
+      "allergies": "",
+      "existingConditions": "",
+      "previousSurgeries": "",
+      "previousHospitalizations": "",
+      "medicalAlerts": "",
+      "insuranceProvider": "",
+      "insurancePolicyNumber": "",
+      "identityNumber": "",
+      "createPortalAccount": true,
+      "mrn": "MC-MRN-398522",
+      "createdAt": "2026-10-11T18:13:18.581Z"
     }
   ],
   "hospitals": [
@@ -200,13 +312,805 @@
       "category": "OPD",
       "waitTimeMinutes": 15,
       "createdAt": "2026-10-07T08:02:41.125Z"
+    },
+    {
+      "id": "Q-1791742005738-87ccb3",
+      "token": "W-103",
+      "appointmentId": "APT-WALKIN-1791742005738-b1fb8c",
+      "patientId": "P-1003",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "status": "CHECKED_IN",
+      "checkInTime": "11:36 pm",
+      "consultationTime": null,
+      "category": "WALK_IN",
+      "waitTimeMinutes": 30,
+      "createdAt": "2026-10-11T18:06:45.830Z"
+    },
+    {
+      "id": "Q-1791742005839-eebee7",
+      "token": "A-104",
+      "appointmentId": "APT-1791742005836-9d7598",
+      "patientId": "P-1003",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "status": "CHECKED_IN",
+      "checkInTime": "11:36 pm",
+      "consultationTime": null,
+      "category": "OPD",
+      "waitTimeMinutes": 45,
+      "createdAt": "2026-10-11T18:06:45.839Z"
+    },
+    {
+      "id": "Q-1791742175335-a8b06d",
+      "token": "W-105",
+      "appointmentId": "APT-WALKIN-1791742175335-3e4523",
+      "patientId": "P-1004",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "status": "COMPLETED",
+      "checkInTime": "11:39 pm",
+      "consultationTime": "11:39 pm",
+      "category": "WALK_IN",
+      "waitTimeMinutes": 60,
+      "createdAt": "2026-10-11T18:09:35.347Z"
+    },
+    {
+      "id": "Q-1791742175354-a635e7",
+      "token": "A-106",
+      "appointmentId": "APT-1791742175351-a070df",
+      "patientId": "P-1004",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "status": "CHECKED_IN",
+      "checkInTime": "11:39 pm",
+      "consultationTime": null,
+      "category": "OPD",
+      "waitTimeMinutes": 75,
+      "createdAt": "2026-10-11T18:09:35.354Z"
+    },
+    {
+      "id": "Q-1791742317044-14a5a3",
+      "token": "W-107",
+      "appointmentId": "APT-WALKIN-1791742317043-9f04fb",
+      "patientId": "P-1005",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "status": "COMPLETED",
+      "checkInTime": "11:41 pm",
+      "consultationTime": "11:41 pm",
+      "category": "WALK_IN",
+      "waitTimeMinutes": 75,
+      "createdAt": "2026-10-11T18:11:57.055Z"
+    },
+    {
+      "id": "Q-1791742317062-16a47d",
+      "token": "A-108",
+      "appointmentId": "APT-1791742317059-cd2e53",
+      "patientId": "P-1005",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "status": "CHECKED_IN",
+      "checkInTime": "11:41 pm",
+      "consultationTime": null,
+      "category": "OPD",
+      "waitTimeMinutes": 90,
+      "createdAt": "2026-10-11T18:11:57.063Z"
+    },
+    {
+      "id": "Q-1791742398644-0726ad",
+      "token": "W-109",
+      "appointmentId": "APT-WALKIN-1791742398644-a82b9f",
+      "patientId": "P-1006",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "status": "COMPLETED",
+      "checkInTime": "11:43 pm",
+      "consultationTime": "11:43 pm",
+      "category": "WALK_IN",
+      "waitTimeMinutes": 90,
+      "createdAt": "2026-10-11T18:13:18.657Z"
+    },
+    {
+      "id": "Q-1791742398668-be69b9",
+      "token": "A-110",
+      "appointmentId": "APT-1791742398663-ddacad",
+      "patientId": "P-1006",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "status": "CHECKED_IN",
+      "checkInTime": "11:43 pm",
+      "consultationTime": null,
+      "category": "OPD",
+      "waitTimeMinutes": 105,
+      "createdAt": "2026-10-11T18:13:18.668Z"
     }
   ],
-  "consultations": [],
-  "caseSheets": [],
+  "consultations": [
+    {
+      "id": "ENC-1791742005847-8c6198",
+      "caseSheetId": "PATINOTE-1791742005847-5cd17c",
+      "patientId": "P-1003",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "chiefComplaint": "High-grade fever with chills",
+      "diagnosis": "Acute Bacterial Bronchopneumonia (ICD J18.9)",
+      "followUpDays": 7,
+      "createdAt": "2026-10-11T18:06:45.847Z"
+    },
+    {
+      "id": "ENC-1791742175360-b74760",
+      "caseSheetId": "PATINOTE-1791742175360-3a463f",
+      "patientId": "P-1004",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "chiefComplaint": "High-grade fever with chills",
+      "diagnosis": "Acute Bacterial Bronchopneumonia (ICD J18.9)",
+      "followUpDays": 7,
+      "createdAt": "2026-10-11T18:09:35.360Z"
+    },
+    {
+      "id": "ENC-1791742317071-b05923",
+      "caseSheetId": "PATINOTE-1791742317071-3b5936",
+      "patientId": "P-1005",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "chiefComplaint": "High-grade fever with chills",
+      "diagnosis": "Acute Bacterial Bronchopneumonia (ICD J18.9)",
+      "followUpDays": 7,
+      "createdAt": "2026-10-11T18:11:57.071Z"
+    },
+    {
+      "id": "ENC-1791742398675-f4cf61",
+      "caseSheetId": "PATINOTE-1791742398675-8f140c",
+      "patientId": "P-1006",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "chiefComplaint": "High-grade fever with chills",
+      "diagnosis": "Acute Bacterial Bronchopneumonia (ICD J18.9)",
+      "followUpDays": 7,
+      "createdAt": "2026-10-11T18:13:18.676Z"
+    }
+  ],
+  "caseSheets": [
+    {
+      "id": "PATINOTE-1791742005847-5cd17c",
+      "consultationId": "ENC-1791742005847-8c6198",
+      "patientId": "P-1003",
+      "patientName": "Suresh Patel",
+      "patientAge": 46,
+      "patientGender": "Male",
+      "patientBloodGroup": "B+",
+      "patientMrn": "MC-MRN-005622",
+      "patientPhone": "+91 9123456789",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "doctorDepartment": "General Medicine",
+      "status": "FINALIZED",
+      "visitDateTime": "2026-10-11T18:06:45.847Z",
+      "chiefComplaints": [
+        {
+          "complaint": "High-grade fever with chills",
+          "duration": "4 days",
+          "severity": "Severe"
+        },
+        {
+          "complaint": "Productive cough with purulent sputum",
+          "duration": "3 days",
+          "severity": "Moderate"
+        }
+      ],
+      "chiefComplaintNotes": "",
+      "hpi": {},
+      "pastMedicalHistory": [],
+      "pastSurgicalHistory": [],
+      "medicationHistory": [],
+      "allergyHistory": [],
+      "familyHistory": [],
+      "personalSocialHistory": {},
+      "menstrualObstetricHistory": {},
+      "pediatricHistory": {},
+      "vitals": {
+        "sysBp": 128,
+        "diaBp": 82,
+        "pulse": 94,
+        "temp": 101.8,
+        "spO2": 95,
+        "rr": 22
+      },
+      "physicalExamination": {},
+      "investigationReview": {},
+      "clinicalAssessment": {
+        "provisionalDiagnosis": "Community-Acquired Pneumonia",
+        "finalDiagnosis": "Acute Bacterial Bronchopneumonia (ICD J18.9)"
+      },
+      "treatmentPlan": {},
+      "prescriptionsSummary": [
+        {
+          "medicationName": "Amoxicillin 500mg",
+          "dosage": "500mg TDS",
+          "frequency": "Three times daily",
+          "duration": "7 days",
+          "quantity": 21,
+          "instructions": "Take after food with plenty of water"
+        }
+      ],
+      "labOrdersSummary": [
+        {
+          "testName": "Complete Blood Count (CBC)",
+          "urgency": "STAT",
+          "clinicalIndication": "Evaluate leukocytosis & inflammatory response"
+        }
+      ],
+      "scanOrdersSummary": [
+        {
+          "scanType": "Chest X-Ray (PA View)",
+          "urgency": "URGENT",
+          "clinicalIndication": "Evaluate right lower lobe consolidation"
+        }
+      ],
+      "referrals": {},
+      "followUp": {},
+      "requireAdmission": false,
+      "admissionReason": "",
+      "createdAt": "2026-10-11T18:06:45.847Z",
+      "updatedAt": "2026-10-11T18:06:45.847Z",
+      "signedAt": "2026-10-11T18:06:45.847Z",
+      "signedByDoctor": "Dr. Rajesh Sharma"
+    },
+    {
+      "id": "PATINOTE-1791742175360-3a463f",
+      "consultationId": "ENC-1791742175360-b74760",
+      "patientId": "P-1004",
+      "patientName": "Suresh Patel",
+      "patientAge": 46,
+      "patientGender": "Male",
+      "patientBloodGroup": "B+",
+      "patientMrn": "MC-MRN-175223",
+      "patientPhone": "+91 9123456789",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "doctorDepartment": "General Medicine",
+      "status": "FINALIZED",
+      "visitDateTime": "2026-10-11T18:09:35.360Z",
+      "chiefComplaints": [
+        {
+          "complaint": "High-grade fever with chills",
+          "duration": "4 days",
+          "severity": "Severe"
+        },
+        {
+          "complaint": "Productive cough with purulent sputum",
+          "duration": "3 days",
+          "severity": "Moderate"
+        }
+      ],
+      "chiefComplaintNotes": "",
+      "hpi": {},
+      "pastMedicalHistory": [],
+      "pastSurgicalHistory": [],
+      "medicationHistory": [],
+      "allergyHistory": [],
+      "familyHistory": [],
+      "personalSocialHistory": {},
+      "menstrualObstetricHistory": {},
+      "pediatricHistory": {},
+      "vitals": {
+        "sysBp": 128,
+        "diaBp": 82,
+        "pulse": 94,
+        "temp": 101.8,
+        "spO2": 95,
+        "rr": 22
+      },
+      "physicalExamination": {},
+      "investigationReview": {},
+      "clinicalAssessment": {
+        "provisionalDiagnosis": "Community-Acquired Pneumonia",
+        "finalDiagnosis": "Acute Bacterial Bronchopneumonia (ICD J18.9)"
+      },
+      "treatmentPlan": {},
+      "prescriptionsSummary": [
+        {
+          "medicationName": "Amoxicillin 500mg",
+          "dosage": "500mg TDS",
+          "frequency": "Three times daily",
+          "duration": "7 days",
+          "quantity": 21,
+          "instructions": "Take after food with plenty of water"
+        }
+      ],
+      "labOrdersSummary": [
+        {
+          "testName": "Complete Blood Count (CBC)",
+          "urgency": "STAT",
+          "clinicalIndication": "Evaluate leukocytosis & inflammatory response"
+        }
+      ],
+      "scanOrdersSummary": [
+        {
+          "scanType": "Chest X-Ray (PA View)",
+          "urgency": "URGENT",
+          "clinicalIndication": "Evaluate right lower lobe consolidation"
+        }
+      ],
+      "referrals": {},
+      "followUp": {},
+      "requireAdmission": false,
+      "admissionReason": "",
+      "createdAt": "2026-10-11T18:09:35.360Z",
+      "updatedAt": "2026-10-11T18:09:35.360Z",
+      "signedAt": "2026-10-11T18:09:35.360Z",
+      "signedByDoctor": "Dr. Rajesh Sharma"
+    },
+    {
+      "id": "PATINOTE-1791742317071-3b5936",
+      "consultationId": "ENC-1791742317071-b05923",
+      "patientId": "P-1005",
+      "patientName": "Suresh Patel",
+      "patientAge": 46,
+      "patientGender": "Male",
+      "patientBloodGroup": "B+",
+      "patientMrn": "MC-MRN-316929",
+      "patientPhone": "+91 9123456789",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "doctorDepartment": "General Medicine",
+      "status": "FINALIZED",
+      "visitDateTime": "2026-10-11T18:11:57.071Z",
+      "chiefComplaints": [
+        {
+          "complaint": "High-grade fever with chills",
+          "duration": "4 days",
+          "severity": "Severe"
+        },
+        {
+          "complaint": "Productive cough with purulent sputum",
+          "duration": "3 days",
+          "severity": "Moderate"
+        }
+      ],
+      "chiefComplaintNotes": "",
+      "hpi": {},
+      "pastMedicalHistory": [],
+      "pastSurgicalHistory": [],
+      "medicationHistory": [],
+      "allergyHistory": [],
+      "familyHistory": [],
+      "personalSocialHistory": {},
+      "menstrualObstetricHistory": {},
+      "pediatricHistory": {},
+      "vitals": {
+        "sysBp": 128,
+        "diaBp": 82,
+        "pulse": 94,
+        "temp": 101.8,
+        "spO2": 95,
+        "rr": 22
+      },
+      "physicalExamination": {},
+      "investigationReview": {},
+      "clinicalAssessment": {
+        "provisionalDiagnosis": "Community-Acquired Pneumonia",
+        "finalDiagnosis": "Acute Bacterial Bronchopneumonia (ICD J18.9)"
+      },
+      "treatmentPlan": {},
+      "prescriptionsSummary": [
+        {
+          "medicationName": "Amoxicillin 500mg",
+          "dosage": "500mg TDS",
+          "frequency": "Three times daily",
+          "duration": "7 days",
+          "quantity": 21,
+          "instructions": "Take after food with plenty of water"
+        }
+      ],
+      "labOrdersSummary": [
+        {
+          "testName": "Complete Blood Count (CBC)",
+          "urgency": "STAT",
+          "clinicalIndication": "Evaluate leukocytosis & inflammatory response"
+        }
+      ],
+      "scanOrdersSummary": [
+        {
+          "scanType": "Chest X-Ray (PA View)",
+          "urgency": "URGENT",
+          "clinicalIndication": "Evaluate right lower lobe consolidation"
+        }
+      ],
+      "referrals": {},
+      "followUp": {},
+      "requireAdmission": false,
+      "admissionReason": "",
+      "createdAt": "2026-10-11T18:11:57.071Z",
+      "updatedAt": "2026-10-11T18:11:57.071Z",
+      "signedAt": "2026-10-11T18:11:57.071Z",
+      "signedByDoctor": "Dr. Rajesh Sharma",
+      "signedDoctor": "Dr. Rajesh Sharma"
+    },
+    {
+      "id": "PATINOTE-1791742398675-8f140c",
+      "consultationId": "ENC-1791742398675-f4cf61",
+      "patientId": "P-1006",
+      "patientName": "Suresh Patel",
+      "patientAge": 46,
+      "patientGender": "Male",
+      "patientBloodGroup": "B+",
+      "patientMrn": "MC-MRN-398522",
+      "patientPhone": "+91 9123456789",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "doctorDepartment": "General Medicine",
+      "status": "FINALIZED",
+      "visitDateTime": "2026-10-11T18:13:18.676Z",
+      "chiefComplaints": [
+        {
+          "complaint": "High-grade fever with chills",
+          "duration": "4 days",
+          "severity": "Severe"
+        },
+        {
+          "complaint": "Productive cough with purulent sputum",
+          "duration": "3 days",
+          "severity": "Moderate"
+        }
+      ],
+      "chiefComplaintNotes": "",
+      "hpi": {},
+      "pastMedicalHistory": [],
+      "pastSurgicalHistory": [],
+      "medicationHistory": [],
+      "allergyHistory": [],
+      "familyHistory": [],
+      "personalSocialHistory": {},
+      "menstrualObstetricHistory": {},
+      "pediatricHistory": {},
+      "vitals": {
+        "sysBp": 128,
+        "diaBp": 82,
+        "pulse": 94,
+        "temp": 101.8,
+        "spO2": 95,
+        "rr": 22
+      },
+      "physicalExamination": {},
+      "investigationReview": {},
+      "clinicalAssessment": {
+        "provisionalDiagnosis": "Community-Acquired Pneumonia",
+        "finalDiagnosis": "Acute Bacterial Bronchopneumonia (ICD J18.9)"
+      },
+      "treatmentPlan": {},
+      "prescriptionsSummary": [
+        {
+          "medicationName": "Amoxicillin 500mg",
+          "dosage": "500mg TDS",
+          "frequency": "Three times daily",
+          "duration": "7 days",
+          "quantity": 21,
+          "instructions": "Take after food with plenty of water"
+        }
+      ],
+      "labOrdersSummary": [
+        {
+          "testName": "Complete Blood Count (CBC)",
+          "urgency": "STAT",
+          "clinicalIndication": "Evaluate leukocytosis & inflammatory response"
+        }
+      ],
+      "scanOrdersSummary": [
+        {
+          "scanType": "Chest X-Ray (PA View)",
+          "urgency": "URGENT",
+          "clinicalIndication": "Evaluate right lower lobe consolidation"
+        }
+      ],
+      "referrals": {},
+      "followUp": {},
+      "requireAdmission": false,
+      "admissionReason": "",
+      "createdAt": "2026-10-11T18:13:18.676Z",
+      "updatedAt": "2026-10-11T18:13:18.676Z",
+      "signedAt": "2026-10-11T18:13:18.676Z",
+      "signedByDoctor": "Dr. Rajesh Sharma",
+      "signedDoctor": "Dr. Rajesh Sharma"
+    }
+  ],
   "allergies": [],
-  "medications": [],
-  "prescriptions": [],
+  "medications": [
+    {
+      "id": "MED-1791742175360-358a41",
+      "patientId": "P-1004",
+      "name": "Amoxicillin 500mg",
+      "dosage": "500mg TDS",
+      "frequency": "Three times daily",
+      "startDate": "2026-10-11T18:09:35.360Z",
+      "status": "ACTIVE",
+      "prescribedBy": "Dr. Rajesh Sharma"
+    },
+    {
+      "id": "MED-1791742317071-2d99f4",
+      "patientId": "P-1005",
+      "name": "Amoxicillin 500mg",
+      "dosage": "500mg TDS",
+      "frequency": "Three times daily",
+      "startDate": "2026-10-11T18:11:57.071Z",
+      "status": "ACTIVE",
+      "prescribedBy": "Dr. Rajesh Sharma"
+    },
+    {
+      "id": "MED-1791742398676-1f1e18",
+      "patientId": "P-1006",
+      "name": "Amoxicillin 500mg",
+      "dosage": "500mg TDS",
+      "frequency": "Three times daily",
+      "startDate": "2026-10-11T18:13:18.676Z",
+      "status": "ACTIVE",
+      "prescribedBy": "Dr. Rajesh Sharma"
+    }
+  ],
+  "prescriptions": [
+    {
+      "id": "RX-1791742175360-c24b44",
+      "caseSheetId": "PATINOTE-1791742175360-3a463f",
+      "patientId": "P-1004",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "consultationId": "ENC-1791742175360-b74760",
+      "medicationName": "Amoxicillin 500mg",
+      "strength": "",
+      "dosage": "500mg TDS",
+      "route": "Oral",
+      "frequency": "Three times daily",
+      "duration": "7 days",
+      "instructions": "Take after food with plenty of water",
+      "quantity": 21,
+      "unitPrice": 45,
+      "totalPrice": 945,
+      "status": "ACTIVE",
+      "dispensedStatus": "DISPENSED",
+      "verifiedByPharmacist": true,
+      "packed": true,
+      "barcode": "8901234567891",
+      "createdAt": "2026-10-11T18:09:35.360Z",
+      "verifiedAt": "2026-10-11T18:09:35.367Z",
+      "invoiceId": "INV-1791742175374-249053",
+      "paymentStatus": "PAID",
+      "packedAt": "2026-10-11T18:09:35.381Z",
+      "dispensedAt": "2026-10-11T18:09:35.388Z",
+      "dispensedBy": "Vikram Verma"
+    },
+    {
+      "id": "RX-1791742317071-ac795b",
+      "caseSheetId": "PATINOTE-1791742317071-3b5936",
+      "patientId": "P-1005",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "consultationId": "ENC-1791742317071-b05923",
+      "medicationName": "Amoxicillin 500mg",
+      "strength": "",
+      "dosage": "500mg TDS",
+      "route": "Oral",
+      "frequency": "Three times daily",
+      "duration": "7 days",
+      "instructions": "Take after food with plenty of water",
+      "quantity": 21,
+      "unitPrice": 45,
+      "totalPrice": 945,
+      "status": "ACTIVE",
+      "dispensedStatus": "DISPENSED",
+      "verifiedByPharmacist": true,
+      "packed": true,
+      "barcode": "8901234567891",
+      "createdAt": "2026-10-11T18:11:57.071Z",
+      "verifiedAt": "2026-10-11T18:11:57.083Z",
+      "invoiceId": "INV-1791742317091-ec19b4",
+      "paymentStatus": "PAID",
+      "packedAt": "2026-10-11T18:11:57.100Z",
+      "dispensedAt": "2026-10-11T18:11:57.109Z",
+      "dispensedBy": "Vikram Verma"
+    },
+    {
+      "id": "RX-1791742398676-6696a9",
+      "caseSheetId": "PATINOTE-1791742398675-8f140c",
+      "patientId": "P-1006",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "consultationId": "ENC-1791742398675-f4cf61",
+      "medicationName": "Amoxicillin 500mg",
+      "strength": "",
+      "dosage": "500mg TDS",
+      "route": "Oral",
+      "frequency": "Three times daily",
+      "duration": "7 days",
+      "instructions": "Take after food with plenty of water",
+      "quantity": 21,
+      "unitPrice": 45,
+      "totalPrice": 945,
+      "status": "ACTIVE",
+      "dispensedStatus": "DISPENSED",
+      "verifiedByPharmacist": true,
+      "packed": true,
+      "barcode": "8901234567891",
+      "createdAt": "2026-10-11T18:13:18.676Z",
+      "verifiedAt": "2026-10-11T18:13:18.689Z",
+      "invoiceId": "INV-1791742398701-b84f5d",
+      "paymentStatus": "PAID",
+      "packedAt": "2026-10-11T18:13:18.709Z",
+      "dispensedAt": "2026-10-11T18:13:18.720Z",
+      "dispensedBy": "Vikram Verma"
+    }
+  ],
+  "pharmacyOrders": [
+    {
+      "id": "PHARM-ORD-1791742175360-8ec4c1",
+      "orderNumber": "RX-ORD-175360",
+      "caseSheetId": "PATINOTE-1791742175360-3a463f",
+      "consultationId": "ENC-1791742175360-b74760",
+      "patientId": "P-1004",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "items": [
+        {
+          "rxId": "RX-1791742175360-c24b44",
+          "medicationName": "Amoxicillin 500mg",
+          "genericName": "Amoxicillin",
+          "brand": "Amoxicillin 500mg",
+          "dosage": "500mg TDS",
+          "route": "Oral",
+          "frequency": "Three times daily",
+          "duration": "7 days",
+          "instructions": "Take after food with plenty of water",
+          "quantity": 21,
+          "unitPrice": 45,
+          "totalPrice": 945,
+          "batchNo": "BATCH-2026B",
+          "expiryDate": "2027-08-15",
+          "barcode": "8901234567891",
+          "inventoryId": "INV-MED-02"
+        }
+      ],
+      "totalAmount": 945,
+      "status": "DISPENSED",
+      "paymentStatus": "PAID",
+      "packingChecklist": {
+        "medicineVerified": true,
+        "batchVerified": true,
+        "expiryVerified": true,
+        "instructionsAttached": true
+      },
+      "createdAt": "2026-10-11T18:09:35.360Z",
+      "reviewedBy": "Vikram Verma",
+      "reviewedAt": "2026-10-11T18:09:35.367Z",
+      "preparedBy": "Vikram Verma",
+      "preparedAt": "2026-10-11T18:09:35.370Z",
+      "dispensedStatus": "DISPENSED",
+      "invoiceId": "INV-1791742175374-249053",
+      "packed": true,
+      "packedAt": "2026-10-11T18:09:35.381Z",
+      "packedBy": "Vikram Verma",
+      "dispensedAt": "2026-10-11T18:09:35.388Z",
+      "dispensedBy": "Vikram Verma"
+    },
+    {
+      "id": "PHARM-ORD-1791742317071-0c43db",
+      "orderNumber": "RX-ORD-317071",
+      "caseSheetId": "PATINOTE-1791742317071-3b5936",
+      "consultationId": "ENC-1791742317071-b05923",
+      "patientId": "P-1005",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "items": [
+        {
+          "rxId": "RX-1791742317071-ac795b",
+          "medicationName": "Amoxicillin 500mg",
+          "genericName": "Amoxicillin",
+          "brand": "Amoxicillin 500mg",
+          "dosage": "500mg TDS",
+          "route": "Oral",
+          "frequency": "Three times daily",
+          "duration": "7 days",
+          "instructions": "Take after food with plenty of water",
+          "quantity": 21,
+          "unitPrice": 45,
+          "totalPrice": 945,
+          "batchNo": "BATCH-2026B",
+          "expiryDate": "2027-08-15",
+          "barcode": "8901234567891",
+          "inventoryId": "INV-MED-02"
+        }
+      ],
+      "totalAmount": 945,
+      "status": "DISPENSED",
+      "paymentStatus": "PAID",
+      "packingChecklist": {
+        "medicineVerified": true,
+        "batchVerified": true,
+        "expiryVerified": true,
+        "instructionsAttached": true
+      },
+      "createdAt": "2026-10-11T18:11:57.071Z",
+      "reviewedBy": "Vikram Verma",
+      "reviewedAt": "2026-10-11T18:11:57.083Z",
+      "preparedBy": "Vikram Verma",
+      "preparedAt": "2026-10-11T18:11:57.086Z",
+      "dispensedStatus": "DISPENSED",
+      "invoiceId": "INV-1791742317091-ec19b4",
+      "packed": true,
+      "packedAt": "2026-10-11T18:11:57.100Z",
+      "packedBy": "Vikram Verma",
+      "dispensedAt": "2026-10-11T18:11:57.109Z",
+      "dispensedBy": "Vikram Verma"
+    },
+    {
+      "id": "PHARM-ORD-1791742398676-d7e7db",
+      "orderNumber": "RX-ORD-398676",
+      "caseSheetId": "PATINOTE-1791742398675-8f140c",
+      "consultationId": "ENC-1791742398675-f4cf61",
+      "patientId": "P-1006",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "items": [
+        {
+          "rxId": "RX-1791742398676-6696a9",
+          "medicationName": "Amoxicillin 500mg",
+          "genericName": "Amoxicillin",
+          "brand": "Amoxicillin 500mg",
+          "dosage": "500mg TDS",
+          "route": "Oral",
+          "frequency": "Three times daily",
+          "duration": "7 days",
+          "instructions": "Take after food with plenty of water",
+          "quantity": 21,
+          "unitPrice": 45,
+          "totalPrice": 945,
+          "batchNo": "BATCH-2026B",
+          "expiryDate": "2027-08-15",
+          "barcode": "8901234567891",
+          "inventoryId": "INV-MED-02"
+        }
+      ],
+      "totalAmount": 945,
+      "status": "DISPENSED",
+      "paymentStatus": "PAID",
+      "packingChecklist": {
+        "medicineVerified": true,
+        "batchVerified": true,
+        "expiryVerified": true,
+        "instructionsAttached": true
+      },
+      "createdAt": "2026-10-11T18:13:18.676Z",
+      "reviewedBy": "Vikram Verma",
+      "reviewedAt": "2026-10-11T18:13:18.689Z",
+      "preparedBy": "Vikram Verma",
+      "preparedAt": "2026-10-11T18:13:18.695Z",
+      "dispensedStatus": "DISPENSED",
+      "invoiceId": "INV-1791742398701-b84f5d",
+      "packed": true,
+      "packedAt": "2026-10-11T18:13:18.709Z",
+      "packedBy": "Vikram Verma",
+      "dispensedAt": "2026-10-11T18:13:18.720Z",
+      "dispensedBy": "Vikram Verma"
+    }
+  ],
   "pharmacyInventory": [
     {
       "id": "INV-MED-01",
@@ -228,13 +1132,14 @@
       "genericName": "Amoxicillin",
       "dosage": "500mg",
       "batchNo": "BATCH-2026B",
-      "stockQuantity": 180,
+      "stockQuantity": 117,
       "thresholdLow": 30,
       "unitPrice": 45,
       "expiryDate": "2027-08-15",
       "supplier": "BioCare India",
       "status": "HEALTHY",
-      "barcode": "8901234567891"
+      "barcode": "8901234567891",
+      "reservedQuantity": 0
     },
     {
       "id": "INV-MED-03",
@@ -292,10 +1197,168 @@
       "status": "HEALTHY",
       "barcode": "8901234581982",
       "createdAt": "2026-10-07T07:33:55.014Z"
+    },
+    {
+      "id": "INV-MED-EXP",
+      "name": "Doxycycline 100mg",
+      "genericName": "Doxycycline",
+      "brand": "Doxicip",
+      "strength": "100mg",
+      "form": "Capsule",
+      "batchNo": "BATCH-2023EXP",
+      "stockQuantity": 50,
+      "reservedQuantity": 0,
+      "thresholdLow": 10,
+      "unitPrice": 40,
+      "expiryDate": "2024-01-01",
+      "supplier": "OldStock Pharma",
+      "storageLocation": "Quarantine Bay",
+      "status": "EXPIRED",
+      "barcode": "8901234567899"
     }
   ],
-  "labOrders": [],
-  "scanOrders": [],
+  "labOrders": [
+    {
+      "id": "LAB-1791742175361-b3d35d",
+      "caseSheetId": "PATINOTE-1791742175360-3a463f",
+      "patientId": "P-1004",
+      "patientName": "Suresh Patel",
+      "orderedBy": "Dr. Rajesh Sharma",
+      "testName": "Complete Blood Count (CBC)",
+      "price": 350,
+      "status": "REQUESTED",
+      "result": null,
+      "referenceRange": "Normal",
+      "createdAt": "2026-10-11T18:09:35.361Z"
+    },
+    {
+      "id": "LAB-1791742317075-da4c10",
+      "caseSheetId": "PATINOTE-1791742317071-3b5936",
+      "patientId": "P-1005",
+      "patientName": "Suresh Patel",
+      "orderedBy": "Dr. Rajesh Sharma",
+      "testName": "Complete Blood Count (CBC)",
+      "price": 350,
+      "status": "PUBLISHED",
+      "result": "Total WBC: 16.4 K/uL (Ref: 4.5-11.0), Neutrophils: 85% (Elevated)",
+      "referenceRange": "4.5 - 11.0 K/uL",
+      "createdAt": "2026-10-11T18:11:57.075Z",
+      "sampleBarcode": "LAB-SMPL-317133",
+      "sampleCollectedAt": "2026-10-11T18:11:57.133Z",
+      "sampleCollectedBy": "Dr. Sunita Rao",
+      "sampleType": "Whole Blood (EDTA)",
+      "processingStartedAt": "2026-10-11T18:11:57.136Z",
+      "unit": "K/uL",
+      "isAbnormal": true,
+      "resultEnteredBy": "Dr. Sunita Rao",
+      "resultEnteredAt": "2026-10-11T18:11:57.138Z",
+      "verifiedBy": "Dr. Sunita Rao",
+      "publishedAt": "2026-10-11T18:11:57.141Z"
+    },
+    {
+      "id": "LAB-1791742398680-d2b883",
+      "caseSheetId": "PATINOTE-1791742398675-8f140c",
+      "patientId": "P-1006",
+      "patientName": "Suresh Patel",
+      "orderedBy": "Dr. Rajesh Sharma",
+      "testName": "Complete Blood Count (CBC)",
+      "price": 350,
+      "status": "PUBLISHED",
+      "result": "Total WBC: 16.4 K/uL (Ref: 4.5-11.0), Neutrophils: 85% (Elevated)",
+      "referenceRange": "4.5 - 11.0 K/uL",
+      "createdAt": "2026-10-11T18:13:18.680Z",
+      "sampleBarcode": "LAB-SMPL-398756",
+      "sampleCollectedAt": "2026-10-11T18:13:18.756Z",
+      "sampleCollectedBy": "Dr. Sunita Rao",
+      "sampleType": "Whole Blood (EDTA)",
+      "processingStartedAt": "2026-10-11T18:13:18.759Z",
+      "unit": "K/uL",
+      "isAbnormal": true,
+      "resultEnteredBy": "Dr. Sunita Rao",
+      "resultEnteredAt": "2026-10-11T18:13:18.763Z",
+      "verifiedBy": "Dr. Sunita Rao",
+      "publishedAt": "2026-10-11T18:13:18.767Z"
+    }
+  ],
+  "scanOrders": [
+    {
+      "id": "SCAN-1791742175361-7310d1",
+      "caseSheetId": "PATINOTE-1791742175360-3a463f",
+      "patientId": "P-1004",
+      "patientName": "Suresh Patel",
+      "orderedBy": "Dr. Rajesh Sharma",
+      "scanType": "Chest X-Ray (PA View)",
+      "price": 600,
+      "status": "REQUESTED",
+      "reportText": null,
+      "createdAt": "2026-10-11T18:09:35.361Z"
+    },
+    {
+      "id": "SCAN-1791742317075-18a29b",
+      "caseSheetId": "PATINOTE-1791742317071-3b5936",
+      "patientId": "P-1005",
+      "patientName": "Suresh Patel",
+      "orderedBy": "Dr. Rajesh Sharma",
+      "scanType": "Chest X-Ray (PA View)",
+      "price": 600,
+      "status": "UNDER_REVIEW",
+      "reportText": null,
+      "createdAt": "2026-10-11T18:11:57.075Z",
+      "scheduledDate": "2026-10-11",
+      "scheduledTime": "2026-10-11T19:11:57.114Z",
+      "machineId": "CT-Scanner-01",
+      "roomNumber": "Imaging Room 3",
+      "arrivedAt": "2026-10-11T18:11:57.119Z",
+      "startedAt": "2026-10-11T18:11:57.121Z",
+      "reportStatus": "REPORT_PENDING",
+      "completedAt": "2026-10-11T18:11:57.123Z",
+      "seriesCount": 2,
+      "radiationDose": "0.08 mSv",
+      "findings": "Patchy consolidation in right lower lobe. Clear costophrenic angles."
+    },
+    {
+      "id": "SCAN-1791742398680-0b15f9",
+      "caseSheetId": "PATINOTE-1791742398675-8f140c",
+      "patientId": "P-1006",
+      "patientName": "Suresh Patel",
+      "orderedBy": "Dr. Rajesh Sharma",
+      "scanType": "Chest X-Ray (PA View)",
+      "price": 600,
+      "status": "PUBLISHED",
+      "reportText": "Confirmed Right Lower Lobe Pneumonia. No pleural effusion or pneumothorax.",
+      "createdAt": "2026-10-11T18:13:18.680Z",
+      "scheduledDate": "2026-10-11",
+      "scheduledTime": "2026-10-11T19:13:18.726Z",
+      "machineId": "CT-Scanner-01",
+      "roomNumber": "Imaging Room 3",
+      "arrivedAt": "2026-10-11T18:13:18.734Z",
+      "startedAt": "2026-10-11T18:13:18.736Z",
+      "reportStatus": "REPORT_PENDING",
+      "completedAt": "2026-10-11T18:13:18.739Z",
+      "seriesCount": 2,
+      "radiationDose": "0.08 mSv",
+      "findings": "Homogeneous patchy alveolar infiltrate noted in right inferior lung zone.",
+      "impression": "Features characteristic of acute right lower lobe bacterial bronchopneumonia.",
+      "verifiedBy": "Dr. Rajesh Sharma",
+      "publishedAt": "2026-10-11T18:13:18.746Z"
+    }
+  ],
+  "scanReports": [
+    {
+      "id": "RPT-SCAN-1791742398746-598d24",
+      "scanOrderId": "SCAN-1791742398680-0b15f9",
+      "patientId": "P-1006",
+      "patientName": "Suresh Patel",
+      "scanType": "Chest X-Ray (PA View)",
+      "modality": "Radiology",
+      "findings": "Homogeneous patchy alveolar infiltrate noted in right inferior lung zone.",
+      "impression": "Features characteristic of acute right lower lobe bacterial bronchopneumonia.",
+      "radiologist": "Dr. Rajesh Sharma",
+      "radiationDose": "0.08 mSv",
+      "verifiedAt": "2026-10-11T18:13:18.746Z",
+      "status": "PUBLISHED"
+    }
+  ],
   "beds": [
     {
       "bedId": "ICU-01",
@@ -371,12 +1434,17 @@
       "roomNumber": "GEN-201",
       "bedNumber": "01",
       "dailyRate": 1500,
-      "status": "AVAILABLE",
+      "status": "CLEANING",
       "currentPatientId": null,
       "currentPatientName": null,
       "equipment": [
         "Standard Oxygen"
-      ]
+      ],
+      "reservedForPatientId": null,
+      "reservedForPatientName": null,
+      "reservedAt": "2026-10-11T18:13:18.786Z",
+      "currentAdmissionId": null,
+      "expectedDischarge": "2026-10-14"
     },
     {
       "bedId": "GEN-02",
@@ -389,7 +1457,12 @@
       "currentPatientName": null,
       "equipment": [
         "Standard Oxygen"
-      ]
+      ],
+      "cleanedAt": "2026-10-11T18:13:18.818Z",
+      "cleanedBy": "Sister Mary Joseph",
+      "currentAdmissionId": null,
+      "reservedForPatientId": null,
+      "reservedForPatientName": null
     },
     {
       "bedId": "GEN-03",
@@ -432,13 +1505,16 @@
       "roomNumber": "ER-01",
       "bedNumber": "01",
       "dailyRate": 2500,
-      "status": "AVAILABLE",
-      "currentPatientId": null,
-      "currentPatientName": null,
+      "status": "OCCUPIED",
+      "currentPatientId": "P-1006",
+      "currentPatientName": "Suresh Patel",
       "equipment": [
         "Defibrillator",
         "Oxygen"
-      ]
+      ],
+      "currentAdmissionId": null,
+      "reservedForPatientId": null,
+      "reservedForPatientName": null
     },
     {
       "bedId": "EMG-02",
@@ -468,9 +1544,477 @@
       ]
     }
   ],
-  "admissions": [],
-  "emergencyCases": [],
-  "invoices": [],
+  "admissions": [
+    {
+      "id": "ADM-1791742398790-8c03aa",
+      "admissionNumber": "ADM-398790",
+      "patientId": "P-1006",
+      "patientName": "Suresh Patel",
+      "attendingDoctor": "Admin",
+      "reason": "Admitted for IV antibiotic therapy",
+      "bedId": "GEN-02",
+      "ward": "General Ward",
+      "status": "DISCHARGED",
+      "admissionDate": "2026-10-11T18:13:18.790Z",
+      "dischargeSummary": "Discharge complete after financial clearance.",
+      "clinicalDischargeAt": "2026-10-11T18:13:18.807Z",
+      "signedDoctor": "Dr. Rajesh Sharma",
+      "dischargeDate": "2026-10-11T18:13:18.813Z"
+    }
+  ],
+  "admissionRequests": [
+    {
+      "id": "ADM-REQ-1791742005857-c92cbd",
+      "patientId": "P-1003",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "recommendedWard": "General Ward",
+      "reason": "Bacterial bronchopneumonia requiring IV Ceftriaxone & oxygenation monitoring",
+      "priority": "URGENT",
+      "status": "PENDING_ALLOCATION",
+      "createdAt": "2026-10-11T18:06:45.857Z"
+    },
+    {
+      "id": "ADM-REQ-1791742175361-1a9887",
+      "patientId": "P-1004",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "caseSheetId": "PATINOTE-1791742175360-3a463f",
+      "recommendedWard": "General Ward",
+      "reason": "Monitoring for moderate respiratory compromise and parenteral antibiotic coverage",
+      "priority": "HIGH",
+      "status": "PENDING_ALLOCATION",
+      "createdAt": "2026-10-11T18:09:35.361Z"
+    },
+    {
+      "id": "ADM-REQ-1791742175397-98b184",
+      "patientId": "P-1004",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "recommendedWard": "General Ward",
+      "reason": "Bacterial bronchopneumonia requiring IV Ceftriaxone & oxygenation monitoring",
+      "priority": "URGENT",
+      "status": "PENDING_ALLOCATION",
+      "createdAt": "2026-10-11T18:09:35.397Z"
+    },
+    {
+      "id": "ADM-REQ-1791742317073-9c9d1f",
+      "patientId": "P-1005",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "caseSheetId": "PATINOTE-1791742317071-3b5936",
+      "recommendedWard": "General Ward",
+      "reason": "Monitoring for moderate respiratory compromise and parenteral antibiotic coverage",
+      "priority": "HIGH",
+      "status": "PENDING_ALLOCATION",
+      "createdAt": "2026-10-11T18:11:57.073Z"
+    },
+    {
+      "id": "ADM-REQ-1791742317144-ad620f",
+      "patientId": "P-1005",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "recommendedWard": "General Ward",
+      "reason": "Bacterial bronchopneumonia requiring IV Ceftriaxone & oxygenation monitoring",
+      "priority": "URGENT",
+      "status": "PENDING_ALLOCATION",
+      "createdAt": "2026-10-11T18:11:57.144Z"
+    },
+    {
+      "id": "ADM-REQ-1791742398677-3db80a",
+      "patientId": "P-1006",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "caseSheetId": "PATINOTE-1791742398675-8f140c",
+      "recommendedWard": "General Ward",
+      "reason": "Monitoring for moderate respiratory compromise and parenteral antibiotic coverage",
+      "priority": "HIGH",
+      "status": "PENDING_ALLOCATION",
+      "createdAt": "2026-10-11T18:13:18.677Z"
+    },
+    {
+      "id": "ADM-REQ-1791742398773-e3dd03",
+      "patientId": "P-1006",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "recommendedWard": "General Ward",
+      "reason": "Bacterial bronchopneumonia requiring IV Ceftriaxone & oxygenation monitoring",
+      "priority": "URGENT",
+      "status": "ALLOCATED",
+      "createdAt": "2026-10-11T18:13:18.773Z"
+    }
+  ],
+  "emergencyCases": [
+    {
+      "id": "EMG-CASE-01",
+      "emergencyNumber": "ER-2026-001",
+      "patientId": "EMG-UNKNOWN-101",
+      "patientName": "TRAUMA UNKNOWN MALE (Appx 35y)",
+      "isTemporaryIdentity": true,
+      "triageStatus": "RED",
+      "priority": "CRITICAL",
+      "chiefComplaint": "Road Traffic Accident - Severe Head & Thoracic Trauma",
+      "vitals": {
+        "bp": "85/55",
+        "pulse": 128,
+        "spO2": 89,
+        "temp": "98.2",
+        "rr": 28,
+        "gcs": 9
+      },
+      "assignedDoctor": "Dr. Rajesh Sharma",
+      "assignedBedId": "EMG-01",
+      "status": "IN_TREATMENT",
+      "arrivedAt": "2026-10-11T18:06:44.813Z"
+    },
+    {
+      "id": "EMG-1791742005871-804f32",
+      "emergencyNumber": "ER-05871",
+      "patientId": "P-1003",
+      "mrn": "EMERG-MRN-005871",
+      "patientName": "Suresh Patel",
+      "isTemporaryIdentity": false,
+      "gender": "Male",
+      "estimatedAge": 32,
+      "triageStatus": "YELLOW",
+      "priority": "URGENT",
+      "chiefComplaint": "Severe polytrauma, hypotension, altered sensorium",
+      "vitals": {
+        "bp": "110/70",
+        "pulse": 92,
+        "spO2": 97,
+        "gcs": 14
+      },
+      "assignedDoctor": "On-Duty Trauma Surgeon",
+      "assignedBedId": "EMG-01",
+      "status": "ACTIVE",
+      "arrivedAt": "2026-10-11T18:06:45.871Z",
+      "updatedAt": "2026-10-11T18:06:45.874Z",
+      "linkedPatientId": "P-1003"
+    },
+    {
+      "id": "EMG-1791742175416-562b3d",
+      "emergencyNumber": "ER-75416",
+      "patientId": "P-1004",
+      "mrn": "EMERG-MRN-175416",
+      "patientName": "Suresh Patel",
+      "isTemporaryIdentity": false,
+      "gender": "Male",
+      "estimatedAge": 32,
+      "triageStatus": "YELLOW",
+      "priority": "URGENT",
+      "chiefComplaint": "Severe polytrauma, hypotension, altered sensorium",
+      "vitals": {
+        "bp": "110/70",
+        "pulse": 92,
+        "spO2": 97,
+        "gcs": 14
+      },
+      "assignedDoctor": "On-Duty Trauma Surgeon",
+      "assignedBedId": "EMG-01",
+      "status": "ACTIVE",
+      "arrivedAt": "2026-10-11T18:09:35.416Z",
+      "updatedAt": "2026-10-11T18:09:35.420Z",
+      "linkedPatientId": "P-1004"
+    },
+    {
+      "id": "EMG-1791742317176-1ecda6",
+      "emergencyNumber": "ER-17176",
+      "patientId": "P-1005",
+      "mrn": "EMERG-MRN-317176",
+      "patientName": "Suresh Patel",
+      "isTemporaryIdentity": false,
+      "gender": "Male",
+      "estimatedAge": 32,
+      "triageStatus": "YELLOW",
+      "priority": "URGENT",
+      "chiefComplaint": "Severe polytrauma, hypotension, altered sensorium",
+      "vitals": {
+        "bp": "110/70",
+        "pulse": 92,
+        "spO2": 97,
+        "gcs": 14
+      },
+      "assignedDoctor": "On-Duty Trauma Surgeon",
+      "assignedBedId": "EMG-01",
+      "status": "ACTIVE",
+      "arrivedAt": "2026-10-11T18:11:57.176Z",
+      "updatedAt": "2026-10-11T18:11:57.181Z",
+      "linkedPatientId": "P-1005"
+    },
+    {
+      "id": "EMG-1791742398827-45b5d7",
+      "emergencyNumber": "ER-98827",
+      "patientId": "P-1006",
+      "mrn": "EMERG-MRN-398827",
+      "patientName": "Suresh Patel",
+      "isTemporaryIdentity": false,
+      "gender": "Male",
+      "estimatedAge": 32,
+      "triageStatus": "YELLOW",
+      "priority": "URGENT",
+      "chiefComplaint": "Severe polytrauma, hypotension, altered sensorium",
+      "vitals": {
+        "bp": "110/70",
+        "pulse": 92,
+        "spO2": 97,
+        "gcs": 14
+      },
+      "assignedDoctor": "On-Duty Trauma Surgeon",
+      "assignedBedId": "EMG-01",
+      "status": "ACTIVE",
+      "arrivedAt": "2026-10-11T18:13:18.827Z",
+      "updatedAt": "2026-10-11T18:13:18.832Z",
+      "linkedPatientId": "P-1006"
+    }
+  ],
+  "invoices": [
+    {
+      "id": "INV-1791742175361-f8c2dd",
+      "invoiceNumber": "INV-175361",
+      "patientId": "P-1004",
+      "patientName": "Suresh Patel",
+      "consultationId": "ENC-1791742175360-b74760",
+      "prescriptionId": null,
+      "admissionId": null,
+      "items": [
+        {
+          "category": "CONSULTATION",
+          "description": "Doctor Consultation - Dr. Rajesh Sharma (General Medicine)",
+          "amount": 500
+        },
+        {
+          "category": "PHARMACY",
+          "description": "Amoxicillin 500mg (21 qty)",
+          "amount": 945
+        },
+        {
+          "category": "LABORATORY",
+          "description": "Complete Blood Count (CBC)",
+          "amount": 350
+        },
+        {
+          "category": "SCANNING",
+          "description": "Chest X-Ray (PA View)",
+          "amount": 600
+        }
+      ],
+      "subtotal": 2395,
+      "tax": 120,
+      "totalAmount": 2515,
+      "status": "UNPAID",
+      "createdAt": "2026-10-11T18:09:35.361Z"
+    },
+    {
+      "id": "INV-1791742175374-249053",
+      "invoiceNumber": "INV-175374",
+      "patientId": "P-1004",
+      "patientName": "Suresh Patel",
+      "consultationId": null,
+      "prescriptionId": "RX-1791742175360-c24b44",
+      "admissionId": null,
+      "items": [
+        {
+          "category": "PHARMACY",
+          "description": "Amoxicillin 500mg (21 qty)",
+          "amount": 945
+        }
+      ],
+      "subtotal": 945,
+      "tax": 47,
+      "totalAmount": 992,
+      "status": "PAID",
+      "createdAt": "2026-10-11T18:09:35.374Z",
+      "pharmacyOrderId": "PHARM-ORD-1791742175360-8ec4c1",
+      "paidAt": "2026-10-11T18:09:35.378Z",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "INV-1791742317075-1c10c0",
+      "invoiceNumber": "INV-317075",
+      "patientId": "P-1005",
+      "patientName": "Suresh Patel",
+      "consultationId": "ENC-1791742317071-b05923",
+      "prescriptionId": null,
+      "admissionId": null,
+      "items": [
+        {
+          "category": "CONSULTATION",
+          "description": "Doctor Consultation - Dr. Rajesh Sharma (General Medicine)",
+          "amount": 500
+        },
+        {
+          "category": "PHARMACY",
+          "description": "Amoxicillin 500mg (21 qty)",
+          "amount": 945
+        },
+        {
+          "category": "LABORATORY",
+          "description": "Complete Blood Count (CBC)",
+          "amount": 350
+        },
+        {
+          "category": "SCANNING",
+          "description": "Chest X-Ray (PA View)",
+          "amount": 600
+        }
+      ],
+      "subtotal": 2395,
+      "tax": 120,
+      "totalAmount": 2515,
+      "status": "UNPAID",
+      "createdAt": "2026-10-11T18:11:57.075Z"
+    },
+    {
+      "id": "INV-1791742317091-ec19b4",
+      "invoiceNumber": "INV-317091",
+      "patientId": "P-1005",
+      "patientName": "Suresh Patel",
+      "consultationId": null,
+      "prescriptionId": "RX-1791742317071-ac795b",
+      "admissionId": null,
+      "items": [
+        {
+          "category": "PHARMACY",
+          "description": "Amoxicillin 500mg (21 qty)",
+          "amount": 945
+        }
+      ],
+      "subtotal": 945,
+      "tax": 47,
+      "totalAmount": 992,
+      "status": "PAID",
+      "createdAt": "2026-10-11T18:11:57.091Z",
+      "pharmacyOrderId": "PHARM-ORD-1791742317071-0c43db",
+      "paidAt": "2026-10-11T18:11:57.097Z",
+      "paymentMethod": "UPI"
+    },
+    {
+      "id": "INV-1791742398680-9aaec1",
+      "invoiceNumber": "INV-398680",
+      "patientId": "P-1006",
+      "patientName": "Suresh Patel",
+      "consultationId": "ENC-1791742398675-f4cf61",
+      "prescriptionId": null,
+      "admissionId": null,
+      "items": [
+        {
+          "category": "CONSULTATION",
+          "description": "Doctor Consultation - Dr. Rajesh Sharma (General Medicine)",
+          "amount": 500
+        },
+        {
+          "category": "PHARMACY",
+          "description": "Amoxicillin 500mg (21 qty)",
+          "amount": 945
+        },
+        {
+          "category": "LABORATORY",
+          "description": "Complete Blood Count (CBC)",
+          "amount": 350
+        },
+        {
+          "category": "SCANNING",
+          "description": "Chest X-Ray (PA View)",
+          "amount": 600
+        }
+      ],
+      "subtotal": 2395,
+      "tax": 120,
+      "totalAmount": 2515,
+      "status": "UNPAID",
+      "createdAt": "2026-10-11T18:13:18.680Z"
+    },
+    {
+      "id": "INV-1791742398701-b84f5d",
+      "invoiceNumber": "INV-398701",
+      "patientId": "P-1006",
+      "patientName": "Suresh Patel",
+      "consultationId": null,
+      "prescriptionId": "RX-1791742398676-6696a9",
+      "admissionId": null,
+      "items": [
+        {
+          "category": "PHARMACY",
+          "description": "Amoxicillin 500mg (21 qty)",
+          "amount": 945
+        }
+      ],
+      "subtotal": 945,
+      "tax": 47,
+      "totalAmount": 992,
+      "status": "PAID",
+      "createdAt": "2026-10-11T18:13:18.701Z",
+      "pharmacyOrderId": "PHARM-ORD-1791742398676-d7e7db",
+      "paidAt": "2026-10-11T18:13:18.705Z",
+      "paymentMethod": "UPI"
+    }
+  ],
+  "billingReceipts": [
+    {
+      "id": "RCPT-1791742175378-378eb7",
+      "receiptNumber": "REC-175378",
+      "invoiceId": "INV-1791742175374-249053",
+      "patientId": "P-1004",
+      "patientName": "Suresh Patel",
+      "items": [
+        {
+          "category": "PHARMACY",
+          "description": "Amoxicillin 500mg (21 qty)",
+          "amount": 945
+        }
+      ],
+      "amount": 992,
+      "paymentMethod": "UPI",
+      "paidAt": "2026-10-11T18:09:35.378Z",
+      "issuedBy": "Vikram Verma"
+    },
+    {
+      "id": "RCPT-1791742317097-07db1f",
+      "receiptNumber": "REC-317097",
+      "invoiceId": "INV-1791742317091-ec19b4",
+      "patientId": "P-1005",
+      "patientName": "Suresh Patel",
+      "items": [
+        {
+          "category": "PHARMACY",
+          "description": "Amoxicillin 500mg (21 qty)",
+          "amount": 945
+        }
+      ],
+      "amount": 992,
+      "amountPaid": 992,
+      "paymentMethod": "UPI",
+      "paidAt": "2026-10-11T18:11:57.097Z",
+      "issuedBy": "Vikram Verma"
+    },
+    {
+      "id": "RCPT-1791742398705-700228",
+      "receiptNumber": "REC-398706",
+      "invoiceId": "INV-1791742398701-b84f5d",
+      "patientId": "P-1006",
+      "patientName": "Suresh Patel",
+      "items": [
+        {
+          "category": "PHARMACY",
+          "description": "Amoxicillin 500mg (21 qty)",
+          "amount": 945
+        }
+      ],
+      "amount": 992,
+      "amountPaid": 992,
+      "paymentMethod": "UPI",
+      "paidAt": "2026-10-11T18:13:18.705Z",
+      "issuedBy": "Vikram Verma"
+    }
+  ],
   "notifications": [
     {
       "id": "NOTIF-1791358509420-c604f8",
@@ -489,14 +2033,491 @@
       "type": "SUCCESS",
       "isRead": false,
       "timestamp": "2026-10-07T08:02:41.127Z"
+    },
+    {
+      "id": "NOTIF-1791742005831-910871",
+      "targetUserId": "P-1003",
+      "title": "Walk-In Check-In Issued",
+      "message": "Walk-in token W-103 issued for Dr. Dr. Rajesh Sharma. Estimated wait time: 30 mins.",
+      "type": "SUCCESS",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:06:45.831Z"
+    },
+    {
+      "id": "NOTIF-1791742005837-522b87",
+      "targetUserId": "P-1003",
+      "title": "Appointment Confirmed",
+      "message": "Your appointment with Dr. Rajesh Sharma for 2026-10-11 at 11:30 AM is confirmed.",
+      "type": "SUCCESS",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:06:45.837Z"
+    },
+    {
+      "id": "NOTIF-1791742005840-6a2bf2",
+      "targetUserId": "P-1003",
+      "title": "Check-In Confirmed",
+      "message": "Token A-104 issued for Dr. Dr. Rajesh Sharma. Estimated wait time: 45 mins.",
+      "type": "SUCCESS",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:06:45.840Z"
+    },
+    {
+      "id": "NOTIF-1791742175347-926264",
+      "targetUserId": "P-1004",
+      "title": "Walk-In Check-In Issued",
+      "message": "Walk-in token W-105 issued for Dr. Dr. Rajesh Sharma. Estimated wait time: 60 mins.",
+      "type": "SUCCESS",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:09:35.347Z"
+    },
+    {
+      "id": "NOTIF-1791742175351-a03c6b",
+      "targetUserId": "P-1004",
+      "title": "Appointment Confirmed",
+      "message": "Your appointment with Dr. Rajesh Sharma for 2026-10-11 at 11:30 AM is confirmed.",
+      "type": "SUCCESS",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:09:35.351Z"
+    },
+    {
+      "id": "NOTIF-1791742175355-f6949a",
+      "targetUserId": "P-1004",
+      "title": "Check-In Confirmed",
+      "message": "Token A-106 issued for Dr. Dr. Rajesh Sharma. Estimated wait time: 75 mins.",
+      "type": "SUCCESS",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:09:35.355Z"
+    },
+    {
+      "id": "NOTIF-1791742175360-e4e707",
+      "targetUserId": "P-1004",
+      "title": "Prescription Received by Pharmacy",
+      "message": "Your prescription has been received by the pharmacy.",
+      "type": "INFO",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:09:35.360Z"
+    },
+    {
+      "id": "NOTIF-1791742175361-8a496f",
+      "targetUserId": "P-1004",
+      "title": "Admission Recommended",
+      "message": "Dr. Dr. Rajesh Sharma recommended admission to General Ward. Bed allocation is in progress.",
+      "type": "WARNING",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:09:35.361Z"
+    },
+    {
+      "id": "NOTIF-1791742175381-d5f472",
+      "targetUserId": "P-1004",
+      "title": "💊 YOUR MEDICINES ARE READY",
+      "message": "Your order for Amoxicillin 500mg has been verified & packed. Collect at Pharmacy Counter #2.",
+      "type": "SUCCESS",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:09:35.381Z"
+    },
+    {
+      "id": "NOTIF-1791742175385-656ea0",
+      "targetUserId": "P-1004",
+      "title": "💊 YOUR MEDICINES ARE READY",
+      "message": "Your medicine order is ready for pickup at Pharmacy Counter.",
+      "type": "SUCCESS",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:09:35.385Z"
+    },
+    {
+      "id": "NOTIF-1791742175388-721438",
+      "targetUserId": "P-1004",
+      "title": "Medicines Dispensed",
+      "message": "Your medication order has been handed over by Pharmacy Counter.",
+      "type": "INFO",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:09:35.388Z"
+    },
+    {
+      "id": "NOTIF-1791742317055-f804e4",
+      "targetUserId": "P-1005",
+      "title": "Walk-In Check-In Issued",
+      "message": "Walk-in token W-107 issued for Dr. Dr. Rajesh Sharma. Estimated wait time: 75 mins.",
+      "type": "SUCCESS",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:11:57.056Z"
+    },
+    {
+      "id": "NOTIF-1791742317060-eeaabe",
+      "targetUserId": "P-1005",
+      "title": "Appointment Confirmed",
+      "message": "Your appointment with Dr. Rajesh Sharma for 2026-10-11 at 11:30 AM is confirmed.",
+      "type": "SUCCESS",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:11:57.060Z"
+    },
+    {
+      "id": "NOTIF-1791742317063-62cdaf",
+      "targetUserId": "P-1005",
+      "title": "Check-In Confirmed",
+      "message": "Token A-108 issued for Dr. Dr. Rajesh Sharma. Estimated wait time: 90 mins.",
+      "type": "SUCCESS",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:11:57.063Z"
+    },
+    {
+      "id": "NOTIF-1791742317071-a142ce",
+      "targetUserId": "P-1005",
+      "title": "Prescription Received by Pharmacy",
+      "message": "Your prescription has been received by the pharmacy.",
+      "type": "INFO",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:11:57.071Z"
+    },
+    {
+      "id": "NOTIF-1791742317073-29f428",
+      "targetUserId": "P-1005",
+      "title": "Admission Recommended",
+      "message": "Dr. Dr. Rajesh Sharma recommended admission to General Ward. Bed allocation is in progress.",
+      "type": "WARNING",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:11:57.073Z"
+    },
+    {
+      "id": "NOTIF-1791742317100-8ed95b",
+      "targetUserId": "P-1005",
+      "title": "💊 YOUR MEDICINES ARE READY",
+      "message": "Your order for Amoxicillin 500mg has been verified & packed. Collect at Pharmacy Counter #2.",
+      "type": "SUCCESS",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:11:57.100Z"
+    },
+    {
+      "id": "NOTIF-1791742317104-aa1875",
+      "targetUserId": "P-1005",
+      "title": "💊 YOUR MEDICINES ARE READY",
+      "message": "Your medicine order is ready for pickup at Pharmacy Counter.",
+      "type": "SUCCESS",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:11:57.104Z"
+    },
+    {
+      "id": "NOTIF-1791742317109-613d87",
+      "targetUserId": "P-1005",
+      "title": "Medicines Dispensed",
+      "message": "Your medication order has been handed over by Pharmacy Counter.",
+      "type": "INFO",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:11:57.109Z"
+    },
+    {
+      "id": "NOTIF-1791742317115-968474",
+      "targetUserId": "P-1005",
+      "title": "Imaging Scan Scheduled",
+      "message": "Your Chest X-Ray (PA View) has been scheduled on 2026-10-11 at 2026-10-11T19:11:57.114Z in Imaging Room 3.",
+      "type": "INFO",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:11:57.115Z"
+    },
+    {
+      "id": "NOTIF-1791742317141-3ffcd1",
+      "targetUserId": "P-1005",
+      "title": "Laboratory Test Result Ready",
+      "message": "Your Complete Blood Count (CBC) report has been signed off and published.",
+      "type": "INFO",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:11:57.141Z"
+    },
+    {
+      "id": "NOTIF-1791742398658-37ef8b",
+      "targetUserId": "P-1006",
+      "title": "Walk-In Check-In Issued",
+      "message": "Walk-in token W-109 issued for Dr. Dr. Rajesh Sharma. Estimated wait time: 90 mins.",
+      "type": "SUCCESS",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:13:18.658Z"
+    },
+    {
+      "id": "NOTIF-1791742398664-95b47f",
+      "targetUserId": "P-1006",
+      "title": "Appointment Confirmed",
+      "message": "Your appointment with Dr. Rajesh Sharma for 2026-10-11 at 11:30 AM is confirmed.",
+      "type": "SUCCESS",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:13:18.664Z"
+    },
+    {
+      "id": "NOTIF-1791742398669-0376de",
+      "targetUserId": "P-1006",
+      "title": "Check-In Confirmed",
+      "message": "Token A-110 issued for Dr. Dr. Rajesh Sharma. Estimated wait time: 105 mins.",
+      "type": "SUCCESS",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:13:18.669Z"
+    },
+    {
+      "id": "NOTIF-1791742398676-7a7a6e",
+      "targetUserId": "P-1006",
+      "title": "Prescription Received by Pharmacy",
+      "message": "Your prescription has been received by the pharmacy.",
+      "type": "INFO",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:13:18.676Z"
+    },
+    {
+      "id": "NOTIF-1791742398677-eff58f",
+      "targetUserId": "P-1006",
+      "title": "Admission Recommended",
+      "message": "Dr. Dr. Rajesh Sharma recommended admission to General Ward. Bed allocation is in progress.",
+      "type": "WARNING",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:13:18.677Z"
+    },
+    {
+      "id": "NOTIF-1791742398709-cf6092",
+      "targetUserId": "P-1006",
+      "title": "💊 YOUR MEDICINES ARE READY",
+      "message": "Your order for Amoxicillin 500mg has been verified & packed. Collect at Pharmacy Counter #2.",
+      "type": "SUCCESS",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:13:18.709Z"
+    },
+    {
+      "id": "NOTIF-1791742398715-2f831a",
+      "targetUserId": "P-1006",
+      "title": "💊 YOUR MEDICINES ARE READY",
+      "message": "Your medicine order is ready for pickup at Pharmacy Counter.",
+      "type": "SUCCESS",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:13:18.715Z"
+    },
+    {
+      "id": "NOTIF-1791742398720-8a681b",
+      "targetUserId": "P-1006",
+      "title": "Medicines Dispensed",
+      "message": "Your medication order has been handed over by Pharmacy Counter.",
+      "type": "INFO",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:13:18.720Z"
+    },
+    {
+      "id": "NOTIF-1791742398728-e91607",
+      "targetUserId": "P-1006",
+      "title": "Imaging Scan Scheduled",
+      "message": "Your Chest X-Ray (PA View) has been scheduled on 2026-10-11 at 2026-10-11T19:13:18.726Z in Imaging Room 3.",
+      "type": "INFO",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:13:18.728Z"
+    },
+    {
+      "id": "NOTIF-1791742398746-be153a",
+      "targetUserId": "P-1006",
+      "title": "Imaging Scan Report Available",
+      "message": "Your Chest X-Ray (PA View) report has been verified and published.",
+      "type": "INFO",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:13:18.746Z"
+    },
+    {
+      "id": "NOTIF-1791742398767-61c3be",
+      "targetUserId": "P-1006",
+      "title": "Laboratory Test Result Ready",
+      "message": "Your Complete Blood Count (CBC) report has been signed off and published.",
+      "type": "INFO",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:13:18.767Z"
+    },
+    {
+      "id": "NOTIF-1791742398790-576ec3",
+      "targetUserId": "P-1006",
+      "title": "Bed Allocated",
+      "message": "You have been allocated Bed 01 in General Ward.",
+      "type": "INFO",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:13:18.790Z"
+    },
+    {
+      "id": "NOTIF-1791742398807-2fd5f5",
+      "targetUserId": "P-1006",
+      "title": "Clinical Discharge Approved",
+      "message": "Attending physician has authorized your discharge. Please proceed to billing clearance.",
+      "type": "INFO",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:13:18.807Z"
+    },
+    {
+      "id": "NOTIF-1791742398813-0ded55",
+      "targetUserId": "P-1006",
+      "title": "Discharge Process Completed",
+      "message": "Your hospital discharge has been finalized. Discharge summary is available in your portal.",
+      "type": "SUCCESS",
+      "isRead": false,
+      "timestamp": "2026-10-11T18:13:18.813Z"
     }
   ],
   "carePlans": [],
-  "appointments": [],
+  "appointments": [
+    {
+      "id": "APT-WALKIN-1791742005738-b1fb8c",
+      "patientId": "P-1003",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "date": "2026-10-11",
+      "timeSlot": "WALK-IN",
+      "reason": "Acute high fever and productive cough for 4 days",
+      "status": "CHECKED_IN",
+      "isWalkIn": true,
+      "createdAt": "2026-10-11T18:06:45.738Z"
+    },
+    {
+      "id": "APT-1791742005836-9d7598",
+      "patientId": "P-1003",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "date": "2026-10-11",
+      "timeSlot": "11:30 AM",
+      "reason": "Consultation - Bronchial workup",
+      "status": "CHECKED_IN",
+      "createdAt": "2026-10-11T18:06:45.836Z"
+    },
+    {
+      "id": "APT-WALKIN-1791742175335-3e4523",
+      "patientId": "P-1004",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "date": "2026-10-11",
+      "timeSlot": "WALK-IN",
+      "reason": "Acute high fever and productive cough for 4 days",
+      "status": "CHECKED_IN",
+      "isWalkIn": true,
+      "createdAt": "2026-10-11T18:09:35.335Z"
+    },
+    {
+      "id": "APT-1791742175351-a070df",
+      "patientId": "P-1004",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "date": "2026-10-11",
+      "timeSlot": "11:30 AM",
+      "reason": "Consultation - Bronchial workup",
+      "status": "CHECKED_IN",
+      "createdAt": "2026-10-11T18:09:35.351Z"
+    },
+    {
+      "id": "APT-WALKIN-1791742317043-9f04fb",
+      "patientId": "P-1005",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "date": "2026-10-11",
+      "timeSlot": "WALK-IN",
+      "reason": "Acute high fever and productive cough for 4 days",
+      "status": "CHECKED_IN",
+      "isWalkIn": true,
+      "createdAt": "2026-10-11T18:11:57.044Z"
+    },
+    {
+      "id": "APT-1791742317059-cd2e53",
+      "patientId": "P-1005",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "date": "2026-10-11",
+      "timeSlot": "11:30 AM",
+      "reason": "Consultation - Bronchial workup",
+      "status": "CHECKED_IN",
+      "createdAt": "2026-10-11T18:11:57.059Z"
+    },
+    {
+      "id": "APT-WALKIN-1791742398644-a82b9f",
+      "patientId": "P-1006",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "date": "2026-10-11",
+      "timeSlot": "WALK-IN",
+      "reason": "Acute high fever and productive cough for 4 days",
+      "status": "CHECKED_IN",
+      "isWalkIn": true,
+      "createdAt": "2026-10-11T18:13:18.644Z"
+    },
+    {
+      "id": "APT-1791742398663-ddacad",
+      "patientId": "P-1006",
+      "patientName": "Suresh Patel",
+      "doctorId": "DOC-1001",
+      "doctorName": "Dr. Rajesh Sharma",
+      "date": "2026-10-11",
+      "timeSlot": "11:30 AM",
+      "reason": "Consultation - Bronchial workup",
+      "status": "CHECKED_IN",
+      "createdAt": "2026-10-11T18:13:18.663Z"
+    }
+  ],
   "consents": [],
   "breakGlassLogs": [],
   "caregivers": [],
-  "vitals": [],
+  "vitals": [
+    {
+      "id": "VITALS-1791742005847-852ad2",
+      "patientId": "P-1003",
+      "caseSheetId": "PATINOTE-1791742005847-5cd17c",
+      "sysBp": 128,
+      "diaBp": 82,
+      "pulse": 94,
+      "temp": 101.8,
+      "spO2": 95,
+      "bmi": "",
+      "painScore": 0,
+      "bloodGlucose": "",
+      "recordedBy": "Dr. Rajesh Sharma",
+      "timestamp": "2026-10-11T18:06:45.847Z"
+    },
+    {
+      "id": "VITALS-1791742175360-a2dce7",
+      "patientId": "P-1004",
+      "caseSheetId": "PATINOTE-1791742175360-3a463f",
+      "sysBp": 128,
+      "diaBp": 82,
+      "pulse": 94,
+      "temp": 101.8,
+      "spO2": 95,
+      "bmi": "",
+      "painScore": 0,
+      "bloodGlucose": "",
+      "recordedBy": "Dr. Rajesh Sharma",
+      "timestamp": "2026-10-11T18:09:35.360Z"
+    },
+    {
+      "id": "VITALS-1791742317071-d1f4d0",
+      "patientId": "P-1005",
+      "caseSheetId": "PATINOTE-1791742317071-3b5936",
+      "sysBp": 128,
+      "diaBp": 82,
+      "pulse": 94,
+      "temp": 101.8,
+      "spO2": 95,
+      "bmi": "",
+      "painScore": 0,
+      "bloodGlucose": "",
+      "recordedBy": "Dr. Rajesh Sharma",
+      "timestamp": "2026-10-11T18:11:57.071Z"
+    },
+    {
+      "id": "VITALS-1791742398675-6b720d",
+      "patientId": "P-1006",
+      "caseSheetId": "PATINOTE-1791742398675-8f140c",
+      "sysBp": 128,
+      "diaBp": 82,
+      "pulse": 94,
+      "temp": 101.8,
+      "spO2": 95,
+      "bmi": "",
+      "painScore": 0,
+      "bloodGlucose": "",
+      "recordedBy": "Dr. Rajesh Sharma",
+      "timestamp": "2026-10-11T18:13:18.675Z"
+    }
+  ],
   "referrals": [],
   "auditLogs": [
     {
@@ -935,6 +2956,1651 @@
       "timestamp": "2026-10-07T08:02:41.128Z",
       "metadata": {
         "token": "A-102"
+      }
+    },
+    {
+      "id": "AUDIT-1791742005212-e8e2f8",
+      "action": "USER_LOGIN",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": "admin-1",
+      "timestamp": "2026-10-11T18:06:45.214Z",
+      "metadata": {
+        "role": "ADMIN"
+      }
+    },
+    {
+      "id": "AUDIT-1791742005277-d2e767",
+      "action": "USER_LOGIN",
+      "actorId": "DOC-1001",
+      "actorName": "Dr. Rajesh Sharma",
+      "actorRole": "DOCTOR",
+      "patientId": "DOC-1001",
+      "timestamp": "2026-10-11T18:06:45.277Z",
+      "metadata": {
+        "role": "DOCTOR"
+      }
+    },
+    {
+      "id": "AUDIT-1791742005339-74d16a",
+      "action": "USER_LOGIN",
+      "actorId": "REC-1001",
+      "actorName": "Priya Sharma",
+      "actorRole": "RECEPTIONIST",
+      "patientId": "REC-1001",
+      "timestamp": "2026-10-11T18:06:45.339Z",
+      "metadata": {
+        "role": "RECEPTIONIST"
+      }
+    },
+    {
+      "id": "AUDIT-1791742005393-3521cd",
+      "action": "USER_LOGIN",
+      "actorId": "NUR-1001",
+      "actorName": "Sister Mary Joseph",
+      "actorRole": "NURSE",
+      "patientId": "NUR-1001",
+      "timestamp": "2026-10-11T18:06:45.393Z",
+      "metadata": {
+        "role": "NURSE"
+      }
+    },
+    {
+      "id": "AUDIT-1791742005450-8138c1",
+      "action": "USER_LOGIN",
+      "actorId": "PHA-1001",
+      "actorName": "Vikram Verma",
+      "actorRole": "PHARMACIST",
+      "patientId": "PHA-1001",
+      "timestamp": "2026-10-11T18:06:45.450Z",
+      "metadata": {
+        "role": "PHARMACIST"
+      }
+    },
+    {
+      "id": "AUDIT-1791742005505-1b3c61",
+      "action": "USER_LOGIN",
+      "actorId": "LAB-1001",
+      "actorName": "Dr. Sunita Rao",
+      "actorRole": "LAB_STAFF",
+      "patientId": "LAB-1001",
+      "timestamp": "2026-10-11T18:06:45.505Z",
+      "metadata": {
+        "role": "LAB_STAFF"
+      }
+    },
+    {
+      "id": "AUDIT-1791742005560-ed54d3",
+      "action": "USER_LOGIN",
+      "actorId": "SCA-1001",
+      "actorName": "Alex Turner",
+      "actorRole": "SCAN_TECH",
+      "patientId": "SCA-1001",
+      "timestamp": "2026-10-11T18:06:45.560Z",
+      "metadata": {
+        "role": "SCAN_TECH"
+      }
+    },
+    {
+      "id": "AUDIT-1791742005617-c9407e",
+      "action": "USER_LOGIN",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-11T18:06:45.617Z",
+      "metadata": {
+        "role": "PATIENT"
+      }
+    },
+    {
+      "id": "AUDIT-1791742005679-d58c14",
+      "action": "CREATE_PATIENT",
+      "actorId": "GUEST",
+      "actorName": "Registration Form",
+      "actorRole": "RECEPTIONIST",
+      "patientId": "P-1003",
+      "timestamp": "2026-10-11T18:06:45.679Z",
+      "metadata": {
+        "name": "Suresh Patel",
+        "mrn": "MC-MRN-005622"
+      }
+    },
+    {
+      "id": "AUDIT-1791742005736-be7868",
+      "action": "USER_LOGIN",
+      "actorId": "P-1003",
+      "actorName": "Suresh Patel",
+      "actorRole": "PATIENT",
+      "patientId": "P-1003",
+      "timestamp": "2026-10-11T18:06:45.736Z",
+      "metadata": {
+        "role": "PATIENT"
+      }
+    },
+    {
+      "id": "AUDIT-1791742005832-676919",
+      "action": "WALK_IN_CHECK_IN",
+      "actorId": "REC-1001",
+      "actorName": "Priya Sharma",
+      "actorRole": "RECEPTIONIST",
+      "patientId": "P-1003",
+      "timestamp": "2026-10-11T18:06:45.832Z",
+      "metadata": {
+        "token": "W-103",
+        "appointmentId": "APT-WALKIN-1791742005738-b1fb8c"
+      }
+    },
+    {
+      "id": "AUDIT-1791742005837-0a2f87",
+      "action": "BOOK_APPOINTMENT",
+      "actorId": "P-1003",
+      "actorName": "Suresh Patel",
+      "actorRole": "PATIENT",
+      "patientId": "P-1003",
+      "timestamp": "2026-10-11T18:06:45.837Z",
+      "metadata": {
+        "apptId": "APT-1791742005836-9d7598",
+        "doctorId": "DOC-1001"
+      }
+    },
+    {
+      "id": "AUDIT-1791742005840-98b6b5",
+      "action": "CHECK_IN_PATIENT",
+      "actorId": "REC-1001",
+      "actorName": "Priya Sharma",
+      "actorRole": "RECEPTIONIST",
+      "patientId": "P-1003",
+      "timestamp": "2026-10-11T18:06:45.840Z",
+      "metadata": {
+        "token": "A-104"
+      }
+    },
+    {
+      "id": "AUDIT-1791742005858-23cf82",
+      "action": "CREATE_ADMISSION_REQUEST",
+      "actorId": "DOC-1001",
+      "actorName": "Dr. Rajesh Sharma",
+      "actorRole": "DOCTOR",
+      "patientId": "P-1003",
+      "timestamp": "2026-10-11T18:06:45.858Z",
+      "metadata": {
+        "recommendedWard": "General Ward",
+        "priority": "URGENT"
+      }
+    },
+    {
+      "id": "AUDIT-1791742005860-d5112c",
+      "action": "RESERVE_BED",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": "P-1003",
+      "timestamp": "2026-10-11T18:06:45.860Z",
+      "metadata": {
+        "bedId": "GEN-01",
+        "ward": "General Ward"
+      }
+    },
+    {
+      "id": "AUDIT-1791742005867-96e7cd",
+      "action": "COMPLETE_BED_CLEANING",
+      "actorId": "NUR-1001",
+      "actorName": "Sister Mary Joseph",
+      "actorRole": "NURSE",
+      "patientId": null,
+      "timestamp": "2026-10-11T18:06:45.867Z",
+      "metadata": {
+        "bedId": "GEN-02"
+      }
+    },
+    {
+      "id": "AUDIT-1791742005872-c4e7fd",
+      "action": "RAPID_EMERGENCY_REGISTRATION",
+      "actorId": "NUR-1001",
+      "actorName": "Sister Mary Joseph",
+      "actorRole": "NURSE",
+      "patientId": null,
+      "timestamp": "2026-10-11T18:06:45.872Z",
+      "metadata": {
+        "tempMrn": "EMERG-MRN-005871",
+        "triageCategory": "RED",
+        "bedId": "EMG-01"
+      }
+    },
+    {
+      "id": "AUDIT-1791742005875-c6d3c9",
+      "action": "UPDATE_EMERGENCY_TRIAGE",
+      "actorId": "DOC-1001",
+      "actorName": "Dr. Rajesh Sharma",
+      "actorRole": "DOCTOR",
+      "patientId": "TEMP-EMERG-MRN-005871",
+      "timestamp": "2026-10-11T18:06:45.875Z",
+      "metadata": {
+        "triageCategory": "YELLOW",
+        "vitals": {
+          "bp": "110/70",
+          "pulse": 92,
+          "spO2": 97,
+          "gcs": 14
+        }
+      }
+    },
+    {
+      "id": "AUDIT-1791742005879-012920",
+      "action": "LINK_EMERGENCY_PATIENT",
+      "actorId": "REC-1001",
+      "actorName": "Priya Sharma",
+      "actorRole": "RECEPTIONIST",
+      "patientId": "P-1003",
+      "timestamp": "2026-10-11T18:06:45.879Z",
+      "metadata": {
+        "emergencyCaseId": "EMG-1791742005871-804f32",
+        "permanentPatientId": "P-1003"
+      }
+    },
+    {
+      "id": "AUDIT-1791742174820-12b7b2",
+      "action": "USER_LOGIN",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": "admin-1",
+      "timestamp": "2026-10-11T18:09:34.820Z",
+      "metadata": {
+        "role": "ADMIN"
+      }
+    },
+    {
+      "id": "AUDIT-1791742174881-afdd54",
+      "action": "USER_LOGIN",
+      "actorId": "DOC-1001",
+      "actorName": "Dr. Rajesh Sharma",
+      "actorRole": "DOCTOR",
+      "patientId": "DOC-1001",
+      "timestamp": "2026-10-11T18:09:34.881Z",
+      "metadata": {
+        "role": "DOCTOR"
+      }
+    },
+    {
+      "id": "AUDIT-1791742174941-7d8a90",
+      "action": "USER_LOGIN",
+      "actorId": "REC-1001",
+      "actorName": "Priya Sharma",
+      "actorRole": "RECEPTIONIST",
+      "patientId": "REC-1001",
+      "timestamp": "2026-10-11T18:09:34.941Z",
+      "metadata": {
+        "role": "RECEPTIONIST"
+      }
+    },
+    {
+      "id": "AUDIT-1791742174996-ae4f1a",
+      "action": "USER_LOGIN",
+      "actorId": "NUR-1001",
+      "actorName": "Sister Mary Joseph",
+      "actorRole": "NURSE",
+      "patientId": "NUR-1001",
+      "timestamp": "2026-10-11T18:09:34.996Z",
+      "metadata": {
+        "role": "NURSE"
+      }
+    },
+    {
+      "id": "AUDIT-1791742175052-2692e9",
+      "action": "USER_LOGIN",
+      "actorId": "PHA-1001",
+      "actorName": "Vikram Verma",
+      "actorRole": "PHARMACIST",
+      "patientId": "PHA-1001",
+      "timestamp": "2026-10-11T18:09:35.052Z",
+      "metadata": {
+        "role": "PHARMACIST"
+      }
+    },
+    {
+      "id": "AUDIT-1791742175108-8915b9",
+      "action": "USER_LOGIN",
+      "actorId": "LAB-1001",
+      "actorName": "Dr. Sunita Rao",
+      "actorRole": "LAB_STAFF",
+      "patientId": "LAB-1001",
+      "timestamp": "2026-10-11T18:09:35.108Z",
+      "metadata": {
+        "role": "LAB_STAFF"
+      }
+    },
+    {
+      "id": "AUDIT-1791742175162-16cfb6",
+      "action": "USER_LOGIN",
+      "actorId": "SCA-1001",
+      "actorName": "Alex Turner",
+      "actorRole": "SCAN_TECH",
+      "patientId": "SCA-1001",
+      "timestamp": "2026-10-11T18:09:35.162Z",
+      "metadata": {
+        "role": "SCAN_TECH"
+      }
+    },
+    {
+      "id": "AUDIT-1791742175217-8dc4f6",
+      "action": "USER_LOGIN",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-11T18:09:35.217Z",
+      "metadata": {
+        "role": "PATIENT"
+      }
+    },
+    {
+      "id": "AUDIT-1791742175278-370634",
+      "action": "CREATE_PATIENT",
+      "actorId": "GUEST",
+      "actorName": "Registration Form",
+      "actorRole": "RECEPTIONIST",
+      "patientId": "P-1004",
+      "timestamp": "2026-10-11T18:09:35.278Z",
+      "metadata": {
+        "name": "Suresh Patel",
+        "mrn": "MC-MRN-175223"
+      }
+    },
+    {
+      "id": "AUDIT-1791742175333-7be447",
+      "action": "USER_LOGIN",
+      "actorId": "P-1004",
+      "actorName": "Suresh Patel",
+      "actorRole": "PATIENT",
+      "patientId": "P-1004",
+      "timestamp": "2026-10-11T18:09:35.333Z",
+      "metadata": {
+        "role": "PATIENT"
+      }
+    },
+    {
+      "id": "AUDIT-1791742175348-1b679c",
+      "action": "WALK_IN_CHECK_IN",
+      "actorId": "REC-1001",
+      "actorName": "Priya Sharma",
+      "actorRole": "RECEPTIONIST",
+      "patientId": "P-1004",
+      "timestamp": "2026-10-11T18:09:35.348Z",
+      "metadata": {
+        "token": "W-105",
+        "appointmentId": "APT-WALKIN-1791742175335-3e4523"
+      }
+    },
+    {
+      "id": "AUDIT-1791742175352-3ed485",
+      "action": "BOOK_APPOINTMENT",
+      "actorId": "P-1004",
+      "actorName": "Suresh Patel",
+      "actorRole": "PATIENT",
+      "patientId": "P-1004",
+      "timestamp": "2026-10-11T18:09:35.352Z",
+      "metadata": {
+        "apptId": "APT-1791742175351-a070df",
+        "doctorId": "DOC-1001"
+      }
+    },
+    {
+      "id": "AUDIT-1791742175355-252c5b",
+      "action": "CHECK_IN_PATIENT",
+      "actorId": "REC-1001",
+      "actorName": "Priya Sharma",
+      "actorRole": "RECEPTIONIST",
+      "patientId": "P-1004",
+      "timestamp": "2026-10-11T18:09:35.355Z",
+      "metadata": {
+        "token": "A-106"
+      }
+    },
+    {
+      "id": "AUDIT-1791742175361-094bee",
+      "action": "RECOMMEND_ADMISSION",
+      "actorId": "DOC-1001",
+      "actorName": "Dr. Rajesh Sharma",
+      "actorRole": "DOCTOR",
+      "patientId": "P-1004",
+      "timestamp": "2026-10-11T18:09:35.361Z",
+      "metadata": {
+        "ward": "General Ward",
+        "reason": "Monitoring for moderate respiratory compromise and parenteral antibiotic coverage"
+      }
+    },
+    {
+      "id": "AUDIT-1791742175362-706e04",
+      "action": "GENERATE_INVOICE",
+      "actorId": "SYSTEM",
+      "actorName": "MEDI CORE Billing",
+      "actorRole": "SYSTEM",
+      "patientId": "P-1004",
+      "timestamp": "2026-10-11T18:09:35.362Z",
+      "metadata": {
+        "invoiceId": "INV-1791742175361-f8c2dd",
+        "totalAmount": 2515
+      }
+    },
+    {
+      "id": "AUDIT-1791742175363-62b3b9",
+      "action": "SAVE_PATINOTE",
+      "actorId": "DOC-1001",
+      "actorName": "Dr. Rajesh Sharma",
+      "actorRole": "DOCTOR",
+      "patientId": "P-1004",
+      "timestamp": "2026-10-11T18:09:35.363Z",
+      "metadata": {
+        "caseSheetId": "PATINOTE-1791742175360-3a463f",
+        "status": "FINALIZED",
+        "diagnosis": "Acute Bacterial Bronchopneumonia (ICD J18.9)",
+        "rxCount": 1
+      }
+    },
+    {
+      "id": "AUDIT-1791742175368-345292",
+      "action": "PHARMACY_VERIFY_ORDER",
+      "actorId": "PHA-1001",
+      "actorName": "Vikram Verma",
+      "actorRole": "PHARMACIST",
+      "patientId": "P-1004",
+      "timestamp": "2026-10-11T18:09:35.368Z",
+      "metadata": {
+        "targetId": "PHARM-ORD-1791742175360-8ec4c1"
+      }
+    },
+    {
+      "id": "AUDIT-1791742175370-c14c77",
+      "action": "PREPARE_PHARMACY_ORDER",
+      "actorId": "PHA-1001",
+      "actorName": "Vikram Verma",
+      "actorRole": "PHARMACIST",
+      "patientId": "P-1004",
+      "timestamp": "2026-10-11T18:09:35.370Z",
+      "metadata": {
+        "targetId": "PHARM-ORD-1791742175360-8ec4c1",
+        "medName": "Amoxicillin 500mg",
+        "reservedQty": 21
+      }
+    },
+    {
+      "id": "AUDIT-1791742175375-828a83",
+      "action": "GENERATE_INVOICE",
+      "actorId": "SYSTEM",
+      "actorName": "MEDI CORE Billing",
+      "actorRole": "SYSTEM",
+      "patientId": "P-1004",
+      "timestamp": "2026-10-11T18:09:35.375Z",
+      "metadata": {
+        "invoiceId": "INV-1791742175374-249053",
+        "totalAmount": 992
+      }
+    },
+    {
+      "id": "AUDIT-1791742175375-52c0d0",
+      "action": "GENERATE_PHARMACY_BILL",
+      "actorId": "PHA-1001",
+      "actorName": "Vikram Verma",
+      "actorRole": "PHARMACIST",
+      "patientId": "P-1004",
+      "timestamp": "2026-10-11T18:09:35.375Z",
+      "metadata": {
+        "invoiceId": "INV-1791742175374-249053",
+        "amount": 945
+      }
+    },
+    {
+      "id": "AUDIT-1791742175378-73f99b",
+      "action": "RECORD_PHARMACY_PAYMENT",
+      "actorId": "PHA-1001",
+      "actorName": "Vikram Verma",
+      "actorRole": "PHARMACIST",
+      "patientId": "P-1004",
+      "timestamp": "2026-10-11T18:09:35.378Z",
+      "metadata": {
+        "invoiceId": "INV-1791742175374-249053",
+        "amount": 992,
+        "paymentMethod": "UPI"
+      }
+    },
+    {
+      "id": "AUDIT-1791742175382-ca54ff",
+      "action": "PACK_MEDICINE_ORDER",
+      "actorId": "PHA-1001",
+      "actorName": "Vikram Verma",
+      "actorRole": "PHARMACIST",
+      "patientId": "P-1004",
+      "timestamp": "2026-10-11T18:09:35.382Z",
+      "metadata": {
+        "targetId": "PHARM-ORD-1791742175360-8ec4c1",
+        "checklist": {
+          "medicineVerified": true,
+          "batchVerified": true,
+          "expiryVerified": true,
+          "instructionsAttached": true
+        }
+      }
+    },
+    {
+      "id": "AUDIT-1791742175389-f3f243",
+      "action": "DISPENSE_MEDICATION",
+      "actorId": "PHA-1001",
+      "actorName": "Vikram Verma",
+      "actorRole": "PHARMACIST",
+      "patientId": "P-1004",
+      "timestamp": "2026-10-11T18:09:35.389Z",
+      "metadata": {
+        "targetId": "PHARM-ORD-1791742175360-8ec4c1",
+        "quantityDeducted": 21,
+        "remainingStock": 159
+      }
+    },
+    {
+      "id": "AUDIT-1791742175398-f8fdce",
+      "action": "CREATE_ADMISSION_REQUEST",
+      "actorId": "DOC-1001",
+      "actorName": "Dr. Rajesh Sharma",
+      "actorRole": "DOCTOR",
+      "patientId": "P-1004",
+      "timestamp": "2026-10-11T18:09:35.398Z",
+      "metadata": {
+        "recommendedWard": "General Ward",
+        "priority": "URGENT"
+      }
+    },
+    {
+      "id": "AUDIT-1791742175412-2e38eb",
+      "action": "COMPLETE_BED_CLEANING",
+      "actorId": "NUR-1001",
+      "actorName": "Sister Mary Joseph",
+      "actorRole": "NURSE",
+      "patientId": null,
+      "timestamp": "2026-10-11T18:09:35.412Z",
+      "metadata": {
+        "bedId": "GEN-02"
+      }
+    },
+    {
+      "id": "AUDIT-1791742175417-8da170",
+      "action": "RAPID_EMERGENCY_REGISTRATION",
+      "actorId": "NUR-1001",
+      "actorName": "Sister Mary Joseph",
+      "actorRole": "NURSE",
+      "patientId": null,
+      "timestamp": "2026-10-11T18:09:35.417Z",
+      "metadata": {
+        "tempMrn": "EMERG-MRN-175416",
+        "triageCategory": "RED",
+        "bedId": "EMG-01"
+      }
+    },
+    {
+      "id": "AUDIT-1791742175421-0bb464",
+      "action": "UPDATE_EMERGENCY_TRIAGE",
+      "actorId": "DOC-1001",
+      "actorName": "Dr. Rajesh Sharma",
+      "actorRole": "DOCTOR",
+      "patientId": "TEMP-EMERG-MRN-175416",
+      "timestamp": "2026-10-11T18:09:35.421Z",
+      "metadata": {
+        "triageCategory": "YELLOW",
+        "vitals": {
+          "bp": "110/70",
+          "pulse": 92,
+          "spO2": 97,
+          "gcs": 14
+        }
+      }
+    },
+    {
+      "id": "AUDIT-1791742175424-a40df6",
+      "action": "LINK_EMERGENCY_PATIENT",
+      "actorId": "REC-1001",
+      "actorName": "Priya Sharma",
+      "actorRole": "RECEPTIONIST",
+      "patientId": "P-1004",
+      "timestamp": "2026-10-11T18:09:35.424Z",
+      "metadata": {
+        "emergencyCaseId": "EMG-1791742175416-562b3d",
+        "permanentPatientId": "P-1004"
+      }
+    },
+    {
+      "id": "AUDIT-1791742316508-075817",
+      "action": "USER_LOGIN",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": "admin-1",
+      "timestamp": "2026-10-11T18:11:56.508Z",
+      "metadata": {
+        "role": "ADMIN"
+      }
+    },
+    {
+      "id": "AUDIT-1791742316568-e44a3d",
+      "action": "USER_LOGIN",
+      "actorId": "DOC-1001",
+      "actorName": "Dr. Rajesh Sharma",
+      "actorRole": "DOCTOR",
+      "patientId": "DOC-1001",
+      "timestamp": "2026-10-11T18:11:56.568Z",
+      "metadata": {
+        "role": "DOCTOR"
+      }
+    },
+    {
+      "id": "AUDIT-1791742316630-406715",
+      "action": "USER_LOGIN",
+      "actorId": "REC-1001",
+      "actorName": "Priya Sharma",
+      "actorRole": "RECEPTIONIST",
+      "patientId": "REC-1001",
+      "timestamp": "2026-10-11T18:11:56.630Z",
+      "metadata": {
+        "role": "RECEPTIONIST"
+      }
+    },
+    {
+      "id": "AUDIT-1791742316688-60d53d",
+      "action": "USER_LOGIN",
+      "actorId": "NUR-1001",
+      "actorName": "Sister Mary Joseph",
+      "actorRole": "NURSE",
+      "patientId": "NUR-1001",
+      "timestamp": "2026-10-11T18:11:56.688Z",
+      "metadata": {
+        "role": "NURSE"
+      }
+    },
+    {
+      "id": "AUDIT-1791742316749-baf069",
+      "action": "USER_LOGIN",
+      "actorId": "PHA-1001",
+      "actorName": "Vikram Verma",
+      "actorRole": "PHARMACIST",
+      "patientId": "PHA-1001",
+      "timestamp": "2026-10-11T18:11:56.749Z",
+      "metadata": {
+        "role": "PHARMACIST"
+      }
+    },
+    {
+      "id": "AUDIT-1791742316808-9c12a4",
+      "action": "USER_LOGIN",
+      "actorId": "LAB-1001",
+      "actorName": "Dr. Sunita Rao",
+      "actorRole": "LAB_STAFF",
+      "patientId": "LAB-1001",
+      "timestamp": "2026-10-11T18:11:56.808Z",
+      "metadata": {
+        "role": "LAB_STAFF"
+      }
+    },
+    {
+      "id": "AUDIT-1791742316865-3a24e8",
+      "action": "USER_LOGIN",
+      "actorId": "SCA-1001",
+      "actorName": "Alex Turner",
+      "actorRole": "SCAN_TECH",
+      "patientId": "SCA-1001",
+      "timestamp": "2026-10-11T18:11:56.865Z",
+      "metadata": {
+        "role": "SCAN_TECH"
+      }
+    },
+    {
+      "id": "AUDIT-1791742316923-05fc18",
+      "action": "USER_LOGIN",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-11T18:11:56.923Z",
+      "metadata": {
+        "role": "PATIENT"
+      }
+    },
+    {
+      "id": "AUDIT-1791742316985-c7e5a5",
+      "action": "CREATE_PATIENT",
+      "actorId": "GUEST",
+      "actorName": "Registration Form",
+      "actorRole": "RECEPTIONIST",
+      "patientId": "P-1005",
+      "timestamp": "2026-10-11T18:11:56.985Z",
+      "metadata": {
+        "name": "Suresh Patel",
+        "mrn": "MC-MRN-316929"
+      }
+    },
+    {
+      "id": "AUDIT-1791742317041-504e41",
+      "action": "USER_LOGIN",
+      "actorId": "P-1005",
+      "actorName": "Suresh Patel",
+      "actorRole": "PATIENT",
+      "patientId": "P-1005",
+      "timestamp": "2026-10-11T18:11:57.041Z",
+      "metadata": {
+        "role": "PATIENT"
+      }
+    },
+    {
+      "id": "AUDIT-1791742317056-79165e",
+      "action": "WALK_IN_CHECK_IN",
+      "actorId": "REC-1001",
+      "actorName": "Priya Sharma",
+      "actorRole": "RECEPTIONIST",
+      "patientId": "P-1005",
+      "timestamp": "2026-10-11T18:11:57.056Z",
+      "metadata": {
+        "token": "W-107",
+        "appointmentId": "APT-WALKIN-1791742317043-9f04fb"
+      }
+    },
+    {
+      "id": "AUDIT-1791742317060-6a2999",
+      "action": "BOOK_APPOINTMENT",
+      "actorId": "P-1005",
+      "actorName": "Suresh Patel",
+      "actorRole": "PATIENT",
+      "patientId": "P-1005",
+      "timestamp": "2026-10-11T18:11:57.060Z",
+      "metadata": {
+        "apptId": "APT-1791742317059-cd2e53",
+        "doctorId": "DOC-1001"
+      }
+    },
+    {
+      "id": "AUDIT-1791742317064-cd4c02",
+      "action": "CHECK_IN_PATIENT",
+      "actorId": "REC-1001",
+      "actorName": "Priya Sharma",
+      "actorRole": "RECEPTIONIST",
+      "patientId": "P-1005",
+      "timestamp": "2026-10-11T18:11:57.064Z",
+      "metadata": {
+        "token": "A-108"
+      }
+    },
+    {
+      "id": "AUDIT-1791742317074-349069",
+      "action": "RECOMMEND_ADMISSION",
+      "actorId": "DOC-1001",
+      "actorName": "Dr. Rajesh Sharma",
+      "actorRole": "DOCTOR",
+      "patientId": "P-1005",
+      "timestamp": "2026-10-11T18:11:57.074Z",
+      "metadata": {
+        "ward": "General Ward",
+        "reason": "Monitoring for moderate respiratory compromise and parenteral antibiotic coverage"
+      }
+    },
+    {
+      "id": "AUDIT-1791742317075-87971e",
+      "action": "GENERATE_INVOICE",
+      "actorId": "SYSTEM",
+      "actorName": "MEDI CORE Billing",
+      "actorRole": "SYSTEM",
+      "patientId": "P-1005",
+      "timestamp": "2026-10-11T18:11:57.076Z",
+      "metadata": {
+        "invoiceId": "INV-1791742317075-1c10c0",
+        "totalAmount": 2515
+      }
+    },
+    {
+      "id": "AUDIT-1791742317077-0c59e1",
+      "action": "SAVE_PATINOTE",
+      "actorId": "DOC-1001",
+      "actorName": "Dr. Rajesh Sharma",
+      "actorRole": "DOCTOR",
+      "patientId": "P-1005",
+      "timestamp": "2026-10-11T18:11:57.077Z",
+      "metadata": {
+        "caseSheetId": "PATINOTE-1791742317071-3b5936",
+        "status": "FINALIZED",
+        "diagnosis": "Acute Bacterial Bronchopneumonia (ICD J18.9)",
+        "rxCount": 1
+      }
+    },
+    {
+      "id": "AUDIT-1791742317083-abfc21",
+      "action": "PHARMACY_VERIFY_ORDER",
+      "actorId": "PHA-1001",
+      "actorName": "Vikram Verma",
+      "actorRole": "PHARMACIST",
+      "patientId": "P-1005",
+      "timestamp": "2026-10-11T18:11:57.083Z",
+      "metadata": {
+        "targetId": "PHARM-ORD-1791742317071-0c43db"
+      }
+    },
+    {
+      "id": "AUDIT-1791742317086-086b43",
+      "action": "PREPARE_PHARMACY_ORDER",
+      "actorId": "PHA-1001",
+      "actorName": "Vikram Verma",
+      "actorRole": "PHARMACIST",
+      "patientId": "P-1005",
+      "timestamp": "2026-10-11T18:11:57.086Z",
+      "metadata": {
+        "targetId": "PHARM-ORD-1791742317071-0c43db",
+        "medName": "Amoxicillin 500mg",
+        "reservedQty": 21
+      }
+    },
+    {
+      "id": "AUDIT-1791742317092-87d040",
+      "action": "GENERATE_INVOICE",
+      "actorId": "SYSTEM",
+      "actorName": "MEDI CORE Billing",
+      "actorRole": "SYSTEM",
+      "patientId": "P-1005",
+      "timestamp": "2026-10-11T18:11:57.092Z",
+      "metadata": {
+        "invoiceId": "INV-1791742317091-ec19b4",
+        "totalAmount": 992
+      }
+    },
+    {
+      "id": "AUDIT-1791742317094-66c231",
+      "action": "GENERATE_PHARMACY_BILL",
+      "actorId": "PHA-1001",
+      "actorName": "Vikram Verma",
+      "actorRole": "PHARMACIST",
+      "patientId": "P-1005",
+      "timestamp": "2026-10-11T18:11:57.094Z",
+      "metadata": {
+        "invoiceId": "INV-1791742317091-ec19b4",
+        "amount": 945
+      }
+    },
+    {
+      "id": "AUDIT-1791742317098-15c8d5",
+      "action": "RECORD_PHARMACY_PAYMENT",
+      "actorId": "PHA-1001",
+      "actorName": "Vikram Verma",
+      "actorRole": "PHARMACIST",
+      "patientId": "P-1005",
+      "timestamp": "2026-10-11T18:11:57.098Z",
+      "metadata": {
+        "invoiceId": "INV-1791742317091-ec19b4",
+        "amount": 992,
+        "paymentMethod": "UPI"
+      }
+    },
+    {
+      "id": "AUDIT-1791742317102-762b34",
+      "action": "PACK_MEDICINE_ORDER",
+      "actorId": "PHA-1001",
+      "actorName": "Vikram Verma",
+      "actorRole": "PHARMACIST",
+      "patientId": "P-1005",
+      "timestamp": "2026-10-11T18:11:57.102Z",
+      "metadata": {
+        "targetId": "PHARM-ORD-1791742317071-0c43db",
+        "checklist": {
+          "medicineVerified": true,
+          "batchVerified": true,
+          "expiryVerified": true,
+          "instructionsAttached": true
+        }
+      }
+    },
+    {
+      "id": "AUDIT-1791742317109-44ae03",
+      "action": "DISPENSE_MEDICATION",
+      "actorId": "PHA-1001",
+      "actorName": "Vikram Verma",
+      "actorRole": "PHARMACIST",
+      "patientId": "P-1005",
+      "timestamp": "2026-10-11T18:11:57.109Z",
+      "metadata": {
+        "targetId": "PHARM-ORD-1791742317071-0c43db",
+        "quantityDeducted": 21,
+        "remainingStock": 138
+      }
+    },
+    {
+      "id": "AUDIT-1791742317117-8224e9",
+      "action": "SCHEDULE_SCAN_ORDER",
+      "actorId": "SCA-1001",
+      "actorName": "Alex Turner",
+      "actorRole": "SCAN_TECH",
+      "patientId": "P-1005",
+      "timestamp": "2026-10-11T18:11:57.117Z",
+      "metadata": {
+        "scanId": "SCAN-1791742317075-18a29b",
+        "date": "2026-10-11"
+      }
+    },
+    {
+      "id": "AUDIT-1791742317124-1fdd48",
+      "action": "COMPLETE_SCAN_PROCEDURE",
+      "actorId": "SCA-1001",
+      "actorName": "Alex Turner",
+      "actorRole": "SCAN_TECH",
+      "patientId": "P-1005",
+      "timestamp": "2026-10-11T18:11:57.124Z",
+      "metadata": {
+        "scanId": "SCAN-1791742317075-18a29b"
+      }
+    },
+    {
+      "id": "AUDIT-1791742317134-b15512",
+      "action": "COLLECT_LAB_SAMPLE",
+      "actorId": "LAB-1001",
+      "actorName": "Dr. Sunita Rao",
+      "actorRole": "LAB_STAFF",
+      "patientId": "P-1005",
+      "timestamp": "2026-10-11T18:11:57.134Z",
+      "metadata": {
+        "labId": "LAB-1791742317075-da4c10",
+        "sampleBarcode": "LAB-SMPL-317133"
+      }
+    },
+    {
+      "id": "AUDIT-1791742317139-bfeecf",
+      "action": "UPDATE_LAB_ORDER",
+      "actorId": "LAB-1001",
+      "actorName": "Dr. Sunita Rao",
+      "actorRole": "LAB_STAFF",
+      "patientId": "P-1005",
+      "timestamp": "2026-10-11T18:11:57.139Z",
+      "metadata": {
+        "labId": "LAB-1791742317075-da4c10",
+        "status": "RESULT_ENTERED",
+        "isAbnormal": true
+      }
+    },
+    {
+      "id": "AUDIT-1791742317142-a9d53a",
+      "action": "VERIFY_PUBLISH_LAB_ORDER",
+      "actorId": "LAB-1001",
+      "actorName": "Dr. Sunita Rao",
+      "actorRole": "LAB_STAFF",
+      "patientId": "P-1005",
+      "timestamp": "2026-10-11T18:11:57.142Z",
+      "metadata": {
+        "labId": "LAB-1791742317075-da4c10",
+        "testName": "Complete Blood Count (CBC)"
+      }
+    },
+    {
+      "id": "AUDIT-1791742317145-dac6d7",
+      "action": "CREATE_ADMISSION_REQUEST",
+      "actorId": "DOC-1001",
+      "actorName": "Dr. Rajesh Sharma",
+      "actorRole": "DOCTOR",
+      "patientId": "P-1005",
+      "timestamp": "2026-10-11T18:11:57.145Z",
+      "metadata": {
+        "recommendedWard": "General Ward",
+        "priority": "URGENT"
+      }
+    },
+    {
+      "id": "AUDIT-1791742317149-c76cf8",
+      "action": "UPDATE_BED_STATUS",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": null,
+      "timestamp": "2026-10-11T18:11:57.149Z",
+      "metadata": {
+        "bedId": "GEN-01",
+        "status": "AVAILABLE"
+      }
+    },
+    {
+      "id": "AUDIT-1791742317153-1be235",
+      "action": "UPDATE_BED_STATUS",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": null,
+      "timestamp": "2026-10-11T18:11:57.153Z",
+      "metadata": {
+        "bedId": "GEN-02",
+        "status": "AVAILABLE"
+      }
+    },
+    {
+      "id": "AUDIT-1791742317155-423b03",
+      "action": "RESERVE_BED",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": "P-1005",
+      "timestamp": "2026-10-11T18:11:57.155Z",
+      "metadata": {
+        "bedId": "GEN-01",
+        "ward": "General Ward"
+      }
+    },
+    {
+      "id": "AUDIT-1791742317166-c0fd45",
+      "action": "COMPLETE_BED_CLEANING",
+      "actorId": "NUR-1001",
+      "actorName": "Sister Mary Joseph",
+      "actorRole": "NURSE",
+      "patientId": null,
+      "timestamp": "2026-10-11T18:11:57.166Z",
+      "metadata": {
+        "bedId": "GEN-02"
+      }
+    },
+    {
+      "id": "AUDIT-1791742317173-f5a615",
+      "action": "UPDATE_BED_STATUS",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": null,
+      "timestamp": "2026-10-11T18:11:57.173Z",
+      "metadata": {
+        "bedId": "EMG-01",
+        "status": "AVAILABLE"
+      }
+    },
+    {
+      "id": "AUDIT-1791742317176-b7505e",
+      "action": "RAPID_EMERGENCY_REGISTRATION",
+      "actorId": "NUR-1001",
+      "actorName": "Sister Mary Joseph",
+      "actorRole": "NURSE",
+      "patientId": null,
+      "timestamp": "2026-10-11T18:11:57.176Z",
+      "metadata": {
+        "tempMrn": "EMERG-MRN-317176",
+        "triageCategory": "RED",
+        "bedId": "EMG-01"
+      }
+    },
+    {
+      "id": "AUDIT-1791742317182-33aeb2",
+      "action": "UPDATE_EMERGENCY_TRIAGE",
+      "actorId": "DOC-1001",
+      "actorName": "Dr. Rajesh Sharma",
+      "actorRole": "DOCTOR",
+      "patientId": "TEMP-EMERG-MRN-317176",
+      "timestamp": "2026-10-11T18:11:57.182Z",
+      "metadata": {
+        "triageCategory": "YELLOW",
+        "vitals": {
+          "bp": "110/70",
+          "pulse": 92,
+          "spO2": 97,
+          "gcs": 14
+        }
+      }
+    },
+    {
+      "id": "AUDIT-1791742317185-80da8b",
+      "action": "LINK_EMERGENCY_PATIENT",
+      "actorId": "REC-1001",
+      "actorName": "Priya Sharma",
+      "actorRole": "RECEPTIONIST",
+      "patientId": "P-1005",
+      "timestamp": "2026-10-11T18:11:57.185Z",
+      "metadata": {
+        "emergencyCaseId": "EMG-1791742317176-1ecda6",
+        "permanentPatientId": "P-1005"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398081-838c8a",
+      "action": "USER_LOGIN",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": "admin-1",
+      "timestamp": "2026-10-11T18:13:18.081Z",
+      "metadata": {
+        "role": "ADMIN"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398148-84683f",
+      "action": "USER_LOGIN",
+      "actorId": "DOC-1001",
+      "actorName": "Dr. Rajesh Sharma",
+      "actorRole": "DOCTOR",
+      "patientId": "DOC-1001",
+      "timestamp": "2026-10-11T18:13:18.148Z",
+      "metadata": {
+        "role": "DOCTOR"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398211-060bfe",
+      "action": "USER_LOGIN",
+      "actorId": "REC-1001",
+      "actorName": "Priya Sharma",
+      "actorRole": "RECEPTIONIST",
+      "patientId": "REC-1001",
+      "timestamp": "2026-10-11T18:13:18.211Z",
+      "metadata": {
+        "role": "RECEPTIONIST"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398271-cf01fc",
+      "action": "USER_LOGIN",
+      "actorId": "NUR-1001",
+      "actorName": "Sister Mary Joseph",
+      "actorRole": "NURSE",
+      "patientId": "NUR-1001",
+      "timestamp": "2026-10-11T18:13:18.271Z",
+      "metadata": {
+        "role": "NURSE"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398334-b7be1a",
+      "action": "USER_LOGIN",
+      "actorId": "PHA-1001",
+      "actorName": "Vikram Verma",
+      "actorRole": "PHARMACIST",
+      "patientId": "PHA-1001",
+      "timestamp": "2026-10-11T18:13:18.334Z",
+      "metadata": {
+        "role": "PHARMACIST"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398393-09d9cc",
+      "action": "USER_LOGIN",
+      "actorId": "LAB-1001",
+      "actorName": "Dr. Sunita Rao",
+      "actorRole": "LAB_STAFF",
+      "patientId": "LAB-1001",
+      "timestamp": "2026-10-11T18:13:18.393Z",
+      "metadata": {
+        "role": "LAB_STAFF"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398453-84c0e1",
+      "action": "USER_LOGIN",
+      "actorId": "SCA-1001",
+      "actorName": "Alex Turner",
+      "actorRole": "SCAN_TECH",
+      "patientId": "SCA-1001",
+      "timestamp": "2026-10-11T18:13:18.453Z",
+      "metadata": {
+        "role": "SCAN_TECH"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398516-006b52",
+      "action": "USER_LOGIN",
+      "actorId": "P-1001",
+      "actorName": "Anil Kumar",
+      "actorRole": "PATIENT",
+      "patientId": "P-1001",
+      "timestamp": "2026-10-11T18:13:18.516Z",
+      "metadata": {
+        "role": "PATIENT"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398582-c882f9",
+      "action": "CREATE_PATIENT",
+      "actorId": "GUEST",
+      "actorName": "Registration Form",
+      "actorRole": "RECEPTIONIST",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.582Z",
+      "metadata": {
+        "name": "Suresh Patel",
+        "mrn": "MC-MRN-398522"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398641-98f86f",
+      "action": "USER_LOGIN",
+      "actorId": "P-1006",
+      "actorName": "Suresh Patel",
+      "actorRole": "PATIENT",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.641Z",
+      "metadata": {
+        "role": "PATIENT"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398658-d614fd",
+      "action": "WALK_IN_CHECK_IN",
+      "actorId": "REC-1001",
+      "actorName": "Priya Sharma",
+      "actorRole": "RECEPTIONIST",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.658Z",
+      "metadata": {
+        "token": "W-109",
+        "appointmentId": "APT-WALKIN-1791742398644-a82b9f"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398665-083cc5",
+      "action": "BOOK_APPOINTMENT",
+      "actorId": "P-1006",
+      "actorName": "Suresh Patel",
+      "actorRole": "PATIENT",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.665Z",
+      "metadata": {
+        "apptId": "APT-1791742398663-ddacad",
+        "doctorId": "DOC-1001"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398670-783b9f",
+      "action": "CHECK_IN_PATIENT",
+      "actorId": "REC-1001",
+      "actorName": "Priya Sharma",
+      "actorRole": "RECEPTIONIST",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.670Z",
+      "metadata": {
+        "token": "A-110"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398678-1e48a5",
+      "action": "RECOMMEND_ADMISSION",
+      "actorId": "DOC-1001",
+      "actorName": "Dr. Rajesh Sharma",
+      "actorRole": "DOCTOR",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.678Z",
+      "metadata": {
+        "ward": "General Ward",
+        "reason": "Monitoring for moderate respiratory compromise and parenteral antibiotic coverage"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398681-eed5a2",
+      "action": "GENERATE_INVOICE",
+      "actorId": "SYSTEM",
+      "actorName": "MEDI CORE Billing",
+      "actorRole": "SYSTEM",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.681Z",
+      "metadata": {
+        "invoiceId": "INV-1791742398680-9aaec1",
+        "totalAmount": 2515
+      }
+    },
+    {
+      "id": "AUDIT-1791742398683-2480c6",
+      "action": "SAVE_PATINOTE",
+      "actorId": "DOC-1001",
+      "actorName": "Dr. Rajesh Sharma",
+      "actorRole": "DOCTOR",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.683Z",
+      "metadata": {
+        "caseSheetId": "PATINOTE-1791742398675-8f140c",
+        "status": "FINALIZED",
+        "diagnosis": "Acute Bacterial Bronchopneumonia (ICD J18.9)",
+        "rxCount": 1
+      }
+    },
+    {
+      "id": "AUDIT-1791742398691-e2ee94",
+      "action": "PHARMACY_VERIFY_ORDER",
+      "actorId": "PHA-1001",
+      "actorName": "Vikram Verma",
+      "actorRole": "PHARMACIST",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.691Z",
+      "metadata": {
+        "targetId": "PHARM-ORD-1791742398676-d7e7db"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398695-6b2431",
+      "action": "PREPARE_PHARMACY_ORDER",
+      "actorId": "PHA-1001",
+      "actorName": "Vikram Verma",
+      "actorRole": "PHARMACIST",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.695Z",
+      "metadata": {
+        "targetId": "PHARM-ORD-1791742398676-d7e7db",
+        "medName": "Amoxicillin 500mg",
+        "reservedQty": 21
+      }
+    },
+    {
+      "id": "AUDIT-1791742398702-485cbf",
+      "action": "GENERATE_INVOICE",
+      "actorId": "SYSTEM",
+      "actorName": "MEDI CORE Billing",
+      "actorRole": "SYSTEM",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.702Z",
+      "metadata": {
+        "invoiceId": "INV-1791742398701-b84f5d",
+        "totalAmount": 992
+      }
+    },
+    {
+      "id": "AUDIT-1791742398703-5cd4c1",
+      "action": "GENERATE_PHARMACY_BILL",
+      "actorId": "PHA-1001",
+      "actorName": "Vikram Verma",
+      "actorRole": "PHARMACIST",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.703Z",
+      "metadata": {
+        "invoiceId": "INV-1791742398701-b84f5d",
+        "amount": 945
+      }
+    },
+    {
+      "id": "AUDIT-1791742398706-17b537",
+      "action": "RECORD_PHARMACY_PAYMENT",
+      "actorId": "PHA-1001",
+      "actorName": "Vikram Verma",
+      "actorRole": "PHARMACIST",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.706Z",
+      "metadata": {
+        "invoiceId": "INV-1791742398701-b84f5d",
+        "amount": 992,
+        "paymentMethod": "UPI"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398713-b69bb4",
+      "action": "PACK_MEDICINE_ORDER",
+      "actorId": "PHA-1001",
+      "actorName": "Vikram Verma",
+      "actorRole": "PHARMACIST",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.713Z",
+      "metadata": {
+        "targetId": "PHARM-ORD-1791742398676-d7e7db",
+        "checklist": {
+          "medicineVerified": true,
+          "batchVerified": true,
+          "expiryVerified": true,
+          "instructionsAttached": true
+        }
+      }
+    },
+    {
+      "id": "AUDIT-1791742398721-013ad4",
+      "action": "DISPENSE_MEDICATION",
+      "actorId": "PHA-1001",
+      "actorName": "Vikram Verma",
+      "actorRole": "PHARMACIST",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.721Z",
+      "metadata": {
+        "targetId": "PHARM-ORD-1791742398676-d7e7db",
+        "quantityDeducted": 21,
+        "remainingStock": 117
+      }
+    },
+    {
+      "id": "AUDIT-1791742398731-d5131e",
+      "action": "SCHEDULE_SCAN_ORDER",
+      "actorId": "SCA-1001",
+      "actorName": "Alex Turner",
+      "actorRole": "SCAN_TECH",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.731Z",
+      "metadata": {
+        "scanId": "SCAN-1791742398680-0b15f9",
+        "date": "2026-10-11"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398739-519908",
+      "action": "COMPLETE_SCAN_PROCEDURE",
+      "actorId": "SCA-1001",
+      "actorName": "Alex Turner",
+      "actorRole": "SCAN_TECH",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.739Z",
+      "metadata": {
+        "scanId": "SCAN-1791742398680-0b15f9"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398748-1aac96",
+      "action": "VERIFY_PUBLISH_SCAN_REPORT",
+      "actorId": "DOC-1001",
+      "actorName": "Dr. Rajesh Sharma",
+      "actorRole": "DOCTOR",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.749Z",
+      "metadata": {
+        "scanId": "SCAN-1791742398680-0b15f9",
+        "reportId": "RPT-SCAN-1791742398746-598d24"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398757-4b0366",
+      "action": "COLLECT_LAB_SAMPLE",
+      "actorId": "LAB-1001",
+      "actorName": "Dr. Sunita Rao",
+      "actorRole": "LAB_STAFF",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.757Z",
+      "metadata": {
+        "labId": "LAB-1791742398680-d2b883",
+        "sampleBarcode": "LAB-SMPL-398756"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398764-5f6866",
+      "action": "UPDATE_LAB_ORDER",
+      "actorId": "LAB-1001",
+      "actorName": "Dr. Sunita Rao",
+      "actorRole": "LAB_STAFF",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.765Z",
+      "metadata": {
+        "labId": "LAB-1791742398680-d2b883",
+        "status": "RESULT_ENTERED",
+        "isAbnormal": true
+      }
+    },
+    {
+      "id": "AUDIT-1791742398770-a8b87f",
+      "action": "VERIFY_PUBLISH_LAB_ORDER",
+      "actorId": "LAB-1001",
+      "actorName": "Dr. Sunita Rao",
+      "actorRole": "LAB_STAFF",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.770Z",
+      "metadata": {
+        "labId": "LAB-1791742398680-d2b883",
+        "testName": "Complete Blood Count (CBC)"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398774-cb2a26",
+      "action": "CREATE_ADMISSION_REQUEST",
+      "actorId": "DOC-1001",
+      "actorName": "Dr. Rajesh Sharma",
+      "actorRole": "DOCTOR",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.774Z",
+      "metadata": {
+        "recommendedWard": "General Ward",
+        "priority": "URGENT"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398779-154f21",
+      "action": "UPDATE_BED_STATUS",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": null,
+      "timestamp": "2026-10-11T18:13:18.779Z",
+      "metadata": {
+        "bedId": "GEN-01",
+        "status": "AVAILABLE"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398784-b7e07e",
+      "action": "UPDATE_BED_STATUS",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": null,
+      "timestamp": "2026-10-11T18:13:18.784Z",
+      "metadata": {
+        "bedId": "GEN-02",
+        "status": "AVAILABLE"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398786-947100",
+      "action": "RESERVE_BED",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.786Z",
+      "metadata": {
+        "bedId": "GEN-01",
+        "ward": "General Ward"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398792-5998bb",
+      "action": "ALLOCATE_BED",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.792Z",
+      "metadata": {
+        "bedId": "GEN-01",
+        "ward": "General Ward"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398803-52d21a",
+      "action": "TRANSFER_BED",
+      "actorId": "NUR-1001",
+      "actorName": "Sister Mary Joseph",
+      "actorRole": "NURSE",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.803Z",
+      "metadata": {
+        "sourceBedId": "GEN-01",
+        "targetBedId": "GEN-02",
+        "reason": "Transfer to bed closer to nursing station"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398810-574b95",
+      "action": "CLINICAL_DISCHARGE",
+      "actorId": "DOC-1001",
+      "actorName": "Dr. Rajesh Sharma",
+      "actorRole": "DOCTOR",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.810Z",
+      "metadata": {
+        "admissionId": "ADM-1791742398790-8c03aa"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398815-a32d00",
+      "action": "PATIENT_DISCHARGE",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.815Z",
+      "metadata": {
+        "admissionId": "ADM-1791742398790-8c03aa",
+        "bedMovedTo": "CLEANING"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398819-accce4",
+      "action": "COMPLETE_BED_CLEANING",
+      "actorId": "NUR-1001",
+      "actorName": "Sister Mary Joseph",
+      "actorRole": "NURSE",
+      "patientId": null,
+      "timestamp": "2026-10-11T18:13:18.819Z",
+      "metadata": {
+        "bedId": "GEN-02"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398823-bfdad7",
+      "action": "UPDATE_BED_STATUS",
+      "actorId": "admin-1",
+      "actorName": "Admin",
+      "actorRole": "ADMIN",
+      "patientId": null,
+      "timestamp": "2026-10-11T18:13:18.823Z",
+      "metadata": {
+        "bedId": "EMG-01",
+        "status": "AVAILABLE"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398829-ed13b8",
+      "action": "RAPID_EMERGENCY_REGISTRATION",
+      "actorId": "NUR-1001",
+      "actorName": "Sister Mary Joseph",
+      "actorRole": "NURSE",
+      "patientId": null,
+      "timestamp": "2026-10-11T18:13:18.829Z",
+      "metadata": {
+        "tempMrn": "EMERG-MRN-398827",
+        "triageCategory": "RED",
+        "bedId": "EMG-01"
+      }
+    },
+    {
+      "id": "AUDIT-1791742398834-d057b3",
+      "action": "UPDATE_EMERGENCY_TRIAGE",
+      "actorId": "DOC-1001",
+      "actorName": "Dr. Rajesh Sharma",
+      "actorRole": "DOCTOR",
+      "patientId": "TEMP-EMERG-MRN-398827",
+      "timestamp": "2026-10-11T18:13:18.834Z",
+      "metadata": {
+        "triageCategory": "YELLOW",
+        "vitals": {
+          "bp": "110/70",
+          "pulse": 92,
+          "spO2": 97,
+          "gcs": 14
+        }
+      }
+    },
+    {
+      "id": "AUDIT-1791742398838-7345f5",
+      "action": "LINK_EMERGENCY_PATIENT",
+      "actorId": "REC-1001",
+      "actorName": "Priya Sharma",
+      "actorRole": "RECEPTIONIST",
+      "patientId": "P-1006",
+      "timestamp": "2026-10-11T18:13:18.838Z",
+      "metadata": {
+        "emergencyCaseId": "EMG-1791742398827-45b5d7",
+        "permanentPatientId": "P-1006"
       }
     }
   ]

@@ -36,6 +36,26 @@ const MASTER_PRICES = {
   }
 };
 
+const MASTER_LAB_CATALOGUE = [
+  { testName: "Complete Blood Count (CBC)", category: "Hematology", sampleType: "Whole Blood (EDTA)", normalRange: "RBC: 4.5-5.9 M/uL, WBC: 4.5-11 K/uL, Plt: 150-450 K/uL", unit: "K/uL", price: 350 },
+  { testName: "C-Reactive Protein (CRP)", category: "Immunology", sampleType: "Serum", normalRange: "< 5.0", unit: "mg/L", price: 450 },
+  { testName: "Liver Function Test (LFT)", category: "Biochemistry", sampleType: "Serum", normalRange: "ALT: 7-56, AST: 10-40, Bilirubin: 0.1-1.2", unit: "U/L", price: 750 },
+  { testName: "Kidney Function Test (KFT)", category: "Biochemistry", sampleType: "Serum", normalRange: "Urea: 15-40 mg/dL, Creatinine: 0.6-1.2 mg/dL", unit: "mg/dL", price: 800 },
+  { testName: "Fasting Blood Sugar", category: "Biochemistry", sampleType: "Fluoride Plasma", normalRange: "70 - 99", unit: "mg/dL", price: 150 },
+  { testName: "HbA1c Glucose Test", category: "Biochemistry", sampleType: "Whole Blood", normalRange: "< 5.7%", unit: "%", price: 500 },
+  { testName: "Thyroid Profile (T3, T4, TSH)", category: "Endocrinology", sampleType: "Serum", normalRange: "TSH: 0.4 - 4.0", unit: "uIU/mL", price: 650 },
+  { testName: "Urine Routine & Microscopy", category: "Clinical Pathology", sampleType: "Mid-stream Urine", normalRange: "Clear, Protein: Nil, Sugar: Nil", unit: "-", price: 250 }
+];
+
+const MASTER_SCAN_CATALOGUE = [
+  { scanType: "Chest X-Ray (PA View)", modality: "X-Ray", bodyPart: "Chest", instructions: "Remove metal objects/jewelry", price: 600 },
+  { scanType: "HRCT Thorax", modality: "CT Scan", bodyPart: "Thorax / Lungs", instructions: "4-hour fasting if contrast used", price: 2800 },
+  { scanType: "Brain MRI", modality: "MRI", bodyPart: "Brain / Cranium", instructions: "No pacemaker or metallic implants", price: 4500 },
+  { scanType: "Abdomen Ultrasound", modality: "Ultrasound", bodyPart: "Whole Abdomen", instructions: "Full bladder required", price: 1200 },
+  { scanType: "ECG 12-Lead", modality: "Cardiology", bodyPart: "Heart", instructions: "Relax in supine position", price: 350 },
+  { scanType: "Echocardiogram (2D Echo)", modality: "Cardiology", bodyPart: "Heart / Valves", instructions: "Standard cardiac ultrasound", price: 2200 }
+];
+
 // Cookie Parser Middleware
 app.use((req, res, next) => {
   req.cookies = req.cookies || {};
@@ -88,13 +108,17 @@ let db = {
   allergies: [],
   medications: [],
   prescriptions: [],
+  pharmacyOrders: [],
   pharmacyInventory: [],
   labOrders: [],
   scanOrders: [],
+  scanReports: [],
   beds: [],
   admissions: [],
+  admissionRequests: [],
   emergencyCases: [],
   invoices: [],
+  billingReceipts: [],
   notifications: [],
   carePlans: [],
   appointments: [],
@@ -171,13 +195,17 @@ function seedDatabase(mode = "PRESERVE") {
       allergies: [],
       medications: [],
       prescriptions: [],
+      pharmacyOrders: [],
       pharmacyInventory: [],
       labOrders: [],
       scanOrders: [],
+      scanReports: [],
       beds: [],
       admissions: [],
+      admissionRequests: [],
       emergencyCases: [],
       invoices: [],
+      billingReceipts: [],
       notifications: [],
       carePlans: [],
       appointments: [],
@@ -200,35 +228,60 @@ function seedDatabase(mode = "PRESERVE") {
     }];
   }
 
-  // Initial Master Pharmacy Catalog
-  if (!db.pharmacyInventory || db.pharmacyInventory.length === 0) {
-    db.pharmacyInventory = [
-      { id: "INV-MED-01", name: "Paracetamol 500mg", genericName: "Acetaminophen", dosage: "500mg", batchNo: "BATCH-2026A", stockQuantity: 250, thresholdLow: 50, unitPrice: 15, expiryDate: "2027-12-31", supplier: "Apex Pharma Ltd", status: "HEALTHY", barcode: "8901234567890" },
-      { id: "INV-MED-02", name: "Amoxicillin 500mg", genericName: "Amoxicillin", dosage: "500mg", batchNo: "BATCH-2026B", stockQuantity: 180, thresholdLow: 30, unitPrice: 45, expiryDate: "2027-08-15", supplier: "BioCare India", status: "HEALTHY", barcode: "8901234567891" },
-      { id: "INV-MED-03", name: "Azithromycin 250mg", genericName: "Azithromycin", dosage: "250mg", batchNo: "BATCH-2025Z", stockQuantity: 120, thresholdLow: 20, unitPrice: 120, expiryDate: "2026-11-01", supplier: "HealthMed Corp", status: "HEALTHY", barcode: "8901234567892" },
-      { id: "INV-MED-04", name: "Pantoprazole 40mg", genericName: "Pantoprazole", dosage: "40mg", batchNo: "BATCH-2026P", stockQuantity: 140, thresholdLow: 40, unitPrice: 30, expiryDate: "2028-01-20", supplier: "Sun Healthcare", status: "HEALTHY", barcode: "8901234567893" },
-      { id: "INV-MED-05", name: "Metformin 500mg", genericName: "Metformin Hydrochloride", dosage: "500mg", batchNo: "BATCH-2026M", stockQuantity: 310, thresholdLow: 50, unitPrice: 25, expiryDate: "2027-10-10", supplier: "Apex Pharma Ltd", status: "HEALTHY", barcode: "8901234567894" }
-    ];
-  }
+  // Master Pharmacy Inventory Catalog
+  const defaultInventory = [
+    { id: "INV-MED-01", name: "Paracetamol 500mg", genericName: "Acetaminophen", brand: "Dolo-500", strength: "500mg", form: "Tablet", batchNo: "BATCH-2026A", stockQuantity: 250, reservedQuantity: 0, thresholdLow: 50, unitPrice: 15, expiryDate: "2027-12-31", supplier: "Apex Pharma Ltd", storageLocation: "Shelf A-01", status: "HEALTHY", barcode: "8901234567890" },
+    { id: "INV-MED-02", name: "Amoxicillin 500mg", genericName: "Amoxicillin", brand: "Mox-500", strength: "500mg", form: "Capsule", batchNo: "BATCH-2026B", stockQuantity: 180, reservedQuantity: 0, thresholdLow: 30, unitPrice: 45, expiryDate: "2027-08-15", supplier: "BioCare India", storageLocation: "Shelf A-02", status: "HEALTHY", barcode: "8901234567891" },
+    { id: "INV-MED-03", name: "Azithromycin 250mg", genericName: "Azithromycin", brand: "Azee-250", strength: "250mg", form: "Tablet", batchNo: "BATCH-2025Z", stockQuantity: 120, reservedQuantity: 0, thresholdLow: 20, unitPrice: 120, expiryDate: "2026-11-01", supplier: "HealthMed Corp", storageLocation: "Shelf B-01", status: "HEALTHY", barcode: "8901234567892" },
+    { id: "INV-MED-04", name: "Pantoprazole 40mg", genericName: "Pantoprazole", brand: "Pantocid-40", strength: "40mg", form: "Tablet", batchNo: "BATCH-2026P", stockQuantity: 140, reservedQuantity: 0, thresholdLow: 40, unitPrice: 30, expiryDate: "2028-01-20", supplier: "Sun Healthcare", storageLocation: "Shelf B-02", status: "HEALTHY", barcode: "8901234567893" },
+    { id: "INV-MED-05", name: "Metformin 500mg", genericName: "Metformin Hydrochloride", brand: "Glycomet-500", strength: "500mg", form: "Tablet", batchNo: "BATCH-2026M", stockQuantity: 310, reservedQuantity: 0, thresholdLow: 50, unitPrice: 25, expiryDate: "2027-10-10", supplier: "Apex Pharma Ltd", storageLocation: "Shelf C-01", status: "HEALTHY", barcode: "8901234567894" },
+    { id: "INV-MED-EXP", name: "Doxycycline 100mg", genericName: "Doxycycline", brand: "Doxicip", strength: "100mg", form: "Capsule", batchNo: "BATCH-2023EXP", stockQuantity: 50, reservedQuantity: 0, thresholdLow: 10, unitPrice: 40, expiryDate: "2024-01-01", supplier: "OldStock Pharma", storageLocation: "Quarantine Bay", status: "EXPIRED", barcode: "8901234567899" }
+  ];
+  db.pharmacyInventory = db.pharmacyInventory || [];
+  defaultInventory.forEach(item => {
+    if (!db.pharmacyInventory.some(i => i.id === item.id)) {
+      db.pharmacyInventory.push(item);
+    }
+  });
 
   // Clean Bed Inventory (All AVAILABLE)
   if (!db.beds || db.beds.length === 0) {
     db.beds = [
-      { bedId: "ICU-01", ward: "ICU", roomNumber: "ICU-101", bedNumber: "01", dailyRate: 5000, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: ["Ventilator", "Cardiac Monitor"] },
-      { bedId: "ICU-02", ward: "ICU", roomNumber: "ICU-101", bedNumber: "02", dailyRate: 5000, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: ["Ventilator", "Cardiac Monitor"] },
-      { bedId: "ICU-03", ward: "ICU", roomNumber: "ICU-102", bedNumber: "03", dailyRate: 5000, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: ["Cardiac Monitor"] },
-      { bedId: "ICU-04", ward: "ICU", roomNumber: "ICU-102", bedNumber: "04", dailyRate: 5000, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: ["Cardiac Monitor"] },
-      { bedId: "ICU-05", ward: "ICU", roomNumber: "ICU-103", bedNumber: "05", dailyRate: 5000, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: ["Ventilator", "Cardiac Monitor"] },
+      { bedId: "ICU-01", building: "Critical Care Tower", floor: "3rd Floor", ward: "ICU", roomNumber: "ICU-101", bedNumber: "01", dailyRate: 5000, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: ["Ventilator", "Cardiac Monitor", "Infusion Pump"] },
+      { bedId: "ICU-02", building: "Critical Care Tower", floor: "3rd Floor", ward: "ICU", roomNumber: "ICU-101", bedNumber: "02", dailyRate: 5000, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: ["Ventilator", "Cardiac Monitor", "Infusion Pump"] },
+      { bedId: "ICU-03", building: "Critical Care Tower", floor: "3rd Floor", ward: "ICU", roomNumber: "ICU-102", bedNumber: "03", dailyRate: 5000, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: ["Cardiac Monitor"] },
+      { bedId: "ICU-04", building: "Critical Care Tower", floor: "3rd Floor", ward: "ICU", roomNumber: "ICU-102", bedNumber: "04", dailyRate: 5000, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: ["Cardiac Monitor"] },
+      { bedId: "ICU-05", building: "Critical Care Tower", floor: "3rd Floor", ward: "ICU", roomNumber: "ICU-103", bedNumber: "05", dailyRate: 5000, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: ["Ventilator", "Cardiac Monitor"] },
       
-      { bedId: "GEN-01", ward: "General Ward", roomNumber: "GEN-201", bedNumber: "01", dailyRate: 1500, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: ["Standard Oxygen"] },
-      { bedId: "GEN-02", ward: "General Ward", roomNumber: "GEN-201", bedNumber: "02", dailyRate: 1500, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: ["Standard Oxygen"] },
-      { bedId: "GEN-03", ward: "General Ward", roomNumber: "GEN-202", bedNumber: "03", dailyRate: 1500, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: [] },
-      { bedId: "GEN-04", ward: "General Ward", roomNumber: "GEN-202", bedNumber: "04", dailyRate: 1500, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: [] },
-      { bedId: "GEN-05", ward: "General Ward", roomNumber: "GEN-203", bedNumber: "05", dailyRate: 1500, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: ["Standard Oxygen"] },
+      { bedId: "GEN-01", building: "Main Inpatient Block", floor: "2nd Floor", ward: "General Ward", roomNumber: "GEN-201", bedNumber: "01", dailyRate: 1500, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: ["Standard Oxygen Port"] },
+      { bedId: "GEN-02", building: "Main Inpatient Block", floor: "2nd Floor", ward: "General Ward", roomNumber: "GEN-201", bedNumber: "02", dailyRate: 1500, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: ["Standard Oxygen Port"] },
+      { bedId: "GEN-03", building: "Main Inpatient Block", floor: "2nd Floor", ward: "General Ward", roomNumber: "GEN-202", bedNumber: "03", dailyRate: 1500, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: [] },
+      { bedId: "GEN-04", building: "Main Inpatient Block", floor: "2nd Floor", ward: "General Ward", roomNumber: "GEN-202", bedNumber: "04", dailyRate: 1500, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: [] },
+      { bedId: "GEN-05", building: "Main Inpatient Block", floor: "2nd Floor", ward: "General Ward", roomNumber: "GEN-203", bedNumber: "05", dailyRate: 1500, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: ["Standard Oxygen Port"] },
 
-      { bedId: "EMG-01", ward: "Emergency", roomNumber: "ER-01", bedNumber: "01", dailyRate: 2500, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: ["Defibrillator", "Oxygen"] },
-      { bedId: "EMG-02", ward: "Emergency", roomNumber: "ER-01", bedNumber: "02", dailyRate: 2500, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: ["Defibrillator", "Oxygen"] },
-      { bedId: "EMG-03", ward: "Emergency", roomNumber: "ER-02", bedNumber: "03", dailyRate: 2500, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: ["Oxygen"] }
+      { bedId: "EMG-01", building: "Emergency Wing", floor: "Ground Floor", ward: "Emergency", roomNumber: "ER-01", bedNumber: "01", dailyRate: 2500, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: ["Defibrillator", "Oxygen", "Multipara Monitor"] },
+      { bedId: "EMG-02", building: "Emergency Wing", floor: "Ground Floor", ward: "Emergency", roomNumber: "ER-01", bedNumber: "02", dailyRate: 2500, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: ["Defibrillator", "Oxygen", "Multipara Monitor"] },
+      { bedId: "EMG-03", building: "Emergency Wing", floor: "Ground Floor", ward: "Emergency", roomNumber: "ER-02", bedNumber: "03", dailyRate: 2500, status: "AVAILABLE", currentPatientId: null, currentPatientName: null, equipment: ["Oxygen", "Suction Unit"] }
+    ];
+  }
+
+  if (!db.emergencyCases || db.emergencyCases.length === 0) {
+    db.emergencyCases = [
+      {
+        id: "EMG-CASE-01",
+        emergencyNumber: "ER-2026-001",
+        patientId: "EMG-UNKNOWN-101",
+        patientName: "TRAUMA UNKNOWN MALE (Appx 35y)",
+        isTemporaryIdentity: true,
+        triageStatus: "RED",
+        priority: "CRITICAL",
+        chiefComplaint: "Road Traffic Accident - Severe Head & Thoracic Trauma",
+        vitals: { bp: "85/55", pulse: 128, spO2: 89, temp: "98.2", rr: 28, gcs: 9 },
+        assignedDoctor: "Dr. Rajesh Sharma",
+        assignedBedId: "EMG-01",
+        status: "IN_TREATMENT",
+        arrivedAt: now()
+      }
     ];
   }
 
@@ -838,6 +891,120 @@ app.post(["/appointments/:id/check-in", "/api/appointments/:id/check-in", "/api/
   res.json({ appointment: appt, queueEntry });
 });
 
+app.post(["/appointments/:id/cancel", "/api/appointments/:id/cancel"], auth, (req, res) => {
+  const appt = (db.appointments || []).find(a => a.id === req.params.id);
+  if (!appt) return res.status(404).json({ error: "Appointment not found." });
+
+  if (req.user.role === "PATIENT" && appt.patientId !== req.user.id) {
+    return res.status(403).json({ error: "Access denied. Cannot cancel another patient's appointment." });
+  }
+
+  appt.status = "CANCELLED";
+  appt.cancelledAt = now();
+  appt.cancellationReason = req.body.reason || "Patient requested cancellation";
+
+  const qItem = (db.queue || []).find(q => q.appointmentId === appt.id && q.status !== "COMPLETED");
+  if (qItem) qItem.status = "CANCELLED";
+
+  saveDb();
+  notify(appt.patientId, "Appointment Cancelled", `Your appointment with ${appt.doctorName} for ${appt.date} has been cancelled.`, "INFO");
+  audit("CANCEL_APPOINTMENT", req.user, appt.patientId, { appointmentId: appt.id });
+  res.json({ appointment: appt });
+});
+
+app.post(["/appointments/:id/reschedule", "/api/appointments/:id/reschedule"], auth, (req, res) => {
+  const appt = (db.appointments || []).find(a => a.id === req.params.id);
+  if (!appt) return res.status(404).json({ error: "Appointment not found." });
+
+  if (req.user.role === "PATIENT" && appt.patientId !== req.user.id) {
+    return res.status(403).json({ error: "Access denied. Cannot reschedule another patient's appointment." });
+  }
+
+  const { newDate, newTimeSlot } = req.body;
+  if (!newDate) return res.status(400).json({ error: "New appointment date is required." });
+
+  appt.date = newDate;
+  if (newTimeSlot) appt.timeSlot = newTimeSlot;
+  appt.status = "BOOKED";
+  appt.rescheduledAt = now();
+
+  saveDb();
+  notify(appt.patientId, "Appointment Rescheduled", `Your appointment with ${appt.doctorName} has been rescheduled to ${newDate} at ${appt.timeSlot}.`, "SUCCESS");
+  audit("RESCHEDULE_APPOINTMENT", req.user, appt.patientId, { appointmentId: appt.id, newDate });
+  res.json({ appointment: appt });
+});
+
+app.post(["/patients/check-duplicate", "/api/patients/check-duplicate"], auth, (req, res) => {
+  const { phone, email, identityNumber } = req.body;
+  const duplicate = (db.users || []).find(u =>
+    u.role === "PATIENT" && (
+      (phone && u.phone && u.phone.replace(/\D/g, "") === phone.replace(/\D/g, "")) ||
+      (email && u.email && u.email.toLowerCase() === email.toLowerCase()) ||
+      (identityNumber && u.identityNumber && u.identityNumber === identityNumber)
+    )
+  );
+
+  if (duplicate) {
+    return res.json({ isDuplicate: true, existingPatient: publicUser(duplicate) });
+  }
+  res.json({ isDuplicate: false });
+});
+
+app.post(["/queue/walk-in", "/api/queue/walk-in"], auth, role("RECEPTIONIST", "NURSE", "ADMIN", "HOSPITAL_ADMIN"), (req, res) => {
+  const { patientId, doctorId, reason = "Walk-in OPD Consultation" } = req.body;
+  const patient = (db.users || []).find(u => u.id === patientId);
+  if (!patient) return res.status(404).json({ error: "Patient record not found." });
+
+  const doc = (db.users || []).find(u => u.id === doctorId) || (db.users || []).find(u => u.role === "DOCTOR");
+  const dId = doc ? doc.id : "DOC-101";
+
+  const apptId = id("APT-WALKIN");
+  const appt = {
+    id: apptId,
+    patientId: patient.id,
+    patientName: patient.name,
+    doctorId: dId,
+    doctorName: doc ? doc.name : "OPD Doctor",
+    date: new Date().toISOString().split("T")[0],
+    timeSlot: "WALK-IN",
+    reason,
+    status: "CHECKED_IN",
+    isWalkIn: true,
+    createdAt: now()
+  };
+  db.appointments = db.appointments || [];
+  db.appointments.push(appt);
+
+  const doctorQueue = (db.queue || []).filter(q => q.doctorId === dId);
+  const tokenNum = doctorQueue.length + 101;
+  const token = `W-${tokenNum}`;
+  const waitingCount = doctorQueue.filter(q => q.status === "CHECKED_IN" || q.status === "WAITING").length;
+  const waitTimeMinutes = waitingCount * 15;
+
+  const queueEntry = {
+    id: id("Q"),
+    token,
+    appointmentId: appt.id,
+    patientId: patient.id,
+    patientName: patient.name,
+    doctorId: dId,
+    doctorName: doc ? doc.name : "OPD Doctor",
+    status: "CHECKED_IN",
+    checkInTime: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+    consultationTime: null,
+    category: "WALK_IN",
+    waitTimeMinutes,
+    createdAt: now()
+  };
+  db.queue = db.queue || [];
+  db.queue.push(queueEntry);
+  saveDb();
+
+  notify(patient.id, "Walk-In Check-In Issued", `Walk-in token ${token} issued for Dr. ${queueEntry.doctorName}. Estimated wait time: ${waitTimeMinutes} mins.`, "SUCCESS");
+  audit("WALK_IN_CHECK_IN", req.user, patient.id, { token, appointmentId: appt.id });
+  res.json({ appointment: appt, queueEntry });
+});
+
 /* ------------------------------------------------------------------ */
 /* QUEUE MANAGEMENT APIs                                             */
 /* ------------------------------------------------------------------ */
@@ -1071,10 +1238,13 @@ app.get("/api/patient/360/:patientId", auth, (req, res) => {
     allergies: patientAllergies,
     activeMedications: patientMedications.filter(m => m.status === "ACTIVE"),
     prescriptions: patientPrescriptions,
+    pharmacyOrders: (db.pharmacyOrders || []).filter(o => o.patientId === patientId),
     labOrders: patientLabs,
     scanOrders: patientScans,
+    scanReports: (db.scanReports || []).filter(r => r.patientId === patientId),
     admissions: patientAdmissions,
     invoices: patientInvoices,
+    receipts: (db.billingReceipts || []).filter(r => r.patientId === patientId),
     referrals: patientReferrals,
     vitalsTimeline: patientVitals
   });
@@ -1084,23 +1254,66 @@ app.get("/api/patient/timeline", auth, (req, res) => {
   const patientId = req.query.patientId || (req.user.role === "PATIENT" ? req.user.id : null);
   if (!patientId) return res.status(400).json({ error: "Patient ID is required." });
 
+  if (!checkPatientAccess(req, patientId)) {
+    return res.status(403).json({ error: "Access denied. Patients can only access their own timeline." });
+  }
+
   const timeline = [];
 
+  // 1. Appointments
+  (db.appointments || []).filter(a => a.patientId === patientId).forEach(a => {
+    timeline.push({ id: a.id, date: a.createdAt || a.date, type: "APPOINTMENT", title: `Appointment: ${a.reason}`, summary: `Dr. ${a.doctorName} on ${a.date} at ${a.timeSlot} (${a.status})`, details: a });
+  });
+
+  // 2. Queue Check-Ins
+  (db.queue || []).filter(q => q.patientId === patientId).forEach(q => {
+    timeline.push({ id: q.id, date: q.createdAt, type: "CHECK_IN", title: `Reception Check-in (Token ${q.token})`, summary: `Waiting for Dr. ${q.doctorName} (${q.status})`, details: q });
+  });
+
+  // 3. Clinical Consultations & PATINOTE
   (db.caseSheets || []).filter(c => c.patientId === patientId).forEach(c => {
-    const dx = c.clinicalAssessment?.finalDiagnosis || c.clinicalAssessment?.provisionalDiagnosis || c.sectionL_Diagnosis?.provisionalDiagnosis || "Encounter";
-    timeline.push({ id: c.id, date: c.createdAt, type: "CLINICAL_PATINOTE", title: `PATINOTE Case Sheet by ${c.doctorName}`, summary: `Diagnosis: ${dx} | Status: ${c.status || 'FINALIZED'}`, details: c });
+    const dx = c.clinicalAssessment?.finalDiagnosis || c.clinicalAssessment?.provisionalDiagnosis || c.sectionL_Diagnosis?.provisionalDiagnosis || "Clinical Consultation";
+    timeline.push({ id: c.id, date: c.createdAt, type: "CLINICAL_PATINOTE", title: `PATINOTE Consultation by ${c.doctorName}`, summary: `Diagnosis: ${dx} | Status: ${c.status || 'FINALIZED'}`, details: c });
   });
-  (db.labOrders || []).filter(l => l.patientId === patientId).forEach(l => {
-    timeline.push({ id: l.id, date: l.createdAt, type: "LABORATORY_TEST", title: `Lab Test: ${l.testName}`, summary: `Status: ${l.status} | Result: ${l.result || 'Pending'}`, details: l });
-  });
-  (db.scanOrders || []).filter(s => s.patientId === patientId).forEach(s => {
-    timeline.push({ id: s.id, date: s.createdAt, type: "SCAN_IMAGING", title: `Imaging Scan: ${s.scanType}`, summary: `Status: ${s.status} | Report: ${s.reportText || 'Pending'}`, details: s });
-  });
+
+  // 4. E-Prescriptions
   (db.prescriptions || []).filter(p => p.patientId === patientId).forEach(p => {
     timeline.push({ id: p.id, date: p.createdAt, type: "PRESCRIPTION", title: `Prescription: ${p.medicationName}`, summary: `${p.dosage} - ${p.frequency} (${p.dispensedStatus})`, details: p });
   });
+
+  // 5. Pharmacy Orders
+  (db.pharmacyOrders || []).filter(o => o.patientId === patientId).forEach(o => {
+    timeline.push({ id: o.id, date: o.createdAt, type: "PHARMACY_ORDER", title: `Pharmacy Order ${o.orderNumber}`, summary: `Status: ${o.status} | Total: ₹${o.totalAmount} (${o.paymentStatus})`, details: o });
+  });
+
+  // 6. Laboratory Orders & Reports
+  (db.labOrders || []).filter(l => l.patientId === patientId).forEach(l => {
+    timeline.push({ id: l.id, date: l.createdAt, type: "LABORATORY_TEST", title: `Lab Test: ${l.testName}`, summary: `Status: ${l.status} | Result: ${l.result || 'Pending'}`, details: l });
+  });
+
+  // 7. Scanning Orders & Reports
+  (db.scanOrders || []).filter(s => s.patientId === patientId).forEach(s => {
+    timeline.push({ id: s.id, date: s.createdAt, type: "SCAN_IMAGING", title: `Imaging Scan: ${s.scanType}`, summary: `Status: ${s.status} | Report: ${s.reportText || 'Pending'}`, details: s });
+  });
+
+  // 8. Hospital Admissions
   (db.admissions || []).filter(a => a.patientId === patientId).forEach(a => {
-    timeline.push({ id: a.id, date: a.admissionDate, type: "HOSPITAL_ADMISSION", title: `Hospital Admission: ${a.ward}`, summary: `Reason: ${a.reason} (${a.status})`, details: a });
+    timeline.push({ id: a.id, date: a.admissionDate || a.createdAt, type: "HOSPITAL_ADMISSION", title: `Hospital Admission: ${a.ward} (Bed ${a.bedId || 'Assigned'})`, summary: `Reason: ${a.reason} (${a.status})`, details: a });
+  });
+
+  // 9. Hospital Discharges
+  (db.admissions || []).filter(a => a.patientId === patientId && a.status === "DISCHARGED").forEach(a => {
+    timeline.push({ id: `DISCH-${a.id}`, date: a.dischargeDate || a.updatedAt, type: "HOSPITAL_DISCHARGE", title: `Discharge Clearance`, summary: `Discharge Summary: ${a.dischargeSummary || 'Recovered'}`, details: a });
+  });
+
+  // 10. Billing Invoices
+  (db.invoices || []).filter(i => i.patientId === patientId).forEach(i => {
+    timeline.push({ id: i.id, date: i.createdAt, type: "BILLING_INVOICE", title: `Invoice ${i.invoiceNumber}`, summary: `Amount: ₹${i.totalAmount} | Status: ${i.status}`, details: i });
+  });
+
+  // 11. Follow-Ups
+  (db.appointments || []).filter(a => a.patientId === patientId && a.reason && a.reason.toLowerCase().includes("follow")).forEach(f => {
+    timeline.push({ id: `FLW-${f.id}`, date: f.date, type: "FOLLOW_UP", title: `Scheduled Clinical Follow-Up`, summary: `Date: ${f.date} with ${f.doctorName}`, details: f });
   });
 
   timeline.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -1284,7 +1497,8 @@ app.post(["/api/patinote/save", "/doctor/case-sheet", "/api/doctor/case-sheet"],
     createdAt: now(),
     updatedAt: now(),
     signedAt: status === "FINALIZED" ? now() : null,
-    signedByDoctor: status === "FINALIZED" ? req.user.name : null
+    signedByDoctor: status === "FINALIZED" ? req.user.name : null,
+    signedDoctor: status === "FINALIZED" ? req.user.name : null
   };
 
   // Upsert in db.caseSheets
@@ -1315,12 +1529,16 @@ app.post(["/api/patinote/save", "/doctor/case-sheet", "/api/doctor/case-sheet"],
     { category: "CONSULTATION", description: `Doctor Consultation - ${req.user.name} (${req.user.department || 'General'})`, amount: docFee }
   ];
 
-  // 3. Dispatch E-Prescriptions to Pharmacy Queue
+  // 3. Dispatch E-Prescriptions & Create Automated Pharmacy Order
   const createdPrescriptions = [];
+  let createdPharmacyOrder = null;
   if (Array.isArray(prescriptions) && prescriptions.length > 0) {
+    const orderItems = [];
+
     prescriptions.forEach(p => {
       const rxId = id("RX");
-      const invMatch = (db.pharmacyInventory || []).find(i => i.name.toLowerCase().includes(p.medicine.toLowerCase().split(" ")[0]));
+      const medName = p.medicationName || p.medicine || p.name || "Medication";
+      const invMatch = (db.pharmacyInventory || []).find(i => i.name.toLowerCase().includes((medName || "").toLowerCase().split(" ")[0]));
       const unitPrice = p.unitPrice || invMatch?.unitPrice || 35;
       const quantity = parseInt(p.quantity || "10", 10);
       const totalPrice = unitPrice * quantity;
@@ -1333,9 +1551,9 @@ app.post(["/api/patinote/save", "/doctor/case-sheet", "/api/doctor/case-sheet"],
         doctorId: req.user.id,
         doctorName: req.user.name,
         consultationId,
-        medicationName: p.medicine,
-        strength: p.strength || "",
-        dosage: p.dose || "1 tablet",
+        medicationName: medName,
+        strength: p.strength || invMatch?.strength || "",
+        dosage: p.dose || p.dosage || "1 tablet",
         route: p.route || "Oral",
         frequency: p.frequency || "TDS (Thrice Daily)",
         duration: p.duration || "5 days",
@@ -1344,7 +1562,7 @@ app.post(["/api/patinote/save", "/doctor/case-sheet", "/api/doctor/case-sheet"],
         unitPrice,
         totalPrice,
         status: "ACTIVE",
-        dispensedStatus: "PENDING",
+        dispensedStatus: "RECEIVED",
         verifiedByPharmacist: false,
         packed: false,
         barcode: invMatch ? invMatch.barcode : `89012345${Math.floor(10000 + Math.random() * 89999)}`,
@@ -1354,21 +1572,87 @@ app.post(["/api/patinote/save", "/doctor/case-sheet", "/api/doctor/case-sheet"],
       db.prescriptions.push(rx);
       createdPrescriptions.push(rx);
 
-      invoiceItems.push({ category: "PHARMACY", description: `${p.medicine} (${quantity} qty)`, amount: totalPrice });
+      orderItems.push({
+        rxId,
+        medicationName: medName,
+        genericName: invMatch?.genericName || medName,
+        brand: invMatch?.brand || medName,
+        dosage: rx.dosage,
+        route: rx.route,
+        frequency: rx.frequency,
+        duration: rx.duration,
+        instructions: rx.instructions,
+        quantity,
+        unitPrice,
+        totalPrice,
+        batchNo: invMatch?.batchNo || "BATCH-2026A",
+        expiryDate: invMatch?.expiryDate || "2027-12-31",
+        barcode: rx.barcode,
+        inventoryId: invMatch ? invMatch.id : null
+      });
+
+      invoiceItems.push({ category: "PHARMACY", description: `${medName} (${quantity} qty)`, amount: totalPrice });
 
       db.medications.push({
         id: id("MED"),
         patientId,
-        name: p.medicine,
-        dosage: p.dose,
-        frequency: p.frequency,
+        name: medName,
+        dosage: rx.dosage,
+        frequency: rx.frequency,
         startDate: now(),
         status: "ACTIVE",
         prescribedBy: req.user.name
       });
     });
 
-    notify(patientId, "New Prescription Issued", `Dr. ${req.user.name} issued ${prescriptions.length} medicine prescription(s). Sent to Pharmacy.`, "INFO");
+    const orderTotal = orderItems.reduce((sum, item) => sum + item.totalPrice, 0);
+    createdPharmacyOrder = {
+      id: id("PHARM-ORD"),
+      orderNumber: `RX-ORD-${Date.now().toString().slice(-6)}`,
+      caseSheetId,
+      consultationId,
+      patientId,
+      patientName: patient.name,
+      doctorId: req.user.id,
+      doctorName: req.user.name,
+      items: orderItems,
+      totalAmount: orderTotal,
+      status: "RECEIVED",
+      paymentStatus: "UNPAID",
+      packingChecklist: {
+        medicineVerified: false,
+        batchVerified: false,
+        expiryVerified: false,
+        instructionsAttached: false
+      },
+      createdAt: now()
+    };
+    db.pharmacyOrders = db.pharmacyOrders || [];
+    db.pharmacyOrders.push(createdPharmacyOrder);
+
+    notify(patientId, "Prescription Received by Pharmacy", "Your prescription has been received by the pharmacy.", "INFO");
+  }
+
+  // Handle Admission Recommendation
+  if (requireAdmission || req.body.admissionRecommendation?.recommended) {
+    const wardReq = req.body.admissionRecommendation?.recommendedWard || "General Ward";
+    const admReq = {
+      id: id("ADM-REQ"),
+      patientId,
+      patientName: patient.name,
+      doctorId: req.user.id,
+      doctorName: req.user.name,
+      caseSheetId,
+      recommendedWard: wardReq,
+      reason: admissionReason || req.body.admissionRecommendation?.reason || finalDx,
+      priority: req.body.admissionRecommendation?.priority || "HIGH",
+      status: "PENDING_ALLOCATION",
+      createdAt: now()
+    };
+    db.admissionRequests = db.admissionRequests || [];
+    db.admissionRequests.push(admReq);
+    notify(patientId, "Admission Recommended", `Dr. ${req.user.name} recommended admission to ${wardReq}. Bed allocation is in progress.`, "WARNING");
+    audit("RECOMMEND_ADMISSION", req.user, patientId, { ward: wardReq, reason: admReq.reason });
   }
 
   // 4. Dispatch Lab Orders
@@ -1510,73 +1794,297 @@ app.get(["/prescriptions/:id", "/api/prescriptions/:id"], auth, (req, res) => {
   res.json({ prescription: rx });
 });
 
+// Helper to look up an order in db.pharmacyOrders and/or db.prescriptions
+function getPharmacyOrderData(orderId) {
+  let order = (db.pharmacyOrders || []).find(o => o.id === orderId || o.orderNumber === orderId);
+  let rx = (db.prescriptions || []).find(p => p.id === orderId);
+
+  if (!order && rx) {
+    order = (db.pharmacyOrders || []).find(o => o.caseSheetId === rx.caseSheetId || (o.items && o.items.some(i => i.medicationName === rx.medicationName && o.patientId === rx.patientId)));
+  }
+  if (!rx && order && order.items && order.items.length > 0) {
+    rx = (db.prescriptions || []).find(p => order.items.some(i => i.medicationName === p.medicationName && order.patientId === p.patientId));
+  }
+  return { order, rx };
+}
+
 app.get(["/pharmacy/orders", "/api/pharmacy/orders"], auth, (req, res) => {
-  const rxs = (db.prescriptions || []).map(rx => {
-    const invItem = (db.pharmacyInventory || []).find(i => i.name.toLowerCase().includes(rx.medicationName.toLowerCase().split(" ")[0]));
-    const requiredQty = rx.quantity || 10;
-    const stockQty = invItem ? invItem.stockQuantity : 0;
-    let inventoryAvailability = "AVAILABLE";
-    if (stockQty <= 0) inventoryAvailability = "OUT_OF_STOCK";
-    else if (stockQty < requiredQty) inventoryAvailability = `PARTIALLY_AVAILABLE (Stock: ${stockQty})`;
-
-    return {
-      ...rx,
-      inventoryStatus: invItem ? invItem.status : "HEALTHY",
-      inventoryAvailability,
-      barcode: invItem ? invItem.barcode : rx.barcode || "8901234567890",
-      availableQuantity: stockQty,
-      unitPrice: rx.unitPrice || invItem?.unitPrice || 25,
-      totalPrice: rx.totalPrice || (rx.unitPrice || invItem?.unitPrice || 25) * requiredQty
-    };
-  });
-  if (req.query.page) return res.json(paginate(rxs, req));
-  res.json({ orders: rxs });
-});
-
-app.post(["/pharmacy/orders/:id/verify", "/api/pharmacy/orders/:id/verify", "/api/pharmacy/verify"], auth, role("PHARMACIST", "ADMIN"), (req, res) => {
-  const rxId = req.params.id || req.body.prescriptionId;
-  const rx = (db.prescriptions || []).find(p => p.id === rxId);
-  if (!rx) return res.status(404).json({ error: "Prescription not found." });
-
-  rx.dispensedStatus = "VERIFIED";
-  rx.verifiedByPharmacist = true;
-  rx.verifiedAt = now();
-
-  saveDb();
-  audit("PHARMACY_VERIFY_ORDER", req.user, rx.patientId, { prescriptionId: rx.id });
-  res.json({ prescription: rx });
-});
-
-app.post("/api/pharmacy/generate-bill", auth, role("PHARMACIST", "ADMIN"), (req, res) => {
-  const { prescriptionId } = req.body;
-  const rx = (db.prescriptions || []).find(p => p.id === prescriptionId);
-  if (!rx) return res.status(404).json({ error: "Prescription not found." });
-
-  const invItem = (db.pharmacyInventory || []).find(i => i.name.toLowerCase().includes(rx.medicationName.toLowerCase().split(" ")[0]));
-  const unitPrice = rx.unitPrice || invItem?.unitPrice || 25;
-  const quantity = rx.quantity || 10;
-  const totalPrice = unitPrice * quantity;
-
-  let invoice = (db.invoices || []).find(i => i.prescriptionId === rx.id);
-  if (!invoice) {
-    invoice = createConnectedInvoice(rx.patientId, [{ category: "PHARMACY", description: `${rx.medicationName} (${quantity} qty)`, amount: totalPrice }], null, rx.id);
+  let patientId = req.query.patientId;
+  if (req.user.role === "PATIENT") {
+    patientId = req.user.id;
   }
 
-  rx.dispensedStatus = "BILL_GENERATED";
-  rx.invoiceId = invoice.id;
+  // We compile orders from db.pharmacyOrders and db.prescriptions
+  const ordersMap = new Map();
+
+  // First process db.pharmacyOrders
+  (db.pharmacyOrders || []).forEach(po => {
+    if (patientId && po.patientId !== patientId) return;
+
+    const firstItem = po.items && po.items[0] ? po.items[0] : {};
+    const medName = po.items ? po.items.map(i => i.medicationName).join(", ") : (po.medicationName || "Prescription");
+    const dosage = po.items ? po.items.map(i => i.dosage).join(", ") : (po.dosage || "Standard");
+
+    // Check inventory availability
+    const invItem = (db.pharmacyInventory || []).find(i => i.name.toLowerCase().includes((firstItem.medicationName || "").toLowerCase().split(" ")[0]));
+    const stockQty = invItem ? invItem.stockQuantity : 0;
+    const reservedQty = invItem ? (invItem.reservedQuantity || 0) : 0;
+    let inventoryAvailability = "AVAILABLE";
+    if (stockQty <= 0) inventoryAvailability = "OUT_OF_STOCK";
+    else if (stockQty < (firstItem.quantity || 10)) inventoryAvailability = `PARTIALLY_AVAILABLE (Stock: ${stockQty})`;
+
+    ordersMap.set(po.id, {
+      id: po.id,
+      orderNumber: po.orderNumber || po.id,
+      patientId: po.patientId,
+      patientName: po.patientName,
+      doctorId: po.doctorId,
+      doctorName: po.doctorName,
+      medicationName: medName,
+      dosage: dosage,
+      quantity: firstItem.quantity || 10,
+      unitPrice: firstItem.unitPrice || 25,
+      totalPrice: po.totalAmount,
+      totalAmount: po.totalAmount,
+      status: po.status || "RECEIVED",
+      dispensedStatus: po.status === "RECEIVED" ? "PENDING" : po.status === "UNDER_REVIEW" ? "UNDER_REVIEW" : po.status === "PREPARING" ? "PREPARING" : po.status === "READY_FOR_BILLING" ? "READY_FOR_BILLING" : po.status === "BILLED" ? "BILL_GENERATED" : po.status === "PACKING" ? "PACKING" : po.status === "READY_FOR_COLLECTION" ? "READY_FOR_COLLECTION" : po.status === "DISPENSED" ? "DISPENSED" : po.status,
+      paymentStatus: po.paymentStatus || "UNPAID",
+      barcode: invItem ? invItem.barcode : "8901234567890",
+      storageLocation: invItem ? invItem.storageLocation : "Bay A-1",
+      batchNo: invItem ? invItem.batchNo : "BATCH-2026-01",
+      expiryDate: invItem ? invItem.expiryDate : "2027-12-31",
+      availableQuantity: stockQty,
+      reservedQuantity: reservedQty,
+      inventoryAvailability,
+      inventoryStatus: invItem ? invItem.status : "HEALTHY",
+      packingChecklist: po.packingChecklist || {
+        medicineVerified: false,
+        batchVerified: false,
+        expiryVerified: false,
+        instructionsAttached: false
+      },
+      createdAt: po.createdAt
+    });
+  });
+
+  // Also include any prescriptions not covered by pharmacyOrders
+  (db.prescriptions || []).forEach(rx => {
+    if (patientId && rx.patientId !== patientId) return;
+    if (ordersMap.has(rx.id)) return;
+
+    const covered = Array.from(ordersMap.values()).some(o => o.patientId === rx.patientId && o.medicationName.includes(rx.medicationName));
+    if (!covered) {
+      const invItem = (db.pharmacyInventory || []).find(i => i.name.toLowerCase().includes(rx.medicationName.toLowerCase().split(" ")[0]));
+      const requiredQty = rx.quantity || 10;
+      const stockQty = invItem ? invItem.stockQuantity : 0;
+      let inventoryAvailability = "AVAILABLE";
+      if (stockQty <= 0) inventoryAvailability = "OUT_OF_STOCK";
+      else if (stockQty < requiredQty) inventoryAvailability = `PARTIALLY_AVAILABLE (Stock: ${stockQty})`;
+
+      ordersMap.set(rx.id, {
+        id: rx.id,
+        orderNumber: rx.id,
+        patientId: rx.patientId,
+        patientName: rx.patientName,
+        doctorId: rx.doctorId,
+        doctorName: rx.doctorName,
+        medicationName: rx.medicationName,
+        dosage: rx.dosage,
+        quantity: requiredQty,
+        unitPrice: rx.unitPrice || invItem?.unitPrice || 25,
+        totalPrice: rx.totalPrice || (rx.unitPrice || invItem?.unitPrice || 25) * requiredQty,
+        totalAmount: rx.totalPrice || (rx.unitPrice || invItem?.unitPrice || 25) * requiredQty,
+        status: rx.dispensedStatus === "DISPENSED" ? "DISPENSED" : rx.dispensedStatus === "READY_FOR_COLLECTION" ? "READY_FOR_COLLECTION" : rx.dispensedStatus === "BILL_GENERATED" ? "BILLED" : rx.dispensedStatus === "VERIFIED" ? "UNDER_REVIEW" : "RECEIVED",
+        dispensedStatus: rx.dispensedStatus || "PENDING",
+        paymentStatus: rx.invoiceId && (db.invoices || []).find(i => i.id === rx.invoiceId)?.status === "PAID" ? "PAID" : "UNPAID",
+        barcode: invItem ? invItem.barcode : rx.barcode || "8901234567890",
+        storageLocation: invItem ? invItem.storageLocation : "Bay A-1",
+        batchNo: invItem ? invItem.batchNo : "BATCH-2026-01",
+        expiryDate: invItem ? invItem.expiryDate : "2027-12-31",
+        availableQuantity: stockQty,
+        inventoryAvailability,
+        inventoryStatus: invItem ? invItem.status : "HEALTHY",
+        packingChecklist: { medicineVerified: false, batchVerified: false, expiryVerified: false, instructionsAttached: false },
+        createdAt: rx.createdAt
+      });
+    }
+  });
+
+  const orders = Array.from(ordersMap.values()).reverse();
+  if (req.query.page) return res.json(paginate(orders, req));
+  res.json({ orders });
+});
+
+app.post(["/pharmacy/orders/:id/verify", "/api/pharmacy/orders/:id/verify", "/api/pharmacy/verify", "/api/pharmacy/orders/:id/review", "/api/pharmacy/orders/:id/review"], auth, role("PHARMACIST", "ADMIN"), (req, res) => {
+  const targetId = req.params.id || req.body.prescriptionId || req.body.orderId;
+  const { order, rx } = getPharmacyOrderData(targetId);
+
+  if (!order && !rx) return res.status(404).json({ error: "Pharmacy order or prescription not found." });
+
+  if (order) {
+    order.status = "UNDER_REVIEW";
+    order.reviewedBy = req.user.name;
+    order.reviewedAt = now();
+  }
+  if (rx) {
+    rx.dispensedStatus = "VERIFIED";
+    rx.verifiedByPharmacist = true;
+    rx.verifiedAt = now();
+  }
 
   saveDb();
-  audit("GENERATE_PHARMACY_BILL", req.user, rx.patientId, { invoiceId: invoice.id, amount: totalPrice });
-  res.json({ invoice, prescription: rx });
+  audit("PHARMACY_VERIFY_ORDER", req.user, (order || rx).patientId, { targetId });
+  res.json({ success: true, order, prescription: rx, message: "Prescription reviewed and verified by pharmacist." });
+});
+
+app.post(["/pharmacy/orders/:id/prepare", "/api/pharmacy/orders/:id/prepare"], auth, role("PHARMACIST", "ADMIN"), (req, res) => {
+  const targetId = req.params.id || req.body.orderId;
+
+  try {
+    const result = withTransaction(() => {
+      const { order, rx } = getPharmacyOrderData(targetId);
+      if (!order && !rx) throw new Error("Order not found.");
+
+      const patientId = (order || rx).patientId;
+      const medName = order ? (order.items && order.items[0]?.medicationName ? order.items[0].medicationName : order.medicationName) : rx.medicationName;
+      const requiredQty = order ? (order.items && order.items[0]?.quantity ? order.items[0].quantity : 10) : (rx.quantity || 10);
+
+      // Inventory Lookup
+      const invItem = (db.pharmacyInventory || []).find(i => i.name.toLowerCase().includes((medName || "").toLowerCase().split(" ")[0]));
+      if (invItem) {
+        // Expiry Date Check
+        const todayStr = new Date().toISOString().split("T")[0];
+        if (invItem.expiryDate && invItem.expiryDate < todayStr) {
+          throw new Error(`Medication batch ${invItem.batchNo || ''} is EXPIRED (${invItem.expiryDate}). Dispensing blocked for patient safety.`);
+        }
+
+        // Available Stock Check (Stock - Reserved)
+        const available = invItem.stockQuantity - (invItem.reservedQuantity || 0);
+        if (available < requiredQty) {
+          throw new Error(`Insufficient stock for ${invItem.name}. Available: ${available}, Required: ${requiredQty}`);
+        }
+
+        // Reserve stock
+        invItem.reservedQuantity = (invItem.reservedQuantity || 0) + requiredQty;
+      }
+
+      if (order) {
+        order.status = "PREPARING";
+        order.preparedBy = req.user.name;
+        order.preparedAt = now();
+      }
+      if (rx) {
+        rx.dispensedStatus = "PREPARING";
+      }
+
+      audit("PREPARE_PHARMACY_ORDER", req.user, patientId, { targetId, medName, reservedQty: requiredQty });
+      return { order, prescription: rx, updatedInventory: invItem, message: "Medication batch validated & stock reserved." };
+    });
+
+    res.json(result);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+app.post(["/pharmacy/orders/:id/ready-for-billing", "/api/pharmacy/orders/:id/ready-for-billing"], auth, role("PHARMACIST", "ADMIN"), (req, res) => {
+  const targetId = req.params.id;
+  const { order, rx } = getPharmacyOrderData(targetId);
+  if (!order && !rx) return res.status(404).json({ error: "Order not found." });
+
+  if (order) order.status = "READY_FOR_BILLING";
+  if (rx) rx.dispensedStatus = "READY_FOR_BILLING";
+
+  saveDb();
+  res.json({ order, prescription: rx, message: "Order marked ready for billing." });
+});
+
+app.post(["/pharmacy/orders/:id/generate-bill", "/api/pharmacy/orders/:id/generate-bill", "/api/pharmacy/generate-bill"], auth, role("PHARMACIST", "ADMIN"), (req, res) => {
+  const targetId = req.params.id || req.body.prescriptionId || req.body.orderId;
+  const { order, rx } = getPharmacyOrderData(targetId);
+  if (!order && !rx) return res.status(404).json({ error: "Prescription or order not found." });
+
+  const patientId = (order || rx).patientId;
+  const medName = order ? (order.items && order.items[0]?.medicationName ? order.items[0].medicationName : order.medicationName || "Prescribed Medicine") : rx.medicationName;
+  const invItem = (db.pharmacyInventory || []).find(i => i.name.toLowerCase().includes(medName.toLowerCase().split(" ")[0]));
+  const unitPrice = order?.unitPrice || rx?.unitPrice || invItem?.unitPrice || 25;
+  const quantity = order?.quantity || rx?.quantity || 10;
+  const totalPrice = order?.totalAmount || rx?.totalPrice || (unitPrice * quantity);
+
+  let invoice = (db.invoices || []).find(i => (rx && i.prescriptionId === rx.id) || (order && i.pharmacyOrderId === order.id));
+  if (!invoice) {
+    invoice = createConnectedInvoice(patientId, [{ category: "PHARMACY", description: `${medName} (${quantity} qty)`, amount: totalPrice }], null, rx?.id);
+    if (order) invoice.pharmacyOrderId = order.id;
+  }
+
+  if (order) {
+    order.status = "BILLED";
+    order.dispensedStatus = "BILL_GENERATED";
+    order.invoiceId = invoice.id;
+  }
+  if (rx) {
+    rx.dispensedStatus = "BILL_GENERATED";
+    rx.invoiceId = invoice.id;
+  }
+
+  saveDb();
+  audit("GENERATE_PHARMACY_BILL", req.user, patientId, { invoiceId: invoice.id, amount: totalPrice });
+  res.json({ invoice, order, prescription: rx });
+});
+
+app.post(["/pharmacy/orders/:id/record-payment", "/api/pharmacy/orders/:id/record-payment"], auth, role("PHARMACIST", "ADMIN", "RECEPTIONIST"), (req, res) => {
+  const targetId = req.params.id;
+  const { paymentMethod = "UPI" } = req.body;
+  const { order, rx } = getPharmacyOrderData(targetId);
+  if (!order && !rx) return res.status(404).json({ error: "Order not found." });
+
+  const patientId = (order || rx).patientId;
+  const invoiceId = order?.invoiceId || rx?.invoiceId;
+  let invoice = (db.invoices || []).find(i => i.id === invoiceId);
+
+  if (!invoice) {
+    const amount = order?.totalAmount || rx?.totalPrice || 250;
+    invoice = createConnectedInvoice(patientId, [{ category: "PHARMACY", description: "Medications", amount }], null, rx?.id);
+    if (order) invoice.pharmacyOrderId = order.id;
+  }
+
+  invoice.status = "PAID";
+  invoice.paidAt = now();
+  invoice.paymentMethod = paymentMethod;
+
+  const receipt = {
+    id: id("RCPT"),
+    receiptNumber: `REC-${Date.now().toString().slice(-6)}`,
+    invoiceId: invoice.id,
+    patientId: invoice.patientId,
+    patientName: invoice.patientName || (db.users.find(u => u.id === invoice.patientId)?.name) || "Patient",
+    items: invoice.items,
+    amount: invoice.totalAmount,
+    amountPaid: invoice.totalAmount,
+    paymentMethod: invoice.paymentMethod,
+    paidAt: invoice.paidAt,
+    issuedBy: req.user.name
+  };
+  db.billingReceipts = db.billingReceipts || [];
+  db.billingReceipts.push(receipt);
+
+  if (order) order.paymentStatus = "PAID";
+  if (rx) rx.paymentStatus = "PAID";
+
+  saveDb();
+  audit("RECORD_PHARMACY_PAYMENT", req.user, patientId, { invoiceId: invoice.id, amount: invoice.totalAmount, paymentMethod });
+  res.json({ success: true, invoice, receipt, order, prescription: rx });
 });
 
 app.post("/api/pharmacy/scan-verify", auth, role("PHARMACIST", "ADMIN"), (req, res) => {
-  const { scannedBarcode, prescriptionId } = req.body;
-  const rx = (db.prescriptions || []).find(p => p.id === prescriptionId);
-  if (!rx) return res.status(404).json({ error: "Prescription not found." });
+  const { scannedBarcode, prescriptionId, orderId } = req.body;
+  const targetId = prescriptionId || orderId;
+  const { order, rx } = getPharmacyOrderData(targetId);
+  if (!order && !rx) return res.status(404).json({ error: "Prescription not found." });
 
-  const invItem = (db.pharmacyInventory || []).find(i => i.name.toLowerCase().includes(rx.medicationName.toLowerCase().split(" ")[0]));
-  const expectedBarcode = invItem ? invItem.barcode : (rx.barcode || "8901234567890");
+  const medName = order ? (order.items && order.items[0]?.medicationName ? order.items[0].medicationName : order.medicationName || "") : (rx?.medicationName || "");
+  const invItem = (db.pharmacyInventory || []).find(i => i.name.toLowerCase().includes(medName.toLowerCase().split(" ")[0]));
+  const expectedBarcode = invItem ? invItem.barcode : (rx?.barcode || "8901234567890");
 
   if (scannedBarcode !== expectedBarcode && scannedBarcode !== "VERIFY_OVERRIDE") {
     return res.status(400).json({ error: "❌ WRONG MEDICINE BARCODE! Item does not match prescribed medicine." });
@@ -1586,52 +2094,176 @@ app.post("/api/pharmacy/scan-verify", auth, role("PHARMACIST", "ADMIN"), (req, r
 });
 
 app.post(["/pharmacy/orders/:id/pack", "/api/pharmacy/orders/:id/pack", "/api/pharmacy/pack"], auth, role("PHARMACIST", "ADMIN"), (req, res) => {
-  const rxId = req.params.id || req.body.prescriptionId;
-  const rx = (db.prescriptions || []).find(p => p.id === rxId);
-  if (!rx) return res.status(404).json({ error: "Prescription not found." });
+  const targetId = req.params.id || req.body.prescriptionId || req.body.orderId;
+  const { order, rx } = getPharmacyOrderData(targetId);
+  if (!order && !rx) return res.status(404).json({ error: "Order not found." });
 
-  rx.dispensedStatus = "READY_FOR_COLLECTION";
-  rx.packed = true;
-  rx.packedAt = now();
+  const patientId = (order || rx).patientId;
+  const medName = order ? (order.items && order.items[0]?.medicationName ? order.items[0].medicationName : order.medicationName || "Medications") : rx.medicationName;
 
-  notify(rx.patientId, "💊 YOUR MEDICINES ARE READY", `Your order for ${rx.medicationName} has been verified & packed. Collect at Pharmacy Counter #2.`, "SUCCESS");
+  const checklist = {
+    medicineVerified: true,
+    batchVerified: true,
+    expiryVerified: true,
+    instructionsAttached: true,
+    ...(req.body.checklist || {})
+  };
+
+  if (order) {
+    order.status = "READY_FOR_COLLECTION";
+    order.dispensedStatus = "READY_FOR_COLLECTION";
+    order.packed = true;
+    order.packedAt = now();
+    order.packedBy = req.user.name;
+    order.packingChecklist = checklist;
+  }
+  if (rx) {
+    rx.dispensedStatus = "READY_FOR_COLLECTION";
+    rx.packed = true;
+    rx.packedAt = now();
+  }
+
+  notify(patientId, "💊 YOUR MEDICINES ARE READY", `Your order for ${medName} has been verified & packed. Collect at Pharmacy Counter #2.`, "SUCCESS");
   saveDb();
-  audit("PACK_MEDICINE_ORDER", req.user, rx.patientId, { prescriptionId: rx.id });
-  res.json({ prescription: rx });
+  audit("PACK_MEDICINE_ORDER", req.user, patientId, { targetId, checklist });
+  res.json({ order, prescription: rx, message: "Order packed and ready for collection." });
+});
+
+app.post(["/pharmacy/orders/:id/ready-for-collection", "/api/pharmacy/orders/:id/ready-for-collection"], auth, role("PHARMACIST", "ADMIN"), (req, res) => {
+  const targetId = req.params.id;
+  const { order, rx } = getPharmacyOrderData(targetId);
+  if (!order && !rx) return res.status(404).json({ error: "Order not found." });
+
+  if (order) {
+    order.status = "READY_FOR_COLLECTION";
+    order.dispensedStatus = "READY_FOR_COLLECTION";
+  }
+  if (rx) {
+    rx.dispensedStatus = "READY_FOR_COLLECTION";
+  }
+
+  const patientId = (order || rx).patientId;
+  notify(patientId, "💊 YOUR MEDICINES ARE READY", "Your medicine order is ready for pickup at Pharmacy Counter.", "SUCCESS");
+  saveDb();
+  res.json({ order, prescription: rx });
 });
 
 app.post(["/pharmacy/orders/:id/dispense", "/api/pharmacy/orders/:id/dispense", "/api/pharmacy/dispense"], auth, role("PHARMACIST", "ADMIN"), (req, res) => {
-  const rxId = req.params.id || req.body.prescriptionId;
+  const targetId = req.params.id || req.body.prescriptionId || req.body.orderId;
 
   try {
     const result = withTransaction(() => {
-      const rx = (db.prescriptions || []).find(p => p.id === rxId);
-      if (!rx) throw new Error("Prescription not found.");
+      const { order, rx } = getPharmacyOrderData(targetId);
+      if (!order && !rx) throw new Error("Order not found.");
 
-      const invItem = (db.pharmacyInventory || []).find(i => i.name.toLowerCase().includes(rx.medicationName.toLowerCase().split(" ")[0]));
-      const requiredQty = rx.quantity || 10;
+      const patientId = (order || rx).patientId;
+      const medName = order ? (order.items && order.items[0]?.medicationName ? order.items[0].medicationName : order.medicationName || "") : (rx.medicationName || "");
+      const requiredQty = order ? (order.items && order.items[0]?.quantity ? order.items[0].quantity : 10) : (rx.quantity || 10);
+
+      const invItem = (db.pharmacyInventory || []).find(i => i.name.toLowerCase().includes((medName || "").toLowerCase().split(" ")[0]));
 
       if (invItem) {
         if (invItem.stockQuantity < requiredQty) {
           throw new Error(`Insufficient inventory for ${invItem.name}. Stock available: ${invItem.stockQuantity}, Required: ${requiredQty}`);
         }
         invItem.stockQuantity -= requiredQty;
+        invItem.reservedQuantity = Math.max(0, (invItem.reservedQuantity || 0) - requiredQty);
+
         if (invItem.stockQuantity === 0) invItem.status = "OUT_OF_STOCK";
         else if (invItem.stockQuantity <= invItem.thresholdLow) invItem.status = "LOW_STOCK";
       }
 
-      rx.dispensedStatus = "DISPENSED";
-      rx.dispensedAt = now();
-      rx.dispensedBy = req.user.name;
+      if (order) {
+        order.status = "DISPENSED";
+        order.dispensedStatus = "DISPENSED";
+        order.dispensedAt = now();
+        order.dispensedBy = req.user.name;
+      }
+      if (rx) {
+        rx.dispensedStatus = "DISPENSED";
+        rx.dispensedAt = now();
+        rx.dispensedBy = req.user.name;
+      }
 
-      audit("DISPENSE_MEDICATION", req.user, rx.patientId, { prescriptionId: rx.id, quantityDeducted: requiredQty, remainingStock: invItem ? invItem.stockQuantity : null });
-      return { prescription: rx, updatedInventory: invItem };
+      notify(patientId, "Medicines Dispensed", `Your medication order has been handed over by Pharmacy Counter.`, "INFO");
+      audit("DISPENSE_MEDICATION", req.user, patientId, { targetId, quantityDeducted: requiredQty, remainingStock: invItem ? invItem.stockQuantity : null });
+      return { order, prescription: rx, updatedInventory: invItem, message: "Order dispensed and inventory deducted." };
     });
 
     res.json(result);
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
+});
+
+app.post(["/pharmacy/orders/:id/cancel", "/api/pharmacy/orders/:id/cancel"], auth, role("PHARMACIST", "DOCTOR", "ADMIN"), (req, res) => {
+  const targetId = req.params.id;
+  const { reason = "Prescription cancelled" } = req.body;
+
+  try {
+    const result = withTransaction(() => {
+      const { order, rx } = getPharmacyOrderData(targetId);
+      if (!order && !rx) throw new Error("Order not found.");
+
+      const patientId = (order || rx).patientId;
+      const medName = order ? (order.items && order.items[0]?.medicationName ? order.items[0].medicationName : order.medicationName || "") : (rx.medicationName || "");
+      const requiredQty = order ? (order.items && order.items[0]?.quantity ? order.items[0].quantity : 10) : (rx.quantity || 10);
+
+      // Release reserved stock if any
+      const invItem = (db.pharmacyInventory || []).find(i => i.name.toLowerCase().includes((medName || "").toLowerCase().split(" ")[0]));
+      if (invItem && invItem.reservedQuantity) {
+        invItem.reservedQuantity = Math.max(0, invItem.reservedQuantity - requiredQty);
+      }
+
+      if (order) {
+        order.status = "CANCELLED";
+        order.dispensedStatus = "CANCELLED";
+        order.cancelledReason = reason;
+      }
+      if (rx) {
+        rx.dispensedStatus = "CANCELLED";
+        rx.cancelledReason = reason;
+      }
+
+      audit("CANCEL_PHARMACY_ORDER", req.user, patientId, { targetId, reason });
+      return { order, prescription: rx, message: "Order cancelled and reserved stock released." };
+    });
+
+    res.json(result);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+app.post(["/pharmacy/orders/:id/substitute", "/api/pharmacy/orders/:id/substitute"], auth, role("PHARMACIST", "ADMIN"), (req, res) => {
+  const targetId = req.params.id;
+  const { substituteMedicineName, substituteMedicineId, reason = "Brand out of stock - generic equivalent issued" } = req.body;
+
+  const { order, rx } = getPharmacyOrderData(targetId);
+  if (!order && !rx) return res.status(404).json({ error: "Order not found." });
+
+  const subItem = (db.pharmacyInventory || []).find(i => (substituteMedicineId && i.id === substituteMedicineId) || (substituteMedicineName && i.name.toLowerCase().includes(substituteMedicineName.toLowerCase())));
+  if (!subItem) return res.status(404).json({ error: "Substitute medicine not found in inventory." });
+
+  if (order && order.items && order.items[0]) {
+    order.items[0].originalMedication = order.items[0].medicationName;
+    order.items[0].medicationName = subItem.name;
+    order.items[0].unitPrice = subItem.unitPrice;
+    order.items[0].totalPrice = subItem.unitPrice * (order.items[0].quantity || 10);
+    order.totalAmount = order.items[0].totalPrice;
+    order.substitutionReason = reason;
+  }
+  if (rx) {
+    rx.originalMedication = rx.medicationName;
+    rx.medicationName = subItem.name;
+    rx.unitPrice = subItem.unitPrice;
+    rx.totalPrice = subItem.unitPrice * (rx.quantity || 10);
+    rx.substitutionReason = reason;
+  }
+
+  saveDb();
+  audit("SUBSTITUTE_PHARMACY_MEDICINE", req.user, (order || rx).patientId, { targetId, substitute: subItem.name, reason });
+  res.json({ order, prescription: rx, message: `Medication substituted with ${subItem.name}.` });
 });
 
 app.get(["/inventory", "/api/inventory", "/api/pharmacy/inventory"], auth, (req, res) => {
@@ -1679,52 +2311,98 @@ app.post(["/inventory", "/api/inventory"], auth, role("PHARMACIST", "HOSPITAL_AD
 });
 
 /* ------------------------------------------------------------------ */
-/* DIAGNOSTICS: LABORATORY & SCANNING APIs                            */
+/* DIAGNOSTICS: LABORATORY & PATHOLOGY APIs                           */
 /* ------------------------------------------------------------------ */
+
+app.get(["/api/lab/catalogue", "/lab/catalogue"], auth, (req, res) => {
+  res.json({ catalogue: MASTER_LAB_CATALOGUE });
+});
 
 app.get(["/lab/orders", "/api/lab/orders", "/api/lab-orders"], auth, (req, res) => {
   let list = db.labOrders || [];
-  if (req.query.patientId) list = list.filter(l => l.patientId === req.query.patientId);
+  if (req.user.role === "PATIENT") {
+    list = list.filter(l => l.patientId === req.user.id);
+  } else if (req.query.patientId) {
+    list = list.filter(l => l.patientId === req.query.patientId);
+  }
   if (req.query.status) list = list.filter(l => l.status === req.query.status);
   if (req.query.page) return res.json(paginate(list, req));
-  res.json({ labOrders: list });
+  res.json({ labOrders: list, orders: list });
 });
 
 app.post(["/lab/orders", "/api/lab/orders"], auth, role("DOCTOR", "ADMIN"), (req, res) => {
-  const { patientId, testName } = req.body;
+  const { patientId, testName, priority = "ROUTINE" } = req.body;
   const patient = db.users.find(u => u.id === patientId);
-  const price = MASTER_PRICES.labs[testName] || 350;
+  const catItem = MASTER_LAB_CATALOGUE.find(c => c.testName.toLowerCase() === (testName || "").toLowerCase());
+  const price = catItem ? catItem.price : (MASTER_PRICES.labs[testName] || 350);
 
   const newOrder = {
     id: id("LAB"),
     patientId,
     patientName: patient?.name || "Patient",
     orderedBy: req.user.name,
-    testName,
+    testName: catItem ? catItem.testName : testName,
+    category: catItem ? catItem.category : "Pathology",
+    sampleType: catItem ? catItem.sampleType : "Blood",
+    referenceRange: catItem ? catItem.normalRange : "Standard Normal",
+    unit: catItem ? catItem.unit : "-",
     price,
+    priority,
     status: "REQUESTED",
     result: null,
-    referenceRange: "Normal",
+    isAbnormal: false,
     createdAt: now()
   };
 
   db.labOrders = db.labOrders || [];
   db.labOrders.push(newOrder);
   saveDb();
-  audit("ORDER_LAB_TEST", req.user, patientId, { testName });
+  audit("ORDER_LAB_TEST", req.user, patientId, { testName: newOrder.testName, price });
   res.json({ labOrder: newOrder });
 });
 
-app.post(["/lab/orders/:id/result", "/api/lab-orders/status"], auth, role("LAB_STAFF", "DOCTOR", "ADMIN"), (req, res) => {
+app.post(["/lab/orders/:id/collect-sample", "/api/lab/orders/:id/collect-sample"], auth, role("LAB_STAFF", "NURSE", "ADMIN"), (req, res) => {
+  const labId = req.params.id;
+  const lab = (db.labOrders || []).find(l => l.id === labId);
+  if (!lab) return res.status(404).json({ error: "Lab order not found." });
+
+  lab.status = "SAMPLE_COLLECTED";
+  lab.sampleBarcode = `LAB-SMPL-${Date.now().toString().slice(-6)}`;
+  lab.sampleCollectedAt = now();
+  lab.sampleCollectedBy = req.user.name;
+  if (req.body.sampleType) lab.sampleType = req.body.sampleType;
+
+  saveDb();
+  audit("COLLECT_LAB_SAMPLE", req.user, lab.patientId, { labId, sampleBarcode: lab.sampleBarcode });
+  res.json({ labOrder: lab, message: "Sample collected and barcode assigned." });
+});
+
+app.post(["/lab/orders/:id/process", "/api/lab/orders/:id/process"], auth, role("LAB_STAFF", "ADMIN"), (req, res) => {
+  const labId = req.params.id;
+  const lab = (db.labOrders || []).find(l => l.id === labId);
+  if (!lab) return res.status(404).json({ error: "Lab order not found." });
+
+  lab.status = "IN_PROGRESS";
+  lab.processingStartedAt = now();
+
+  saveDb();
+  res.json({ labOrder: lab, message: "Sample is currently undergoing lab processing." });
+});
+
+app.post(["/lab/orders/:id/result", "/api/lab/orders/:id/result", "/api/lab-orders/status"], auth, role("LAB_STAFF", "DOCTOR", "ADMIN"), (req, res) => {
   const labId = req.params.id || req.body.labOrderId;
-  const { status = "RESULT_ENTERED", result, referenceRange } = req.body;
+  const { status = "RESULT_ENTERED", result, referenceRange, isAbnormal, unit } = req.body;
 
   const lab = (db.labOrders || []).find(l => l.id === labId);
   if (!lab) return res.status(404).json({ error: "Lab order not found." });
 
   lab.status = status;
-  if (result) lab.result = result;
+  if (result !== undefined) lab.result = result;
   if (referenceRange) lab.referenceRange = referenceRange;
+  if (unit) lab.unit = unit;
+  if (isAbnormal !== undefined) lab.isAbnormal = !!isAbnormal;
+  lab.resultEnteredBy = req.user.name;
+  lab.resultEnteredAt = now();
 
   if (status === "PUBLISHED" || status === "VERIFIED") {
     lab.verifiedBy = req.user.name;
@@ -1733,61 +2411,208 @@ app.post(["/lab/orders/:id/result", "/api/lab-orders/status"], auth, role("LAB_S
   }
 
   saveDb();
-  audit("UPDATE_LAB_ORDER", req.user, lab.patientId, { labId, status });
+  audit("UPDATE_LAB_ORDER", req.user, lab.patientId, { labId, status, isAbnormal: lab.isAbnormal });
   res.json({ labOrder: lab });
+});
+
+app.post(["/lab/orders/:id/verify-publish", "/api/lab/orders/:id/verify-publish"], auth, role("LAB_STAFF", "DOCTOR", "ADMIN"), (req, res) => {
+  const labId = req.params.id;
+  const lab = (db.labOrders || []).find(l => l.id === labId);
+  if (!lab) return res.status(404).json({ error: "Lab order not found." });
+
+  lab.status = "PUBLISHED";
+  lab.verifiedBy = req.user.name;
+  lab.publishedAt = now();
+  if (req.body.result !== undefined) lab.result = req.body.result;
+  if (req.body.isAbnormal !== undefined) lab.isAbnormal = !!req.body.isAbnormal;
+
+  notify(lab.patientId, "Laboratory Test Result Ready", `Your ${lab.testName} report has been signed off and published.`, "INFO");
+  saveDb();
+  audit("VERIFY_PUBLISH_LAB_ORDER", req.user, lab.patientId, { labId, testName: lab.testName });
+  res.json({ labOrder: lab, message: "Lab order verified and published to patient portal." });
+});
+
+/* ------------------------------------------------------------------ */
+/* DIAGNOSTICS: SCANNING & RADIOLOGY APIs                             */
+/* ------------------------------------------------------------------ */
+
+app.get(["/api/scan/catalogue", "/scan/catalogue"], auth, (req, res) => {
+  res.json({ catalogue: MASTER_SCAN_CATALOGUE });
 });
 
 app.get(["/scan/orders", "/api/scan/orders", "/api/scan-orders"], auth, (req, res) => {
   let list = db.scanOrders || [];
-  if (req.query.patientId) list = list.filter(s => s.patientId === req.query.patientId);
+  if (req.user.role === "PATIENT") {
+    list = list.filter(s => s.patientId === req.user.id);
+  } else if (req.query.patientId) {
+    list = list.filter(s => s.patientId === req.query.patientId);
+  }
   if (req.query.status) list = list.filter(s => s.status === req.query.status);
   if (req.query.page) return res.json(paginate(list, req));
-  res.json({ scanOrders: list });
+  res.json({ scanOrders: list, orders: list });
 });
 
 app.post(["/scan/orders", "/api/scan/orders"], auth, role("DOCTOR", "ADMIN"), (req, res) => {
-  const { patientId, scanType } = req.body;
+  const { patientId, scanType, urgency = "ROUTINE" } = req.body;
   const patient = db.users.find(u => u.id === patientId);
-  const price = MASTER_PRICES.scans[scanType] || 600;
+  const catItem = MASTER_SCAN_CATALOGUE.find(c => c.scanType.toLowerCase() === (scanType || "").toLowerCase());
+  const price = catItem ? catItem.price : (MASTER_PRICES.scans[scanType] || 600);
 
   const newOrder = {
     id: id("SCAN"),
     patientId,
     patientName: patient?.name || "Patient",
     orderedBy: req.user.name,
-    scanType,
+    scanType: catItem ? catItem.scanType : scanType,
+    modality: catItem ? catItem.modality : "Radiology",
+    bodyPart: catItem ? catItem.bodyPart : "General",
+    instructions: catItem ? catItem.instructions : "Standard procedure",
     price,
+    urgency,
     status: "REQUESTED",
     reportText: null,
+    findings: null,
+    impression: null,
     createdAt: now()
   };
 
   db.scanOrders = db.scanOrders || [];
   db.scanOrders.push(newOrder);
   saveDb();
-  audit("ORDER_IMAGING_SCAN", req.user, patientId, { scanType });
+  audit("ORDER_IMAGING_SCAN", req.user, patientId, { scanType: newOrder.scanType, price });
   res.json({ scanOrder: newOrder });
 });
 
-app.post(["/scan/orders/:id/report", "/api/scan-orders/status"], auth, role("SCAN_TECH", "DOCTOR", "ADMIN"), (req, res) => {
+app.post(["/scan/orders/:id/schedule", "/api/scan/orders/:id/schedule"], auth, role("SCAN_TECH", "DOCTOR", "RECEPTIONIST", "ADMIN"), (req, res) => {
+  const scanId = req.params.id;
+  const { scheduledDate, scheduledTime, machineId, roomNumber } = req.body;
+  const scan = (db.scanOrders || []).find(s => s.id === scanId);
+  if (!scan) return res.status(404).json({ error: "Scan order not found." });
+
+  scan.status = "SCHEDULED";
+  scan.scheduledDate = scheduledDate || new Date().toISOString().split("T")[0];
+  scan.scheduledTime = scheduledTime || "11:30 AM";
+  scan.machineId = machineId || "CT-Scanner-01";
+  scan.roomNumber = roomNumber || "Imaging Room 3";
+
+  notify(scan.patientId, "Imaging Scan Scheduled", `Your ${scan.scanType} has been scheduled on ${scan.scheduledDate} at ${scan.scheduledTime} in ${scan.roomNumber}.`, "INFO");
+  saveDb();
+  audit("SCHEDULE_SCAN_ORDER", req.user, scan.patientId, { scanId, date: scan.scheduledDate });
+  res.json({ scanOrder: scan, message: "Scan successfully scheduled." });
+});
+
+app.post(["/scan/orders/:id/arrive", "/api/scan/orders/:id/arrive"], auth, role("SCAN_TECH", "RECEPTIONIST", "ADMIN"), (req, res) => {
+  const scanId = req.params.id;
+  const scan = (db.scanOrders || []).find(s => s.id === scanId);
+  if (!scan) return res.status(404).json({ error: "Scan order not found." });
+
+  scan.status = "PATIENT_ARRIVED";
+  scan.arrivedAt = now();
+
+  saveDb();
+  res.json({ scanOrder: scan, message: "Patient arrival at radiology confirmed." });
+});
+
+app.post(["/scan/orders/:id/start", "/api/scan/orders/:id/start"], auth, role("SCAN_TECH", "ADMIN"), (req, res) => {
+  const scanId = req.params.id;
+  const scan = (db.scanOrders || []).find(s => s.id === scanId);
+  if (!scan) return res.status(404).json({ error: "Scan order not found." });
+
+  scan.status = "IN_PROGRESS";
+  scan.startedAt = now();
+
+  saveDb();
+  res.json({ scanOrder: scan, message: "Scan acquisition in progress." });
+});
+
+app.post(["/scan/orders/:id/complete", "/api/scan/orders/:id/complete"], auth, role("SCAN_TECH", "ADMIN"), (req, res) => {
+  const scanId = req.params.id;
+  const { seriesCount = 4, radiationDose = "Standard low-dose (0.8 mSv)" } = req.body;
+  const scan = (db.scanOrders || []).find(s => s.id === scanId);
+  if (!scan) return res.status(404).json({ error: "Scan order not found." });
+
+  scan.status = "COMPLETED";
+  scan.reportStatus = "REPORT_PENDING";
+  scan.completedAt = now();
+  scan.seriesCount = seriesCount;
+  scan.radiationDose = radiationDose;
+
+  saveDb();
+  audit("COMPLETE_SCAN_PROCEDURE", req.user, scan.patientId, { scanId });
+  res.json({ scanOrder: scan, message: "Imaging scan completed. Transferred to radiologist for reporting." });
+});
+
+app.post(["/scan/orders/:id/findings", "/api/scan/orders/:id/findings"], auth, role("DOCTOR", "SCAN_TECH", "ADMIN"), (req, res) => {
+  const scanId = req.params.id;
+  const { findings, impression } = req.body;
+  const scan = (db.scanOrders || []).find(s => s.id === scanId);
+  if (!scan) return res.status(404).json({ error: "Scan order not found." });
+
+  scan.status = "UNDER_REVIEW";
+  scan.findings = findings || scan.findings;
+  scan.impression = impression || scan.impression;
+
+  saveDb();
+  res.json({ scanOrder: scan, message: "Radiological preliminary findings recorded." });
+});
+
+app.post(["/scan/orders/:id/verify-publish", "/api/scan/orders/:id/verify-publish", "/api/scan/orders/:id/report", "/api/scan-orders/status"], auth, role("DOCTOR", "SCAN_TECH", "ADMIN"), (req, res) => {
   const scanId = req.params.id || req.body.scanOrderId;
-  const { status = "COMPLETED", reportText } = req.body;
+  const { findings, impression, reportText } = req.body;
 
   const scan = (db.scanOrders || []).find(s => s.id === scanId);
   if (!scan) return res.status(404).json({ error: "Scan order not found." });
 
-  scan.status = status;
-  if (reportText) scan.reportText = reportText;
+  scan.status = "PUBLISHED";
+  scan.verifiedBy = req.user.name;
+  scan.publishedAt = now();
+  scan.reportText = reportText || findings || scan.reportText || "Imaging scan normal with no acute pathological abnormalities.";
+  if (findings) scan.findings = findings;
+  if (impression) scan.impression = impression;
 
-  if (status === "PUBLISHED" || status === "VERIFIED") {
-    scan.verifiedBy = req.user.name;
-    scan.publishedAt = now();
-    notify(scan.patientId, "Imaging Scan Report Available", `Your ${scan.scanType} report has been verified and published.`, "INFO");
+  // Create persistent scan report in db.scanReports
+  const scanReport = {
+    id: id("RPT-SCAN"),
+    scanOrderId: scan.id,
+    patientId: scan.patientId,
+    patientName: scan.patientName,
+    scanType: scan.scanType,
+    modality: scan.modality || "Radiology",
+    findings: scan.findings || scan.reportText,
+    impression: scan.impression || "No acute findings.",
+    radiologist: req.user.name,
+    radiationDose: scan.radiationDose || "Standard",
+    verifiedAt: now(),
+    status: "PUBLISHED"
+  };
+  db.scanReports = db.scanReports || [];
+  db.scanReports.push(scanReport);
+
+  notify(scan.patientId, "Imaging Scan Report Available", `Your ${scan.scanType} report has been verified and published.`, "INFO");
+  saveDb();
+  audit("VERIFY_PUBLISH_SCAN_REPORT", req.user, scan.patientId, { scanId, reportId: scanReport.id });
+  res.json({ scanOrder: scan, report: scanReport, message: "Scan report verified and published." });
+});
+
+app.get(["/api/scan/reports/:id", "/scan/reports/:id"], auth, (req, res) => {
+  const report = (db.scanReports || []).find(r => r.id === req.params.id || r.scanOrderId === req.params.id);
+  if (!report) return res.status(404).json({ error: "Scan report not found." });
+
+  if (req.user.role === "PATIENT" && report.patientId !== req.user.id) {
+    return res.status(403).json({ error: "Access denied. Patients may only view their own diagnostic reports." });
   }
 
-  saveDb();
-  audit("UPDATE_SCAN_ORDER", req.user, scan.patientId, { scanId, status });
-  res.json({ scanOrder: scan });
+  res.json({ report });
+});
+
+app.get(["/api/scan/reports", "/scan/reports"], auth, (req, res) => {
+  let list = db.scanReports || [];
+  if (req.user.role === "PATIENT") {
+    list = list.filter(r => r.patientId === req.user.id);
+  } else if (req.query.patientId) {
+    list = list.filter(r => r.patientId === req.query.patientId);
+  }
+  res.json({ reports: list });
 });
 
 /* ------------------------------------------------------------------ */
@@ -1806,9 +2631,73 @@ app.get(["/beds/availability", "/api/beds/availability"], auth, (req, res) => {
   res.json({ availableBedsCount: availableBeds.length, beds: availableBeds });
 });
 
-app.post(["/beds/:id/allocate", "/api/beds/allocate"], auth, role("DOCTOR", "HOSPITAL_ADMIN", "ADMIN"), (req, res) => {
+app.get(["/admissions/requests", "/api/admissions/requests"], auth, (req, res) => {
+  let list = db.admissionRequests || [];
+  if (req.user.role === "PATIENT") {
+    list = list.filter(r => r.patientId === req.user.id);
+  } else if (req.query.patientId) {
+    list = list.filter(r => r.patientId === req.query.patientId);
+  }
+  res.json({ admissionRequests: list });
+});
+
+app.post(["/admissions/request", "/api/admissions/request"], auth, role("DOCTOR", "RECEPTIONIST", "ADMIN"), (req, res) => {
+  const { patientId, recommendedWard = "General Ward", reason = "Inpatient Medical Treatment", priority = "NORMAL" } = req.body;
+  const patient = db.users.find(u => u.id === patientId);
+  if (!patient) return res.status(404).json({ error: "Patient not found." });
+
+  const admReq = {
+    id: id("ADM-REQ"),
+    patientId,
+    patientName: patient.name,
+    doctorId: req.user.id,
+    doctorName: req.user.name,
+    recommendedWard,
+    reason,
+    priority,
+    status: "PENDING_ALLOCATION",
+    createdAt: now()
+  };
+
+  db.admissionRequests = db.admissionRequests || [];
+  db.admissionRequests.push(admReq);
+  saveDb();
+  audit("CREATE_ADMISSION_REQUEST", req.user, patientId, { recommendedWard, priority });
+  res.json({ admissionRequest: admReq, message: "Admission request submitted to bed allocation team." });
+});
+
+app.post(["/beds/:id/reserve", "/api/beds/:id/reserve"], auth, role("DOCTOR", "HOSPITAL_ADMIN", "ADMIN", "RECEPTIONIST"), (req, res) => {
+  const bedId = req.params.id;
+  const { patientId, patientName } = req.body;
+
+  try {
+    const result = withTransaction(() => {
+      const bed = db.beds.find(b => b.bedId === bedId);
+      if (!bed) throw new Error(`Bed ${bedId} not found.`);
+      if (bed.status !== "AVAILABLE") {
+        throw new Error(`Bed ${bedId} is currently ${bed.status} and cannot be reserved.`);
+      }
+
+      const patient = db.users.find(u => u.id === patientId) || { name: patientName || "Reserved Patient" };
+
+      bed.status = "RESERVED";
+      bed.reservedForPatientId = patientId;
+      bed.reservedForPatientName = patient.name;
+      bed.reservedAt = now();
+
+      audit("RESERVE_BED", req.user, patientId, { bedId, ward: bed.ward });
+      return { bed, message: `Bed ${bedId} successfully reserved for ${patient.name}.` };
+    });
+
+    res.json(result);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+app.post(["/beds/:id/allocate", "/api/beds/:id/allocate", "/api/beds/allocate"], auth, role("DOCTOR", "HOSPITAL_ADMIN", "ADMIN"), (req, res) => {
   const bedId = req.params.id || req.body.bedId;
-  const { patientId, reason = "Inpatient Care" } = req.body;
+  const { patientId, reason = "Inpatient Care", requestId } = req.body;
 
   try {
     const result = withTransaction(() => {
@@ -1823,6 +2712,8 @@ app.post(["/beds/:id/allocate", "/api/beds/allocate"], auth, role("DOCTOR", "HOS
       bed.status = "OCCUPIED";
       bed.currentPatientId = patientId;
       bed.currentPatientName = patient.name;
+      bed.reservedForPatientId = null;
+      bed.reservedForPatientName = null;
       bed.expectedDischarge = new Date(Date.now() + 3 * 86400000).toISOString().split("T")[0];
 
       let admission = db.admissions.find(a => a.patientId === patientId && a.status !== "DISCHARGED");
@@ -1848,10 +2739,16 @@ app.post(["/beds/:id/allocate", "/api/beds/allocate"], auth, role("DOCTOR", "HOS
 
       bed.currentAdmissionId = admission.id;
 
+      // If tied to admission request, mark it allocated
+      if (requestId) {
+        const reqObj = (db.admissionRequests || []).find(r => r.id === requestId);
+        if (reqObj) reqObj.status = "ALLOCATED";
+      }
+
       notify(patientId, "Bed Allocated", `You have been allocated Bed ${bed.bedNumber} in ${bed.ward}.`, "INFO");
       audit("ALLOCATE_BED", req.user, patientId, { bedId, ward: bed.ward });
 
-      return { bed, admission };
+      return { bed, admission, message: `Bed ${bedId} allocated successfully.` };
     });
 
     res.json(result);
@@ -1860,7 +2757,160 @@ app.post(["/beds/:id/allocate", "/api/beds/allocate"], auth, role("DOCTOR", "HOS
   }
 });
 
-app.post(["/beds/:id/release", "/api/beds/update-status"], auth, role("HOSPITAL_ADMIN", "NURSE", "ADMIN"), (req, res) => {
+app.post(["/admissions/approve", "/api/admissions/approve"], auth, role("HOSPITAL_ADMIN", "ADMIN", "DOCTOR"), (req, res) => {
+  const { requestId, bedId } = req.body;
+  const admReq = (db.admissionRequests || []).find(r => r.id === requestId);
+  if (!admReq) return res.status(404).json({ error: "Admission request not found." });
+
+  try {
+    const result = withTransaction(() => {
+      const bed = db.beds.find(b => b.bedId === bedId);
+      if (!bed) throw new Error(`Bed ${bedId} not found.`);
+      if (bed.status !== "AVAILABLE" && bed.status !== "RESERVED") {
+        throw new Error(`Double bed allocation blocked! Bed ${bedId} is currently ${bed.status}.`);
+      }
+
+      bed.status = "OCCUPIED";
+      bed.currentPatientId = admReq.patientId;
+      bed.currentPatientName = admReq.patientName;
+
+      const admission = {
+        id: id("ADM"),
+        admissionNumber: `ADM-${Date.now().toString().slice(-6)}`,
+        patientId: admReq.patientId,
+        patientName: admReq.patientName,
+        attendingDoctor: admReq.doctorName || req.user.name,
+        reason: admReq.reason,
+        bedId,
+        ward: bed.ward,
+        status: "ADMITTED",
+        admissionDate: now()
+      };
+      db.admissions.push(admission);
+      bed.currentAdmissionId = admission.id;
+      admReq.status = "ALLOCATED";
+
+      notify(admReq.patientId, "Admission Confirmed", `Your admission to ${bed.ward} (Bed ${bed.bedNumber}) has been confirmed.`, "INFO");
+      audit("APPROVE_ADMISSION_REQUEST", req.user, admReq.patientId, { requestId, bedId });
+      return { admission, bed };
+    });
+
+    res.json(result);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+app.post(["/beds/:id/transfer", "/api/beds/:id/transfer"], auth, role("HOSPITAL_ADMIN", "NURSE", "ADMIN", "DOCTOR"), (req, res) => {
+  const sourceBedId = req.params.id;
+  const { targetBedId, reason = "Patient clinical condition requires room transfer" } = req.body;
+
+  try {
+    const result = withTransaction(() => {
+      const srcBed = db.beds.find(b => b.bedId === sourceBedId);
+      if (!srcBed) throw new Error(`Source bed ${sourceBedId} not found.`);
+      if (srcBed.status !== "OCCUPIED") throw new Error(`Source bed ${sourceBedId} is not currently occupied.`);
+
+      const tgtBed = db.beds.find(b => b.bedId === targetBedId);
+      if (!tgtBed) throw new Error(`Target bed ${targetBedId} not found.`);
+      if (tgtBed.status !== "AVAILABLE") throw new Error(`Target bed ${targetBedId} is not available (currently ${tgtBed.status}).`);
+
+      const patientId = srcBed.currentPatientId;
+      const patientName = srcBed.currentPatientName;
+      const admissionId = srcBed.currentAdmissionId;
+
+      // Transfer patient to target bed
+      tgtBed.status = "OCCUPIED";
+      tgtBed.currentPatientId = patientId;
+      tgtBed.currentPatientName = patientName;
+      tgtBed.currentAdmissionId = admissionId;
+
+      // Source bed moves to cleaning
+      srcBed.status = "CLEANING";
+      srcBed.currentPatientId = null;
+      srcBed.currentPatientName = null;
+      srcBed.currentAdmissionId = null;
+
+      // Update admission record
+      if (admissionId) {
+        const adm = db.admissions.find(a => a.id === admissionId);
+        if (adm) {
+          adm.bedId = targetBedId;
+          adm.ward = tgtBed.ward;
+        }
+      }
+
+      audit("TRANSFER_BED", req.user, patientId, { sourceBedId, targetBedId, reason });
+      return { sourceBed: srcBed, targetBed: tgtBed, message: `Patient successfully transferred to ${targetBedId}.` };
+    });
+
+    res.json(result);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
+app.post(["/admissions/discharge-clinical", "/api/admissions/discharge-clinical"], auth, role("DOCTOR", "ADMIN"), (req, res) => {
+  const { admissionId, summary = "Patient condition stabilized. Medically fit for discharge." } = req.body;
+  const adm = (db.admissions || []).find(a => a.id === admissionId);
+  if (!adm) return res.status(404).json({ error: "Admission record not found." });
+
+  adm.status = "CLINICAL_DISCHARGE";
+  adm.dischargeSummary = summary;
+  adm.clinicalDischargeAt = now();
+  adm.signedDoctor = req.user.name;
+
+  notify(adm.patientId, "Clinical Discharge Approved", "Attending physician has authorized your discharge. Please proceed to billing clearance.", "INFO");
+  saveDb();
+  audit("CLINICAL_DISCHARGE", req.user, adm.patientId, { admissionId });
+  res.json({ admission: adm, message: "Clinical discharge signed off. Pending final administrative/billing clearance." });
+});
+
+app.post(["/admissions/discharge", "/api/admissions/discharge", "/api/admissions/discharge-clearance"], auth, role("DOCTOR", "HOSPITAL_ADMIN", "ADMIN"), (req, res) => {
+  const { admissionId, summary = "Patient recovered and fit for discharge." } = req.body;
+  const adm = (db.admissions || []).find(a => a.id === admissionId);
+  if (!adm) return res.status(404).json({ error: "Admission record not found." });
+
+  adm.status = "DISCHARGED";
+  adm.dischargeDate = now();
+  if (summary) adm.dischargeSummary = summary;
+
+  let bed = null;
+  if (adm.bedId) {
+    bed = (db.beds || []).find(b => b.bedId === adm.bedId);
+    if (bed) {
+      // Bed must move to CLEANING, not AVAILABLE yet!
+      bed.status = "CLEANING";
+      bed.currentPatientId = null;
+      bed.currentPatientName = null;
+      bed.currentAdmissionId = null;
+    }
+  }
+
+  notify(adm.patientId, "Discharge Process Completed", "Your hospital discharge has been finalized. Discharge summary is available in your portal.", "SUCCESS");
+  saveDb();
+  audit("PATIENT_DISCHARGE", req.user, adm.patientId, { admissionId, bedMovedTo: "CLEANING" });
+  res.json({ admission: adm, bed, message: "Discharge complete. Bed moved to CLEANING status." });
+});
+
+app.post(["/beds/:id/complete-cleaning", "/api/beds/:id/complete-cleaning"], auth, role("HOSPITAL_ADMIN", "NURSE", "ADMIN"), (req, res) => {
+  const bedId = req.params.id;
+  const bed = (db.beds || []).find(b => b.bedId === bedId);
+  if (!bed) return res.status(404).json({ error: "Bed not found." });
+
+  bed.status = "AVAILABLE";
+  bed.cleanedAt = now();
+  bed.cleanedBy = req.user.name;
+  bed.currentPatientId = null;
+  bed.currentPatientName = null;
+  bed.currentAdmissionId = null;
+
+  saveDb();
+  audit("COMPLETE_BED_CLEANING", req.user, null, { bedId });
+  res.json({ bed, message: `Bed ${bedId} sanitization complete. Marked AVAILABLE for new admissions.` });
+});
+
+app.post(["/beds/:id/release", "/api/beds/:id/release", "/api/beds/update-status", "/api/beds/status"], auth, role("HOSPITAL_ADMIN", "NURSE", "ADMIN"), (req, res) => {
   const bedId = req.params.id || req.body.bedId;
   const targetStatus = req.body.status || "CLEANING";
 
@@ -1872,6 +2922,8 @@ app.post(["/beds/:id/release", "/api/beds/update-status"], auth, role("HOSPITAL_
     bed.currentPatientId = null;
     bed.currentPatientName = null;
     bed.currentAdmissionId = null;
+    bed.reservedForPatientId = null;
+    bed.reservedForPatientName = null;
   }
 
   saveDb();
@@ -1879,54 +2931,67 @@ app.post(["/beds/:id/release", "/api/beds/update-status"], auth, role("HOSPITAL_
   res.json({ bed });
 });
 
-/* ------------------------------------------------------------------ */
-/* ADMISSIONS & DISCHARGES APIs                                       */
-/* ------------------------------------------------------------------ */
+app.post(["/api/beds/discharge", "/beds/discharge"], auth, role("DOCTOR", "HOSPITAL_ADMIN", "ADMIN", "NURSE"), (req, res) => {
+  const bedId = req.body.bedId || req.params.id;
+  const bed = (db.beds || []).find(b => b.bedId === bedId);
+  if (!bed) return res.status(404).json({ error: "Bed not found." });
+
+  if (bed.currentAdmissionId) {
+    const adm = (db.admissions || []).find(a => a.id === bed.currentAdmissionId);
+    if (adm) {
+      adm.status = "DISCHARGED";
+      adm.dischargeDate = now();
+    }
+  }
+
+  bed.status = "CLEANING";
+  bed.currentPatientId = null;
+  bed.currentPatientName = null;
+  bed.currentAdmissionId = null;
+
+  saveDb();
+  audit("DISCHARGE_BED", req.user, null, { bedId });
+  res.json({ bed, message: `Bed ${bedId} discharged and moved to CLEANING status.` });
+});
 
 app.get(["/admissions", "/api/admissions"], auth, (req, res) => {
   let list = db.admissions || [];
-  if (req.query.patientId) list = list.filter(a => a.patientId === req.query.patientId);
+  if (req.user.role === "PATIENT") {
+    list = list.filter(a => a.patientId === req.user.id);
+  } else if (req.query.patientId) {
+    list = list.filter(a => a.patientId === req.query.patientId);
+  }
   if (req.query.status) list = list.filter(a => a.status === req.query.status);
   res.json({ admissions: list });
 });
 
-app.post(["/admissions/discharge", "/api/admissions/discharge"], auth, role("DOCTOR", "HOSPITAL_ADMIN", "ADMIN"), (req, res) => {
-  const { admissionId, summary = "Patient recovered and fit for discharge." } = req.body;
-  const adm = (db.admissions || []).find(a => a.id === admissionId);
-  if (!adm) return res.status(404).json({ error: "Admission record not found." });
-
-  adm.status = "DISCHARGED";
-  adm.dischargeDate = now();
-  adm.dischargeSummary = summary;
-
-  if (adm.bedId) {
-    const bed = (db.beds || []).find(b => b.bedId === adm.bedId);
-    if (bed) {
-      bed.status = "CLEANING";
-      bed.currentPatientId = null;
-      bed.currentPatientName = null;
-      bed.currentAdmissionId = null;
-    }
-  }
-
-  notify(adm.patientId, "Discharge Process Completed", "Your discharge has been completed. Follow-up summary available in your portal.", "SUCCESS");
-  saveDb();
-  audit("PATIENT_DISCHARGE", req.user, adm.patientId, { admissionId });
-  res.json({ admission: adm });
-});
-
 /* ------------------------------------------------------------------ */
-/* BILLING & INVOICE APIs                                             */
+/* BILLING, INVOICE & PAYMENT RECEIPT APIs                            */
 /* ------------------------------------------------------------------ */
 
 app.get(["/invoices", "/api/invoices", "/api/billing/invoices"], auth, (req, res) => {
   let list = db.invoices || [];
-  if (req.query.patientId) list = list.filter(i => i.patientId === req.query.patientId);
+  if (req.user.role === "PATIENT") {
+    list = list.filter(i => i.patientId === req.user.id);
+  } else if (req.query.patientId) {
+    list = list.filter(i => i.patientId === req.query.patientId);
+  }
   if (req.query.status) list = list.filter(i => i.status === req.query.status);
   res.json({ invoices: list });
 });
 
-app.post(["/invoices/:id/payment", "/api/billing/pay"], auth, (req, res) => {
+app.get(["/api/billing/receipts", "/billing/receipts"], auth, (req, res) => {
+  let list = db.billingReceipts || [];
+  if (req.user.role === "PATIENT") {
+    list = list.filter(r => r.patientId === req.user.id);
+  } else if (req.query.patientId) {
+    list = list.filter(r => r.patientId === req.query.patientId);
+  }
+  if (req.query.invoiceId) list = list.filter(r => r.invoiceId === req.query.invoiceId);
+  res.json({ receipts: list });
+});
+
+app.post(["/invoices/:id/payment", "/api/billing/pay", "/api/billing/invoices/:id/pay"], auth, (req, res) => {
   const invId = req.params.id || req.body.invoiceId;
   const { paymentMethod = "Credit Card" } = req.body;
 
@@ -1937,9 +3002,52 @@ app.post(["/invoices/:id/payment", "/api/billing/pay"], auth, (req, res) => {
   inv.paidAt = now();
   inv.paymentMethod = paymentMethod;
 
+  // Generate persistent receipt
+  const receipt = {
+    id: id("RCPT"),
+    receiptNumber: `REC-${Date.now().toString().slice(-6)}`,
+    invoiceId: inv.id,
+    patientId: inv.patientId,
+    patientName: inv.patientName || (db.users.find(u => u.id === inv.patientId)?.name) || "Patient",
+    items: inv.items,
+    amount: inv.totalAmount,
+    paymentMethod: inv.paymentMethod,
+    paidAt: inv.paidAt,
+    issuedBy: req.user.name
+  };
+  db.billingReceipts = db.billingReceipts || [];
+  db.billingReceipts.push(receipt);
+
+  // If this invoice is connected to a pharmacy order, mark order as paid
+  if (inv.pharmacyOrderId) {
+    const po = (db.pharmacyOrders || []).find(o => o.id === inv.pharmacyOrderId);
+    if (po) po.paymentStatus = "PAID";
+  }
+  if (inv.prescriptionId) {
+    const rx = (db.prescriptions || []).find(p => p.id === inv.prescriptionId);
+    if (rx) rx.paymentStatus = "PAID";
+  }
+
+  notify(inv.patientId, "Payment Received", `Payment of ₹${inv.totalAmount} has been recorded via ${paymentMethod}. Receipt #${receipt.receiptNumber} issued.`, "SUCCESS");
   saveDb();
-  audit("PAY_INVOICE", req.user, inv.patientId, { invoiceId: inv.id, amount: inv.totalAmount });
-  res.json({ invoice: inv });
+  audit("PAY_INVOICE", req.user, inv.patientId, { invoiceId: inv.id, amount: inv.totalAmount, paymentMethod, receiptId: receipt.id });
+  res.json({ invoice: inv, receipt });
+});
+
+app.post(["/invoices/:id/refund", "/api/billing/invoices/:id/refund"], auth, role("HOSPITAL_ADMIN", "ADMIN"), (req, res) => {
+  const invId = req.params.id;
+  const { reason = "Patient requested billing cancellation" } = req.body;
+
+  const inv = (db.invoices || []).find(i => i.id === invId);
+  if (!inv) return res.status(404).json({ error: "Invoice not found." });
+
+  inv.status = "REFUNDED";
+  inv.refundedAt = now();
+  inv.refundReason = reason;
+
+  saveDb();
+  audit("REFUND_INVOICE", req.user, inv.patientId, { invoiceId: inv.id, amount: inv.totalAmount, reason });
+  res.json({ invoice: inv, message: "Invoice refund recorded successfully." });
 });
 
 /* ------------------------------------------------------------------ */
@@ -1964,11 +3072,118 @@ app.patch(["/notifications/:id/read", "/api/notifications/mark-read"], auth, (re
 /* ------------------------------------------------------------------ */
 
 app.get("/api/emergency/dashboard", auth, (req, res) => {
+  const cases = db.emergencyCases || [];
   res.json({
-    activeCases: db.emergencyCases || [],
+    activeCases: cases,
     emergencyBeds: (db.beds || []).filter(b => b.ward === "Emergency"),
-    icuBeds: (db.beds || []).filter(b => b.ward === "ICU")
+    icuBeds: (db.beds || []).filter(b => b.ward === "ICU"),
+    triageSummary: {
+      red: cases.filter(c => c.triageStatus === "RED" && c.status !== "DISCHARGED").length,
+      yellow: cases.filter(c => c.triageStatus === "YELLOW" && c.status !== "DISCHARGED").length,
+      green: cases.filter(c => c.triageStatus === "GREEN" && c.status !== "DISCHARGED").length
+    }
   });
+});
+
+app.get(["/api/emergency/cases", "/emergency/cases"], auth, (req, res) => {
+  res.json({ emergencyCases: db.emergencyCases || [] });
+});
+
+app.get(["/api/emergency/break-glass-logs", "/emergency/break-glass-logs"], auth, (req, res) => {
+  res.json({ logs: db.breakGlassLogs || [] });
+});
+
+app.post("/api/emergency/rapid-register", auth, role("RECEPTIONIST", "NURSE", "DOCTOR", "ADMIN"), (req, res) => {
+  const {
+    patientName = "UNKNOWN TRAUMA ARRIVAL",
+    gender = "Unknown",
+    estimatedAge = 35,
+    triageCategory = "RED",
+    chiefComplaint = "Acute Trauma / Road Traffic Accident",
+    vitals = { bp: "90/60", pulse: 120, spO2: 92, gcs: 11 },
+    bedId,
+    doctorName
+  } = req.body;
+
+  const tempMrn = `EMERG-MRN-${Date.now().toString().slice(-6)}`;
+  const emergCase = {
+    id: id("EMG"),
+    emergencyNumber: `ER-${Date.now().toString().slice(-5)}`,
+    patientId: `TEMP-${tempMrn}`,
+    mrn: tempMrn,
+    patientName,
+    isTemporaryIdentity: true,
+    gender,
+    estimatedAge,
+    triageStatus: triageCategory,
+    priority: triageCategory === "RED" ? "CRITICAL" : triageCategory === "YELLOW" ? "URGENT" : "STABLE",
+    chiefComplaint,
+    vitals,
+    assignedDoctor: doctorName || "On-Duty Trauma Surgeon",
+    assignedBedId: bedId || null,
+    status: "ACTIVE",
+    arrivedAt: now()
+  };
+
+  // If emergency bed provided, occupy it
+  if (bedId) {
+    const bed = (db.beds || []).find(b => b.bedId === bedId);
+    if (bed && (bed.status === "AVAILABLE" || bed.status === "RESERVED")) {
+      bed.status = "OCCUPIED";
+      bed.currentPatientId = emergCase.patientId;
+      bed.currentPatientName = emergCase.patientName;
+    }
+  }
+
+  db.emergencyCases = db.emergencyCases || [];
+  db.emergencyCases.push(emergCase);
+  saveDb();
+  audit("RAPID_EMERGENCY_REGISTRATION", req.user, null, { tempMrn, triageCategory, bedId });
+  res.json({ emergencyCase: emergCase, message: "Emergency case created with temporary MRN." });
+});
+
+app.post("/api/emergency/triage-update", auth, role("NURSE", "DOCTOR", "ADMIN"), (req, res) => {
+  const { emergencyCaseId, triageCategory, vitals } = req.body;
+  const emergCase = (db.emergencyCases || []).find(e => e.id === emergencyCaseId || e.emergencyNumber === emergencyCaseId);
+  if (!emergCase) return res.status(404).json({ error: "Emergency case not found." });
+
+  if (triageCategory) {
+    emergCase.triageStatus = triageCategory;
+    emergCase.priority = triageCategory === "RED" ? "CRITICAL" : triageCategory === "YELLOW" ? "URGENT" : "STABLE";
+  }
+  if (vitals) emergCase.vitals = { ...emergCase.vitals, ...vitals };
+  emergCase.updatedAt = now();
+
+  saveDb();
+  audit("UPDATE_EMERGENCY_TRIAGE", req.user, emergCase.patientId, { triageCategory, vitals });
+  res.json({ emergencyCase: emergCase, message: "Emergency triage status updated." });
+});
+
+app.post("/api/emergency/link-patient", auth, role("RECEPTIONIST", "HOSPITAL_ADMIN", "ADMIN"), (req, res) => {
+  const { emergencyCaseId, permanentPatientId } = req.body;
+  const emergCase = (db.emergencyCases || []).find(e => e.id === emergencyCaseId || e.emergencyNumber === emergencyCaseId);
+  if (!emergCase) return res.status(404).json({ error: "Emergency case not found." });
+
+  const permanentPatient = db.users.find(u => u.id === permanentPatientId);
+  if (!permanentPatient) return res.status(404).json({ error: "Registered patient record not found." });
+
+  emergCase.linkedPatientId = permanentPatientId;
+  emergCase.patientId = permanentPatientId;
+  emergCase.patientName = permanentPatient.name;
+  emergCase.isTemporaryIdentity = false;
+
+  // Also update bed assignment if active
+  if (emergCase.assignedBedId) {
+    const bed = (db.beds || []).find(b => b.bedId === emergCase.assignedBedId);
+    if (bed) {
+      bed.currentPatientId = permanentPatientId;
+      bed.currentPatientName = permanentPatient.name;
+    }
+  }
+
+  saveDb();
+  audit("LINK_EMERGENCY_PATIENT", req.user, permanentPatientId, { emergencyCaseId, permanentPatientId });
+  res.json({ emergencyCase: emergCase, message: `Emergency record successfully linked to permanent patient identity (${permanentPatient.name}).` });
 });
 
 app.post("/api/emergency/break-glass", auth, role("DOCTOR", "NURSE", "ADMIN"), (req, res) => {

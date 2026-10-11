@@ -2029,10 +2029,18 @@ async function renderPharmacyPortal() {
                   </div>
 
                   <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
-                    ${o.dispensedStatus==='PENDING' ? `<button class="btn btn-secondary" style="font-size:12px" onclick="verifyPharmacyOrder('${o.id}')">1. Verify Prescription</button>` : ''}
-                    ${o.dispensedStatus==='VERIFIED' ? `<button class="btn btn-primary" style="font-size:12px" onclick="generatePharmacyBill('${o.id}')">2. Generate Bill (₹${o.totalPrice})</button>` : ''}
-                    ${o.dispensedStatus==='BILL_GENERATED' || o.dispensedStatus==='VERIFIED' ? `<button class="btn btn-primary" style="font-size:12px;background:#7c3aed" onclick="openPackingScreen('${o.id}', '${esc(o.medicationName)}', '${o.barcode}')">3. Pack & Barcode Verify</button>` : ''}
-                    ${o.dispensedStatus==='READY_FOR_COLLECTION' ? `<button class="btn btn-primary" style="font-size:12px;background:#10b981" onclick="dispensePharmacyOrder('${o.id}')">4. Dispense & Deduct Inventory</button>` : ''}
+                    ${(o.dispensedStatus==='PENDING' || o.status==='RECEIVED') ? `<button class="btn btn-secondary" style="font-size:12px" onclick="verifyPharmacyOrder('${o.id}')">1. Review & Verify</button>` : ''}
+                    ${(o.dispensedStatus==='VERIFIED' || o.status==='UNDER_REVIEW') ? `<button class="btn btn-primary" style="font-size:12px" onclick="preparePharmacyOrder('${o.id}')">2. Prepare & Reserve Stock</button>` : ''}
+                    ${(o.dispensedStatus==='PREPARING' || o.status==='PREPARING') ? `<button class="btn btn-primary" style="font-size:12px" onclick="generatePharmacyBill('${o.id}')">3. Generate Bill (₹${o.totalPrice || o.totalAmount})</button>` : ''}
+                    ${(o.dispensedStatus==='BILL_GENERATED' || o.status==='BILLED' || o.dispensedStatus==='VERIFIED') ? `
+                      ${o.paymentStatus !== 'PAID' ? `<button class="btn btn-secondary" style="font-size:12px;background:#0284c7;color:white" onclick="recordPharmacyPayment('${o.id}')">Record Payment (₹${o.totalPrice || o.totalAmount})</button>` : `<span class="pill pill-green" style="font-size:11px">✓ Paid</span>`}
+                      <button class="btn btn-primary" style="font-size:12px;background:#7c3aed" onclick="openPackingScreen('${o.id}', '${esc(o.medicationName)}', '${o.barcode}')">4. Pack & Barcode Verify</button>
+                    ` : ''}
+                    ${(o.dispensedStatus==='READY_FOR_COLLECTION' || o.status==='READY_FOR_COLLECTION') ? `<button class="btn btn-primary" style="font-size:12px;background:#10b981" onclick="dispensePharmacyOrder('${o.id}')">5. Dispense & Deduct Inventory</button>` : ''}
+                    ${(o.dispensedStatus !== 'DISPENSED' && o.status !== 'CANCELLED') ? `
+                      <button class="btn btn-outline" style="font-size:11px;color:#dc2626;border-color:#fca5a5" onclick="cancelPharmacyOrder('${o.id}')">Cancel</button>
+                      <button class="btn btn-outline" style="font-size:11px" onclick="substitutePharmacyOrder('${o.id}')">Substitute</button>
+                    ` : ''}
                   </div>
                 </div>
               `).join("")}
@@ -2049,7 +2057,7 @@ async function renderPharmacyPortal() {
                   <strong>${esc(i.name)}</strong>
                   <span class="pill ${i.status==='HEALTHY'?'pill-green':'pill-red'}">${esc(i.status)}</span>
                 </div>
-                <small style="color:var(--muted);display:block;margin-top:2px">Stock: <strong>${i.stockQuantity}</strong> | Price: ₹${i.unitPrice} | Barcode: ${esc(i.barcode)}</small>
+                <small style="color:var(--muted);display:block;margin-top:2px">Stock: <strong>${i.stockQuantity}</strong> (Reserved: ${i.reservedQuantity || 0}) | Price: ₹${i.unitPrice} | Expiry: ${esc(i.expiryDate || 'N/A')}</small>
               </div>
             `).join("")}
           </div>
@@ -2082,10 +2090,48 @@ async function verifyPharmacyOrder(prescriptionId) {
   } catch (err) { showError(err); }
 }
 
+async function preparePharmacyOrder(orderId) {
+  try {
+    const res = await api(`/api/pharmacy/orders/${orderId}/prepare`, { method: "POST" });
+    alert("✓ " + (res.message || "Medication batch validated & stock reserved."));
+    renderPharmacyPortal();
+  } catch (err) { showError(err); }
+}
+
 async function generatePharmacyBill(prescriptionId) {
   try {
-    const res = await api("/api/pharmacy/generate-bill", { method: "POST", body: JSON.stringify({ prescriptionId }) });
+    const res = await api(`/api/pharmacy/orders/${prescriptionId}/generate-bill`, { method: "POST", body: JSON.stringify({ prescriptionId }) });
     alert(`✓ Bill Generated! Invoice ID: ${res.invoice.id} - Total Amount: ₹${res.invoice.totalAmount}`);
+    renderPharmacyPortal();
+  } catch (err) { showError(err); }
+}
+
+async function recordPharmacyPayment(orderId) {
+  const paymentMethod = prompt("Select Payment Method (UPI / Cash / Card / Insurance):", "UPI");
+  if (!paymentMethod) return;
+  try {
+    const res = await api(`/api/pharmacy/orders/${orderId}/record-payment`, { method: "POST", body: JSON.stringify({ paymentMethod }) });
+    alert(`✓ Payment of ₹${res.receipt.amount} recorded! Receipt #${res.receipt.receiptNumber} generated.`);
+    renderPharmacyPortal();
+  } catch (err) { showError(err); }
+}
+
+async function cancelPharmacyOrder(orderId) {
+  const reason = prompt("Enter Cancellation Reason:", "Prescription cancelled by clinician");
+  if (!reason) return;
+  try {
+    await api(`/api/pharmacy/orders/${orderId}/cancel`, { method: "POST", body: JSON.stringify({ reason }) });
+    alert("✓ Order cancelled and reserved inventory released.");
+    renderPharmacyPortal();
+  } catch (err) { showError(err); }
+}
+
+async function substitutePharmacyOrder(orderId) {
+  const substituteMedicineName = prompt("Enter Generic Substitute Name (e.g. Paracetamol 650mg):");
+  if (!substituteMedicineName) return;
+  try {
+    const res = await api(`/api/pharmacy/orders/${orderId}/substitute`, { method: "POST", body: JSON.stringify({ substituteMedicineName }) });
+    alert("✓ " + res.message);
     renderPharmacyPortal();
   } catch (err) { showError(err); }
 }
@@ -2189,15 +2235,22 @@ async function renderScanPortal() {
                 <div style="display:flex;justify-content:space-between;align-items:center">
                   <div>
                     <strong>📻 ${esc(s.scanType)} (${esc(s.id)})</strong>
-                    <small style="display:block;color:var(--muted)">Patient: <strong>${esc(s.patientName)}</strong> (${esc(s.patientId)}) | Price: ₹${s.price || 600}</small>
+                    <small style="display:block;color:var(--muted)">Patient: <strong>${esc(s.patientName)}</strong> (${esc(s.patientId)}) | Price: ₹${s.price || 600} ${s.roomNumber ? `| Room: ${esc(s.roomNumber)}` : ''}</small>
                   </div>
-                  <span class="pill ${s.status==='PUBLISHED'?'pill-green':'pill-yellow'}">${esc(s.status)}</span>
+                  <span class="pill ${s.status==='PUBLISHED'?'pill-green':s.status==='COMPLETED'?'pill-blue':'pill-yellow'}">${esc(s.status)}</span>
                 </div>
 
                 <div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap">
-                  <button class="btn btn-outline" style="font-size:11px" onclick="updateScanStatus('${s.id}', 'SCHEDULED')">Schedule</button>
-                  <button class="btn btn-outline" style="font-size:11px" onclick="updateScanStatus('${s.id}', 'IN_PROGRESS')">In Progress</button>
-                  <button class="btn btn-primary" style="font-size:11px" onclick="publishScanReport('${s.id}')">Verify & Publish Report</button>
+                  ${s.status === 'REQUESTED' ? `<button class="btn btn-secondary" style="font-size:11px" onclick="scheduleScanModal('${s.id}')">1. Schedule Slot & Machine</button>` : ''}
+                  ${s.status === 'SCHEDULED' ? `<button class="btn btn-primary" style="font-size:11px" onclick="arriveScan('${s.id}')">2. Confirm Patient Arrived</button>` : ''}
+                  ${s.status === 'PATIENT_ARRIVED' ? `<button class="btn btn-primary" style="font-size:11px" onclick="startScan('${s.id}')">3. Start Scan Acquisition</button>` : ''}
+                  ${s.status === 'IN_PROGRESS' ? `<button class="btn btn-primary" style="font-size:11px;background:#7c3aed" onclick="completeScan('${s.id}')">4. Complete Scan Acquisition</button>` : ''}
+                  ${(s.status === 'COMPLETED' || s.status === 'REPORT_PENDING') ? `
+                    <button class="btn btn-secondary" style="font-size:11px" onclick="findingsScan('${s.id}')">5. Enter Radiologist Findings</button>
+                    <button class="btn btn-primary" style="font-size:11px;background:#10b981" onclick="publishScanReport('${s.id}')">6. Verify & Publish Report</button>
+                  ` : ''}
+                  ${s.status === 'UNDER_REVIEW' ? `<button class="btn btn-primary" style="font-size:11px;background:#10b981" onclick="publishScanReport('${s.id}')">Verify & Publish Final Report</button>` : ''}
+                  ${s.status === 'PUBLISHED' ? `<button class="btn btn-outline" style="font-size:11px" onclick="viewScanReportModal('${s.id}')">📄 View Verified Report</button>` : ''}
                 </div>
               </div>
             `).join("")}
@@ -2208,21 +2261,68 @@ async function renderScanPortal() {
   `);
 }
 
-async function updateScanStatus(scanOrderId, status) {
+async function scheduleScanModal(scanId) {
+  const date = prompt("Enter Scheduled Date (YYYY-MM-DD):", new Date().toISOString().split("T")[0]);
+  const time = prompt("Enter Scheduled Slot Time:", "11:30 AM");
+  if (!date) return;
   try {
-    await api(`/api/scan-orders/status`, { method: "POST", body: JSON.stringify({ scanOrderId, status }) });
+    await api(`/api/scan/orders/${scanId}/schedule`, { method: "POST", body: JSON.stringify({ scheduledDate: date, scheduledTime: time }) });
+    alert(`✓ Scan scheduled for ${date} at ${time}.`);
     renderScanPortal();
   } catch (err) { showError(err); }
 }
 
-async function publishScanReport(scanOrderId) {
-  const reportText = prompt("Enter Radiology Report Findings:", "Chest X-Ray PA View: Clear lung fields, normal cardiothoracic ratio.");
-  if (!reportText) return;
-
+async function arriveScan(scanId) {
   try {
-    await api(`/api/scan-orders/status`, { method: "POST", body: JSON.stringify({ scanOrderId, status: "PUBLISHED", reportText }) });
-    alert("✓ Radiology Scan Report Verified & Published!");
+    await api(`/api/scan/orders/${scanId}/arrive`, { method: "POST" });
+    alert("✓ Patient arrival marked at radiology reception.");
     renderScanPortal();
+  } catch (err) { showError(err); }
+}
+
+async function startScan(scanId) {
+  try {
+    await api(`/api/scan/orders/${scanId}/start`, { method: "POST" });
+    alert("✓ Scan acquisition started in imaging suite.");
+    renderScanPortal();
+  } catch (err) { showError(err); }
+}
+
+async function completeScan(scanId) {
+  try {
+    await api(`/api/scan/orders/${scanId}/complete`, { method: "POST" });
+    alert("✓ Imaging procedure completed. Sent to radiologist for review.");
+    renderScanPortal();
+  } catch (err) { showError(err); }
+}
+
+async function findingsScan(scanId) {
+  const findings = prompt("Enter Radiologist Preliminary Findings:", "Visualized organs clear without acute pathological abnormalities.");
+  if (!findings) return;
+  const impression = prompt("Enter Clinical Impression:", "Normal study.");
+  try {
+    await api(`/api/scan/orders/${scanId}/findings`, { method: "POST", body: JSON.stringify({ findings, impression }) });
+    alert("✓ Preliminary findings recorded. Order status set to UNDER_REVIEW.");
+    renderScanPortal();
+  } catch (err) { showError(err); }
+}
+
+async function publishScanReport(scanId) {
+  const findings = prompt("Enter Final Radiology Report Findings:", "Clear lung fields, normal cardiac silhouette, no acute cardiopulmonary process.");
+  if (!findings) return;
+  const impression = prompt("Enter Final Impression:", "Normal examination.");
+  try {
+    await api(`/api/scan/orders/${scanId}/verify-publish`, { method: "POST", body: JSON.stringify({ findings, impression }) });
+    alert("✓ Radiology Scan Report Verified & Published to Patient Portal!");
+    renderScanPortal();
+  } catch (err) { showError(err); }
+}
+
+async function viewScanReportModal(scanId) {
+  try {
+    const res = await api(`/api/scan/reports/${scanId}`);
+    const r = res.report;
+    alert(`📄 RADIOLOGY REPORT\n\nScan: ${r.scanType}\nPatient: ${r.patientName}\nStatus: ${r.status}\n\nFINDINGS:\n${r.findings}\n\nIMPRESSION:\n${r.impression}\n\nVerified by: ${r.radiologist} on ${new Date(r.publishedAt).toLocaleDateString()}`);
   } catch (err) { showError(err); }
 }
 
@@ -2238,7 +2338,7 @@ async function renderLabPortal() {
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px">
         <div>
           <h2 style="color:var(--blue-dark);margin:0">PATHOLOGY LABORATORY PORTAL</h2>
-          <p style="font-size:13px;color:var(--muted);margin-top:2px">Specimen Processing & Verified Result Entry</p>
+          <p style="font-size:13px;color:var(--muted);margin-top:2px">Specimen Processing, Abnormal Flags & Verified Result Entry</p>
         </div>
       </div>
 
@@ -2249,22 +2349,28 @@ async function renderLabPortal() {
         ` : `
           <div style="display:flex;flex-direction:column;gap:12px;margin-top:12px">
             ${labs.map(l => `
-              <div class="card" style="padding:16px">
+              <div class="card" style="padding:16px;border-left:4px solid ${l.status==='PUBLISHED'?'#10b981':l.status==='IN_PROGRESS'?'#0284c7':'#f59e0b'}">
                 <div style="display:flex;justify-content:space-between;align-items:center">
                   <div>
                     <strong>🧪 ${esc(l.testName)} (${esc(l.id)})</strong>
-                    <small style="display:block;color:var(--muted)">Patient: <strong>${esc(l.patientName)}</strong> (${esc(l.patientId)}) | Price: ₹${l.price || 350}</small>
+                    <small style="display:block;color:var(--muted)">Patient: <strong>${esc(l.patientName)}</strong> (${esc(l.patientId)}) | Price: ₹${l.price || 350} ${l.sampleBarcode ? `| Sample: ${esc(l.sampleBarcode)}` : ''}</small>
                   </div>
-                  <span class="pill ${l.status==='PUBLISHED'?'pill-green':'pill-yellow'}">${esc(l.status)}</span>
+                  <span class="pill ${l.status==='PUBLISHED'?'pill-green':l.status==='IN_PROGRESS'?'pill-blue':'pill-yellow'}">${esc(l.status)}</span>
+                </div>
+
+                <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
+                  ${l.status === 'REQUESTED' ? `<button class="btn btn-secondary" style="font-size:11px" onclick="collectLabSample('${l.id}')">1. Collect Blood/Specimen Sample</button>` : ''}
+                  ${l.status === 'SAMPLE_COLLECTED' ? `<button class="btn btn-primary" style="font-size:11px" onclick="processLabSample('${l.id}')">2. Process in Analyzer</button>` : ''}
+                  ${l.status === 'IN_PROGRESS' ? `<button class="btn btn-primary" style="font-size:11px;background:#7c3aed" onclick="enterLabResult('${l.id}', '${esc(l.testName)}')">3. Enter Values & Evaluate Ranges</button>` : ''}
+                  ${l.status === 'RESULT_ENTERED' ? `<button class="btn btn-primary" style="font-size:11px;background:#10b981" onclick="publishLabResult('${l.id}')">4. Pathologist Sign-Off & Publish</button>` : ''}
                 </div>
 
                 ${l.status==='PUBLISHED' ? `
-                  <div style="margin-top:8px;font-size:13px;color:#15803d">
-                    <strong>Result:</strong> ${esc(l.result)}
+                  <div style="margin-top:10px;padding:8px 12px;background:#f0fdf4;border-radius:6px;font-size:13px;color:#15803d">
+                    <strong>Verified Result:</strong> ${esc(l.result)}
+                    ${l.isAbnormal ? '<span class="pill pill-red" style="margin-left:8px">⚠️ CRITICAL / ABNORMAL</span>' : '<span class="pill pill-green" style="margin-left:8px">✓ NORMAL</span>'}
                   </div>
-                ` : `
-                  <button class="btn btn-primary" style="font-size:11px;margin-top:10px" onclick="publishLabResult('${l.id}')">Enter & Publish Verified Result</button>
-                `}
+                ` : ''}
               </div>
             `).join("")}
           </div>
@@ -2274,13 +2380,37 @@ async function renderLabPortal() {
   `);
 }
 
-async function publishLabResult(labOrderId) {
-  const result = prompt("Enter Lab Test Result:", "Hemoglobin: 14.2 g/dL, WBC: 7,500 /mcL (Normal)");
-  if (!result) return;
-
+async function collectLabSample(labId) {
   try {
-    await api(`/api/lab-orders/status`, { method: "POST", body: JSON.stringify({ labOrderId, status: "PUBLISHED", result }) });
-    alert("✓ Lab Report Verified & Published!");
+    const res = await api(`/api/lab/orders/${labId}/collect-sample`, { method: "POST" });
+    alert(`✓ Sample Collected! Sample ID Barcode: ${res.labOrder.sampleBarcode}`);
+    renderLabPortal();
+  } catch (err) { showError(err); }
+}
+
+async function processLabSample(labId) {
+  try {
+    await api(`/api/lab/orders/${labId}/process`, { method: "POST" });
+    alert("✓ Specimen loaded into laboratory analyzer for automated testing.");
+    renderLabPortal();
+  } catch (err) { showError(err); }
+}
+
+async function enterLabResult(labId, testName) {
+  const result = prompt(`Enter ${testName} Measured Value:`, "WBC: 14,800 /mcL (Elevated)");
+  if (!result) return;
+  const isAbnormal = confirm("Is this measured value ABNORMAL / OUTSIDE REFERENCE RANGE?");
+  try {
+    await api(`/api/lab/orders/${labId}/result`, { method: "POST", body: JSON.stringify({ result, isAbnormal }) });
+    alert("✓ Test result entered and evaluated. Order set to RESULT_ENTERED.");
+    renderLabPortal();
+  } catch (err) { showError(err); }
+}
+
+async function publishLabResult(labId) {
+  try {
+    await api(`/api/lab/orders/${labId}/verify-publish`, { method: "POST" });
+    alert("✓ Lab Report Signed Off by Pathologist & Published to Patient Portal!");
     renderLabPortal();
   } catch (err) { showError(err); }
 }
@@ -2556,9 +2686,10 @@ async function renderEmergencyPortal() {
           <h2 style="color:#dc2626;margin:0">🚨 EMERGENCY & URGENT CARE WORKFLOW</h2>
           <p style="font-size:13px;color:var(--muted);margin-top:2px">Immediate Triage Classification, ER Bed Allocation & Audit-Logged Break-Glass Access</p>
         </div>
-        <div style="display:flex;gap:8px">
-          <button class="btn btn-danger" onclick="triggerBreakGlass()">🚨 Trigger Break-Glass Access</button>
-          <button class="btn btn-primary" onclick="openRegisterPatientModal()">+ Register Emergency Patient</button>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-danger" onclick="openRapidEmergencyModal()">⚡ Rapid Trauma Intake (Auto Temp MRN)</button>
+          <button class="btn btn-outline" style="border-color:#dc2626;color:#dc2626" onclick="triggerBreakGlass()">🚨 Trigger Break-Glass Access</button>
+          <button class="btn btn-primary" onclick="openRegisterPatientModal()">+ Register Patient</button>
         </div>
       </div>
 
@@ -2574,17 +2705,19 @@ async function renderEmergencyPortal() {
           ` : `
             <div style="display:flex;flex-direction:column;gap:12px;margin-top:12px">
               ${emergencyCases.map(c => `
-                <div class="card" style="padding:16px;border-left:5px solid ${c.triageLevel==='RED'?'#dc2626':c.triageLevel==='YELLOW'?'#f59e0b':'#10b981'}">
+                <div class="card" style="padding:16px;border-left:5px solid ${(c.triageStatus||c.triageLevel)==='RED'?'#dc2626':(c.triageStatus||c.triageLevel)==='YELLOW'?'#f59e0b':'#10b981'}">
                   <div style="display:flex;justify-content:space-between;align-items:center">
                     <div>
                       <strong style="font-size:16px;color:var(--blue-dark)">🚨 ${esc(c.patientName)}</strong>
-                      <small style="display:block;color:var(--muted)">Complaint: ${esc(c.chiefComplaint || 'Acute Distress')} | Time: ${new Date(c.timestamp || Date.now()).toLocaleTimeString()}</small>
+                      <small style="display:block;color:var(--muted)">MRN: <strong>${esc(c.mrn || c.patientId)}</strong> | Complaint: ${esc(c.chiefComplaint || 'Acute Distress')} | Assigned Bed: ${esc(c.assignedBedId || 'None')}</small>
                     </div>
-                    <span class="pill ${c.triageLevel==='RED'?'pill-red':c.triageLevel==='YELLOW'?'pill-yellow':'pill-green'}">TRIAGE: ${esc(c.triageLevel)}</span>
+                    <span class="pill ${(c.triageStatus||c.triageLevel)==='RED'?'pill-red':(c.triageStatus||c.triageLevel)==='YELLOW'?'pill-yellow':'pill-green'}">TRIAGE: ${esc(c.triageStatus || c.triageLevel || 'RED')}</span>
                   </div>
 
-                  <div style="display:flex;gap:8px;margin-top:12px">
+                  <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap">
                     <button class="btn btn-secondary" style="font-size:11px" onclick="renderPatient360View('${c.patientId}')">Patient 360°</button>
+                    <button class="btn btn-outline" style="font-size:11px" onclick="updateEmergencyTriageModal('${c.id}')">Update Triage</button>
+                    <button class="btn btn-outline" style="font-size:11px" onclick="linkEmergencyPatientModal('${c.id}')">Link Permanent Patient</button>
                     <button class="btn btn-outline" style="font-size:11px" onclick="allocateBedModal('EMG-01')">Assign ER Bed</button>
                   </div>
                 </div>
@@ -2626,6 +2759,49 @@ async function renderEmergencyPortal() {
       </div>
     </main>
   `);
+}
+
+function openRapidEmergencyModal() {
+  const name = prompt("Enter Patient Name (or leave default for UNKNOWN TRAUMA):", "UNKNOWN TRAUMA MALE (Appx 35y)");
+  if (name === null) return;
+  const triage = prompt("Select Triage Category (RED - Immediate / YELLOW - Urgent / GREEN - Delayed):", "RED");
+  const complaint = prompt("Enter Chief Complaint:", "Severe Head & Thoracic Trauma - RTA");
+  api("/api/emergency/rapid-register", {
+    method: "POST",
+    body: JSON.stringify({
+      patientName: name || "UNKNOWN TRAUMA MALE (Appx 35y)",
+      triageCategory: (triage || "RED").toUpperCase(),
+      chiefComplaint: complaint || "Acute trauma / Unresponsive",
+      bedId: "EMG-01"
+    })
+  }).then(res => {
+    alert(`✓ Rapid Emergency Registration Complete!\nTemporary MRN: ${res.emergencyCase.mrn}\nTriage Status: ${res.emergencyCase.triageStatus}\nAssigned Bed: EMG-01`);
+    renderEmergencyPortal();
+  }).catch(showError);
+}
+
+function updateEmergencyTriageModal(caseId) {
+  const triage = prompt("Update Triage Category (RED / YELLOW / GREEN):", "YELLOW");
+  if (!triage) return;
+  api("/api/emergency/triage-update", {
+    method: "POST",
+    body: JSON.stringify({ emergencyCaseId: caseId, triageCategory: triage.toUpperCase() })
+  }).then(res => {
+    alert("✓ Triage updated to " + triage.toUpperCase());
+    renderEmergencyPortal();
+  }).catch(showError);
+}
+
+function linkEmergencyPatientModal(caseId) {
+  const patId = prompt("Enter Registered Patient ID to link (e.g. P-1001):", "P-1001");
+  if (!patId) return;
+  api("/api/emergency/link-patient", {
+    method: "POST",
+    body: JSON.stringify({ emergencyCaseId: caseId, permanentPatientId: patId })
+  }).then(res => {
+    alert("✓ " + res.message);
+    renderEmergencyPortal();
+  }).catch(showError);
 }
 
 async function renderBillingPortal() {
@@ -2811,9 +2987,14 @@ function allocateBedModal(bedId) {
 /* ------------------------------------------------------------------ */
 
 async function renderPatient360View(patientId) {
-  let data = null;
+  let data = null, timelineData = [];
   try {
-    data = await api(`/api/patient/360/${patientId}`);
+    const [dRes, tRes] = await Promise.all([
+      api(`/api/patient/360/${patientId}`),
+      api(`/api/patient/timeline?patientId=${patientId}`).catch(() => ({ timeline: [] }))
+    ]);
+    data = dRes;
+    timelineData = tRes.timeline || [];
   } catch (err) { showError(err); return; }
 
   const p = data.patient;
@@ -2870,7 +3051,37 @@ async function renderPatient360View(patientId) {
         </div>
       </div>
 
-      <!-- SECTION 30: PATINOTE CLINICAL ENCOUNTERS TIMELINE -->
+      <!-- COMPLETE 11-STAGE LONGITUDINAL TIMELINE -->
+      <div class="card" style="margin-bottom:20px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h3 style="margin:0;color:var(--blue-dark)">⏱️ 11-Stage Longitudinal Patient Event Timeline (${timelineData.length} Events)</h3>
+          <span class="pill pill-blue">Real-Time Database Records</span>
+        </div>
+        ${timelineData.length === 0 ? `
+          <p style="font-size:13px;color:var(--muted);margin-top:10px">No historical events recorded for this patient.</p>
+        ` : `
+          <div style="display:flex;flex-direction:column;gap:12px;margin-top:16px">
+            ${timelineData.map(ev => `
+              <div style="padding:12px 16px;border-left:4px solid ${
+                ev.type.includes('DISCHARGE') ? '#10b981' :
+                ev.type.includes('ADMISSION') ? '#6366f1' :
+                ev.type.includes('PRESCRIPTION') || ev.type.includes('PHARMACY') ? '#f59e0b' :
+                ev.type.includes('LAB') || ev.type.includes('SCAN') ? '#0284c7' :
+                ev.type.includes('PATINOTE') ? '#8b5cf6' :
+                ev.type.includes('BILLING') ? '#ec4899' : '#64748b'
+              };background:#f8fafc;border-radius:0 8px 8px 0;border:1px solid #e2e8f0;border-left-width:4px">
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <strong style="font-size:14px;color:var(--blue-dark)">${esc(ev.title)}</strong>
+                  <span class="pill" style="font-size:10px">${esc(ev.type)} | ${new Date(ev.date).toLocaleDateString()}</span>
+                </div>
+                <p style="margin:4px 0 0;font-size:12px;color:var(--muted)">${esc(ev.summary)}</p>
+              </div>
+            `).join("")}
+          </div>
+        `}
+      </div>
+
+      <!-- PATINOTE CLINICAL ENCOUNTERS TIMELINE -->
       <div class="card" style="margin-bottom:20px">
         <h3>PATINOTE Clinical Case Sheets (${data.caseSheets ? data.caseSheets.length : 0})</h3>
         ${!data.caseSheets || data.caseSheets.length === 0 ? `
@@ -2887,6 +3098,39 @@ async function renderPatient360View(patientId) {
             ${cs.signedByDoctor ? `<small style="color:var(--muted);display:block;margin-top:4px">✓ Signed by ${esc(cs.signedByDoctor)} at ${new Date(cs.signedAt).toLocaleTimeString()}</small>` : ''}
           </div>
         `).join("")}
+      </div>
+
+      <!-- DIAGNOSTICS: LAB & SCAN REPORTS -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px">
+        <div class="card">
+          <h3>Laboratory Test Reports (${(data.labOrders || []).length})</h3>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">
+            ${(!data.labOrders || data.labOrders.length === 0) ? `<p style="font-size:13px;color:var(--muted)">No laboratory orders.</p>` : data.labOrders.map(l => `
+              <div style="padding:10px;border:1px solid var(--border);border-radius:8px">
+                <div style="display:flex;justify-content:space-between">
+                  <strong>🧪 ${esc(l.testName)}</strong>
+                  <span class="pill ${l.status==='PUBLISHED'?'pill-green':'pill-yellow'}">${esc(l.status)}</span>
+                </div>
+                ${l.result ? `<div style="margin-top:4px;font-size:12px;color:#15803d"><strong>Result:</strong> ${esc(l.result)} ${l.isAbnormal ? '<span class="pill pill-red">ABNORMAL</span>' : ''}</div>` : ''}
+              </div>
+            `).join("")}
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Radiology & Imaging Reports (${(data.scanOrders || []).length})</h3>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px">
+            ${(!data.scanOrders || data.scanOrders.length === 0) ? `<p style="font-size:13px;color:var(--muted)">No imaging scans ordered.</p>` : data.scanOrders.map(s => `
+              <div style="padding:10px;border:1px solid var(--border);border-radius:8px">
+                <div style="display:flex;justify-content:space-between">
+                  <strong>📻 ${esc(s.scanType)}</strong>
+                  <span class="pill ${s.status==='PUBLISHED'?'pill-green':'pill-yellow'}">${esc(s.status)}</span>
+                </div>
+                ${s.reportText || s.findings ? `<div style="margin-top:4px;font-size:12px;color:var(--muted)"><strong>Findings:</strong> ${esc(s.reportText || s.findings)}</div>` : ''}
+              </div>
+            `).join("")}
+          </div>
+        </div>
       </div>
 
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
